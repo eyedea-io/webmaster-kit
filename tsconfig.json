@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "lib": [
+      "es6",
+      "dom",
+      "es2017"
+    ],
+    "jsx": "preserve",
+    "target": "es2017",
+    "typeRoots": [
+      "node_modules/@types",
+      "./typings"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    ".config/**/*"
+  ]
+}

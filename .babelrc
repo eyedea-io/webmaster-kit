@@ -1,0 +1,10 @@
+{
+  "presets": ["env", "react"],
+  "plugins": [
+    "styled-jsx/babel",
+    "transform-runtime",
+    "transform-export-extensions",
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ]
+}

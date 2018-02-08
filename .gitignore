@@ -1,0 +1,28 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Build
+**/.build
+**/.dist
+**/.bundles
+**/.nyc_output
+syncano/.build
+
+# Dependency directories
+node_modules
+
+# Other
+.DS_Store
+Thumbs.db
+.envrc
+.vscode
+.idea
+coverage
+
+# Syncano
+syncano/.build
+syncano/.dist
+syncano/.bundles
+syncano/**/scripts/.bundles

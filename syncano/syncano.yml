@@ -1,0 +1,7 @@
+hosting:
+  web:
+    src: ../.build
+dependencies:
+  sockets:
+    user-auth:
+      version: 0.0.5

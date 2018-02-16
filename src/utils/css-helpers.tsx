@@ -11,8 +11,11 @@ export function color (hex: string) {
     return `${r}, ${g}, ${b}`
   }
 
+  const rgb = toRGB(hex.replace('#', ''))
+
   return {
-    rgb: toRGB(hex.replace('#', '')),
+    rgba: (alpha = 1) => `${rgb}, ${alpha}`,
+    rgb,
     hex,
     toString: () => hex
   }
@@ -23,9 +26,9 @@ export function spacing (value: number) {
     xxs: `${value / 8}px`,
     xs: `${value / 4}px`,
     sm: `${value / 2}px`,
-    lg: `${value / 1.5}px`,
-    xl: `${value / 2}px`,
-    xxl: `${value / 4}px`,
+    lg: `${value * 1.5}px`,
+    xl: `${value * 2}px`,
+    xxl: `${value * 4}px`,
     toString: () => `${value}px`
   }
 }

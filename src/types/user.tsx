@@ -51,12 +51,26 @@ export const UserStore = types
     }) {
       try {
         self.pending.set('login', '')
-        const user = yield syncano('user-auth/login', credentials)
-        self.profile = user
+        const session = yield syncano('user-auth/login', credentials)
+        self.token = session.token
       } catch (error) {
         throw error
       } finally {
         self.pending.delete('login')
+      }
+    }),
+    register: flow(function * (credentials: {
+      username: string,
+      password: string,
+    }) {
+      try {
+        self.pending.set('register', '')
+        const session = yield syncano('user-auth/register', credentials)
+        self.token = session.token
+      } catch (error) {
+        throw error
+      } finally {
+        self.pending.delete('register')
       }
     })
   }))

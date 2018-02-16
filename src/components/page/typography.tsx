@@ -9,6 +9,12 @@ export const Typography = () => (
       text-decoration: none;
     }
 
+
+    h1 {
+      color: #333;
+      font-weight: 300;
+    }
+
     .u-uppercase { text-transform: uppercase; }
 
     /* Text align */

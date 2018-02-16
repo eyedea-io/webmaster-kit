@@ -26,11 +26,6 @@ export class MissingView extends React.Component {
             justify-content: center;
             flex-direction: column;
           }
-
-          h1 {
-            color: #333;
-            font-weight: 300;
-          }
         `}</style>
       </Page>
     )

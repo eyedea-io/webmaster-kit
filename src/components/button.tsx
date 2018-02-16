@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {CSS} from '../constants'
-import {Spiner} from '.'
+import {Spinner} from '.'
 
 export interface Props {
   children: React.ReactChild | string,
@@ -27,7 +27,7 @@ export const Button = ({
 
   return (
     <button className={buttonClassName} {...props}>
-      {loading ? <Spiner white small /> : children}
+      {loading ? <Spinner white small /> : children}
 
       <style jsx>{`
         .Button {

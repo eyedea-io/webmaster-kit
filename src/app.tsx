@@ -7,8 +7,10 @@ import {IStore} from './types'
 import {connect} from './utils'
 
 import {MissingView} from './views/missing'
-import {LoginView} from './views/login'
+import {LoginView} from './views/auth/login'
+import {LogoutView} from './views/auth/logout'
 import {IndexView} from './views'
+import {RegisterView} from './views/auth/register'
 
 interface Props {
   store: IStore
@@ -17,13 +19,15 @@ interface Props {
 class Application extends React.Component<Props> {
   render() {
     return (
-      <Router.HashRouter>
+      <Router.BrowserRouter>
         <Router.Switch>
           <Router.Route exact path="/" component={connect(IndexView)} />
           <Router.Route exact path="/auth/login" component={connect(LoginView)} />
+          <Router.Route exact path="/auth/register" component={connect(RegisterView)} />
+          <Router.Route exact path="/auth/logout" component={connect(LogoutView)} />
           <Router.Route component={MissingView} />
         </Router.Switch>
-      </Router.HashRouter>
+      </Router.BrowserRouter>
     )
   }
 }

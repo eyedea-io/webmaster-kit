@@ -11,13 +11,10 @@ export const Form = types
     get data(): any  {
       return Object
         .keys(self.fields)
-        .reduce(
-          (all, fieldName) => ({
-            ...all,
-            [fieldName]: self.fields[fieldName].value
-          }),
-          {}
-        )
+        .reduce((all, fieldName) => ({
+          ...all,
+          [fieldName]: self.fields[fieldName].value
+        }), {})
     }
   }))
   .actions(self => ({
@@ -40,16 +37,13 @@ export const Form = types
   }))
   .actions(self => ({
     clear() {
-      self.fields = Object.keys(self.fields).reduce(
-        (all, name) => ({
-          ...all,
-          [name]: {
-            ...self.fields[name],
-            value: self.fields[name].value || ''
-          }
-        }),
-        {}
-      )
+      self.fields = Object.keys(self.fields).reduce((all, name) => ({
+        ...all,
+        [name]: {
+          ...self.fields[name],
+          value: self.fields[name].value || ''
+        }
+      }), {})
     },
     editable(name: string) {
       return {
@@ -75,6 +69,7 @@ export const FormStore = types
       }
 
       form = Form.create({name, fields})
+      form.clear()
 
       self.forms.push(form)
 

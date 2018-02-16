@@ -27,7 +27,6 @@ export const List = ({children, horizontal, spacing = 'md'}: Props) => (
 
       .List--horizontal {
         display: flex;
-        justify-content: space-between;
         align-items: center;
       }
 

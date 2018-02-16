@@ -6,7 +6,7 @@ interface Props {
   small?: boolean
 }
 
-export const Spiner = ({white, small}: Props) => (
+export const Spinner = ({white, small}: Props) => (
   <React.Fragment>
     <svg
       fill={white ? 'white' : CSS.colors.primary.hex}

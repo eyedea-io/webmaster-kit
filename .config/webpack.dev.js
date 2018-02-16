@@ -14,6 +14,7 @@ module.exports = merge(common, {
     '../src/index'
   ],
   devServer: {
+    historyApiFallback: true,
     contentBase: join(__dirname, '..', '.build'),
     quiet: true,
     hot: true

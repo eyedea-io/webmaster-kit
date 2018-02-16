@@ -92,7 +92,6 @@ export class LoginView extends React.Component<Props> {
     try {
       await this.props.store.userStore.login(this.form.data)
     } catch (err) {
-      console.log(err)
       this.form.errors.replace({
         message: err.response.data.message
       })

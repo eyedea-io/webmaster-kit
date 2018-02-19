@@ -1,0 +1,57 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn run build
+
+  deploy_staging:
+    name: Deploy staging
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          key: v5-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run: echo 'export SYNCANO_AUTH_KEY=${SYNCANO_AUTH_KEY}' >> $BASH_ENV
+      - run: echo 'export SYNCANO_PROJECT_INSTANCE=${STAGING_SYNCANO_PROJECT_INSTANCE}' >> $BASH_ENV
+      - run: npx syncano-cli deploy
+      # - run: npx syncano-cli hosting config web --cname YOUR_CNAME
+      - run: npx syncano-cli hosting sync web
+
+  deploy_production:
+    name: Deploy production
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          key: v5-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run: echo 'export SYNCANO_AUTH_KEY=${SYNCANO_AUTH_KEY}' >> $BASH_ENV
+      - run: echo 'export SYNCANO_PROJECT_INSTANCE=${PRODUCTION_SYNCANO_PROJECT_INSTANCE}' >> $BASH_ENV
+      - run: npx syncano-cli deploy
+      # - run: npx syncano-cli hosting config web --cname YOUR_CNAME
+      - run: npx syncano-cli hosting sync web
+
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - deploy_staging:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - deploy_production:
+          requires:
+            - build
+          filters:
+            branches:
+              only: production

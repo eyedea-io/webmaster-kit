@@ -1,19 +1,22 @@
 import * as React from 'react'
+import * as Router from 'react-router'
 import {IStore} from '../../types'
-import {connect} from '../../utils'
+import {inject, observer} from 'mobx-react'
 
 interface Props {
   store: IStore
 }
 
-export class LogoutView extends React.Component<Props> {
+@inject('store')
+@observer
+class LogoutView extends React.Component<Props> {
   componentDidMount() {
     this.props.store.userStore.logout()
   }
 
   render () {
-    window.location.replace('/')
-
-    return null
+    return <Router.Redirect to="/" />
   }
 }
+
+export {LogoutView}

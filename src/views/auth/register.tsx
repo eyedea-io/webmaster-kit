@@ -1,17 +1,18 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
-import {
-  Head, Icon, Page, Input, Button, Message, Textarea, FlexLayout, InputList, Wrapper, List
-} from '../../components'
-import {isEmail, syncano, connect} from '../../utils'
+import {Head, Page, Input, Button, InputList, Wrapper} from '../../components'
+import {isEmail} from '../../utils'
 import {IStore} from '../../types'
 import {APP_TITLE, CSS} from '../../constants'
+import {observer, inject} from 'mobx-react'
 
 interface Props extends Router.RouteComponentProps<{}> {
   store: IStore
 }
 
-export class RegisterView extends React.Component<Props> {
+@inject ('store')
+@observer
+class RegisterView extends React.Component<Props> {
   private readonly title = `Register - ${APP_TITLE}`
   private readonly formName = 'Register'
   private readonly formFields = {
@@ -48,7 +49,7 @@ export class RegisterView extends React.Component<Props> {
             <InputList errors={this.form.errors.all}>
               <Input value={this.form.fields.username.value} {...this.form.editable('username')}/>
               <Input value={this.form.fields.password.value} {...this.form.editable('password')}/>
-              <Button primary loading={this.isLoggingIn} disabled={this.isButtonDisabled}>Sign in</Button>
+              <Button primary loading={this.isPending} disabled={!this.allowSubmit}>Sign up</Button>
               <div>
                 <Router.Link to="/auth/login">Sign in</Router.Link>
               </div>
@@ -76,14 +77,14 @@ export class RegisterView extends React.Component<Props> {
     return this.props.store.userStore.isLoggedIn
   }
 
-  private get isLoggingIn(): boolean {
-    return this.props.store.userStore.pending.has('login')
+  private get isPending(): boolean {
+    return this.props.store.userStore.pending.has('register')
   }
 
-  private get isButtonDisabled(): boolean {
+  private get allowSubmit(): boolean {
     const {fields} = this.form
 
-    return !isEmail(fields.username.value) || !fields.password.value
+    return isEmail(fields.username.value) && fields.password.value
   }
 
   private handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -96,3 +97,5 @@ export class RegisterView extends React.Component<Props> {
     }
   }
 }
+
+export {RegisterView}

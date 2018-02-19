@@ -1,15 +1,17 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
-import {Head, Page, Input, Button, List, Message, Wrapper} from '../components'
-import {isEmail, syncano, connect} from '../utils'
+import {Head, Page, List, Wrapper} from '../components'
 import {IStore} from '../types'
 import {APP_TITLE, CSS} from '../constants'
+import {inject, observer} from 'mobx-react'
 
 interface Props extends Router.RouteComponentProps<{}> {
   store: IStore
 }
 
-export class IndexView extends React.Component<Props> {
+@inject('store')
+@observer
+class IndexView extends React.Component<Props> {
   private readonly title = APP_TITLE
 
   render() {
@@ -48,3 +50,5 @@ export class IndexView extends React.Component<Props> {
     )
   }
 }
+
+export {IndexView}

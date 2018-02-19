@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as Router from 'react-router-dom'
-import {App} from './app'
+import {Routes} from './routes'
 import {Store, IStore} from './types'
 import {observer, Provider} from 'mobx-react'
 import {destroy, getSnapshot, onSnapshot} from 'mobx-state-tree'
@@ -52,18 +52,18 @@ const createStore = (snapshot: object) => {
 }
 
 // Initial render
-render(App, createStore(initialState))
+render(Routes, createStore(initialState))
 
 // Hot loading components
 if (module.hot) {
   // Reload app and store
   module.hot.accept('./types', () => {
-    render(App, createStore(getSnapshot(store)))
+    render(Routes, createStore(getSnapshot(store)))
   })
 
   // Reload whole app
-  module.hot.accept('./app', () => {
-    const NextApp = require('./app').App
+  module.hot.accept('./routes', () => {
+    const NextApp = require('./routes').Routes
 
     render(NextApp, store)
   })

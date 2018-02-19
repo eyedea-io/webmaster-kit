@@ -52,7 +52,7 @@ export const UserStore = types
       try {
         self.pending.set('login', '')
         const session = yield syncano('user-auth/login', credentials)
-        self.token = session.token
+        self.setToken(session.token)
       } catch (error) {
         throw error
       } finally {
@@ -66,7 +66,7 @@ export const UserStore = types
       try {
         self.pending.set('register', '')
         const session = yield syncano('user-auth/register', credentials)
-        self.token = session.token
+        self.setToken(session.token)
       } catch (error) {
         throw error
       } finally {

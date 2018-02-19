@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
 import {Head, Page, Input, Button, InputList, Wrapper} from '../../components'
-import {isEmail} from '../../utils'
+import {isEmail, as} from '../../utils'
 import {IStore} from '../../types'
 import {APP_TITLE, CSS} from '../../constants'
 import {observer, inject} from 'mobx-react'
@@ -11,6 +11,7 @@ interface Props extends Router.RouteComponentProps<{}> {
 }
 
 @inject('store')
+@as.member(() => <Router.Redirect to="/" />)
 @observer
 class LoginView extends React.Component<Props> {
   private readonly title = `Login - ${APP_TITLE}`
@@ -32,10 +33,6 @@ class LoginView extends React.Component<Props> {
   }
 
   render() {
-    if (this.isLoggedIn) {
-      return <Router.Redirect to="/" />
-    }
-
     return (
       <Page>
         <Head>

@@ -1,19 +1,26 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
+import {observer} from 'mobx-react'
+
 import './icons'
 
 import {IndexView} from './views'
 import {AuthView} from './views/auth'
 import {MissingView} from './views/missing'
 
-const {Route, Switch, BrowserRouter} = Router
+@observer
+class Routes extends React.Component {
+  render() {
+    return (
+      <Router.BrowserRouter>
+        <Router.Switch>
+          <Router.Route exact path="/" component={IndexView} />
+          <Router.Route path="/auth" component={AuthView} />
+          <Router.Route component={MissingView} />
+        </Router.Switch>
+      </Router.BrowserRouter>
+    )
+  }
+}
 
-export const Routes = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={IndexView} />
-      <Route path="/auth" component={AuthView} />
-      <Route component={MissingView} />
-    </Switch>
-  </BrowserRouter>
-)
+export {Routes}

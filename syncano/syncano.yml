@@ -1,6 +1,8 @@
 hosting:
   web:
     src: ../.build
+    config:
+      browser_router: true
 dependencies:
   sockets:
     user-auth:

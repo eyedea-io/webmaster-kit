@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "npm install && npm run build:src && npm run build:env",
+    "build:src": "sh ./bin/compile",
+    "build:env": "sh ./bin/compile-env"
+  },
+  "dependencies": {
+    "@syncano/core": "^0.10.0-alpha.f21aa8b8",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "8"
+          }
+        }
+      ]
+    ]
+  }
+}

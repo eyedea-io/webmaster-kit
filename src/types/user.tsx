@@ -6,8 +6,8 @@ export const User = types
   .model('User', {
     id: types.identifier(types.number),
     username: types.string,
-    first_name: types.string,
-    last_name: types.string
+    first_name: types.maybe(types.string),
+    last_name: types.maybe(types.string)
   })
   .views(self => ({
     get fullName(): string {
@@ -28,18 +28,33 @@ export const UserStore = types
   })
   .views(self => ({
     get isLoggedIn(): boolean {
-      return Boolean(self.token)
+      return Boolean(self.token && self.profile)
     }
   }))
   .actions(self => ({
     setToken(token: string = '') {
       self.token = token
       localStorage.setItem('token', token)
-    }
+    },
+    fetchProfile: flow(function * () {
+      if (!self.token) {
+        return
+      }
+
+      try {
+        self.pending.set('fetch-profile', '')
+        self.profile = yield syncano('api/profile')
+      } catch (error) {
+        throw error
+      } finally {
+        self.pending.delete('fetch-profile')
+      }
+    }),
   }))
   .actions(self => ({
     afterCreate: flow(function * () {
       self.token = window.localStorage.getItem('token') || ''
+      self.fetchProfile()
     }),
     logout() {
       self.setToken()
@@ -53,6 +68,7 @@ export const UserStore = types
         self.pending.set('login', '')
         const session = yield syncano('user-auth/login', credentials)
         self.setToken(session.token)
+        self.fetchProfile()
       } catch (error) {
         throw error
       } finally {

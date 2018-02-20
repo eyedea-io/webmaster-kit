@@ -1,5 +1,6 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
+import Modals from './modals'
 import {observer} from 'mobx-react'
 
 import './icons'
@@ -13,11 +14,15 @@ class Routes extends React.Component {
   render() {
     return (
       <Router.BrowserRouter>
-        <Router.Switch>
-          <Router.Route exact path="/" component={IndexView} />
-          <Router.Route path="/auth" component={AuthView} />
-          <Router.Route component={MissingView} />
-        </Router.Switch>
+        <React.Fragment>
+          <Router.Switch>
+            <Router.Route exact path="/" component={IndexView} />
+            <Router.Route path="/auth" component={AuthView} />
+            <Router.Route component={MissingView} />
+          </Router.Switch>
+
+          <Modals />
+        </React.Fragment>
       </Router.BrowserRouter>
     )
   }

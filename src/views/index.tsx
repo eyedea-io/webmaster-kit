@@ -27,7 +27,13 @@ class IndexView extends React.Component<Props> {
 
             <List horizontal spacing="sm">
               {this.props.store.userStore.isLoggedIn ? (
-                <Router.Link to="/auth/logout">Sign out</Router.Link>
+                <React.Fragment>
+                  <Router.Link to="/auth/logout">Sign out</Router.Link>
+
+                  <a onClick={() => this.props.store.modal.open('profile')}>
+                    My profile
+                  </a>
+                </React.Fragment>
               ) : (
                 <React.Fragment>
                   <Router.Link to="/auth/login">Sign in</Router.Link>

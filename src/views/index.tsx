@@ -26,20 +26,7 @@ class IndexView extends React.Component<Props> {
             <h1 className="u-mb">Webmaster Kit</h1>
 
             <List horizontal spacing="sm">
-              {this.props.store.userStore.isLoggedIn ? (
-                <React.Fragment>
-                  <Router.Link to="/auth/logout">Sign out</Router.Link>
-
-                  <a onClick={() => this.props.store.modal.open('profile')}>
-                    My profile
-                  </a>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <Router.Link to="/auth/login">Sign in</Router.Link>
-                  <Router.Link to="/auth/register">Create account</Router.Link>
-                </React.Fragment>
-              )}
+              {this.props.store.userStore.isLoggedIn ? this.renderUserNav() : this.renderGuestNav()}
             </List>
           </div>
         </Wrapper>
@@ -55,6 +42,23 @@ class IndexView extends React.Component<Props> {
       </Page>
     )
   }
+
+  renderUserNav = () => (
+    <React.Fragment>
+      <Router.Link to="/auth/logout">Sign out</Router.Link>
+
+      <a onClick={() => this.props.store.modal.open('profile')}>
+        My profile
+      </a>
+    </React.Fragment>
+  )
+
+  renderGuestNav = () => (
+    <React.Fragment>
+      <Router.Link to="/auth/login">Sign in</Router.Link>
+      <Router.Link to="/auth/register">Create account</Router.Link>
+    </React.Fragment>
+  )
 }
 
 export {IndexView}

@@ -18,19 +18,15 @@ export const Form = types
     }
   }))
   .actions(self => ({
-    handleChange(event: React.FormEvent<HTMLInputElement>) {
-      self.fields = Object.assign({}, self.fields, {
-        [event.currentTarget.name]: {
-          ...self.fields[event.currentTarget.name],
-          value: event.currentTarget.value
-        }
-      })
+    handleChange(event: React.FormEvent<HTMLInputElement> | string, value?: any) {
+      const name = typeof event === 'string' ? event : event.currentTarget.name
+      const val = typeof event === 'string' ? value : event.currentTarget.value
 
       self.fields = {
         ...self.fields,
-        [event.currentTarget.name]: {
-          ...self.fields[event.currentTarget.name],
-          value: event.currentTarget.value
+        [name]: {
+          ...self.fields[name],
+          value: val
         }
       }
     }

@@ -7,17 +7,19 @@ interface Props {
   children: React.ReactChild | Array<React.ReactChild>
   middle?: boolean
   split?: boolean
+  full?: boolean
   wrap?: boolean
   spacing?: Spacing
 }
 
-export const FlexLayout = ({children, middle, split, wrap, spacing = 'md'}: Props) => (
+export const FlexLayout = ({children, middle, split, wrap, full, spacing = 'md'}: Props) => (
   <div
     className={`
       FlexLayout
       ${split ? 'FlexLayout--split' : ''}
       ${middle ? 'FlexLayout--middle' : ''}
       ${wrap ? 'FlexLayout--wrap' : ''}
+      ${full ? 'FlexLayout--full' : ''}
       ${spacing ? `FlexLayout--${spacing}` : ''}
     `}
   >
@@ -29,6 +31,7 @@ export const FlexLayout = ({children, middle, split, wrap, spacing = 'md'}: Prop
       .FlexLayout--split { justify-content: space-between; }
       .FlexLayout--middle { align-items: center;  }
       .FlexLayout--wrap { flex-wrap: wrap;  }
+      .FlexLayout--full { width: 100%; }
 
       .FlexLayout--xs { margin-left: -${CSS.spacing.xs}; }
       .FlexLayout--xs > :global(*) { margin-left: ${CSS.spacing.xs}; }
@@ -44,6 +47,9 @@ export const FlexLayout = ({children, middle, split, wrap, spacing = 'md'}: Prop
 
       .FlexLayout--xl { margin-left: -${CSS.spacing.xl}; }
       .FlexLayout--xl > :global(*) { margin-left: ${CSS.spacing.xl}; }
+
+      .FlexLayout--split,
+      .FlexLayout--split > :global(*) { margin-left: 0; }
     `}</style>
   </div>
 )

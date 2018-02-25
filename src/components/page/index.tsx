@@ -13,6 +13,8 @@ export const Page = ({children}: Props) => (
   <React.Fragment>
     {children}
 
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+
     <Normalize />
     <Typography />
     <Spacing />
@@ -28,6 +30,8 @@ export const Page = ({children}: Props) => (
       }
 
       body {
+        overflow-y: scroll;
+        overflow-x: hidden;
         min-height: 100vh;
       }
     `}</style>

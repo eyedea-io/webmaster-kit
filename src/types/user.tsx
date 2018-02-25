@@ -35,7 +35,9 @@ export const UserStore = types
     setToken(token: string = '') {
       self.token = token
       localStorage.setItem('token', token)
-    },
+    }
+  }))
+  .actions(self => ({
     fetchProfile: flow(function * () {
       if (!self.token) {
         return
@@ -45,6 +47,9 @@ export const UserStore = types
         self.pending.set('fetch-profile', '')
         self.profile = yield syncano('api/profile')
       } catch (error) {
+        if (error.response.data.message === 'User profile was not found.') {
+          self.setToken()
+        }
         throw error
       } finally {
         self.pending.delete('fetch-profile')

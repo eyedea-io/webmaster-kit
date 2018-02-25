@@ -8,6 +8,10 @@ jobs:
       - checkout
       - run: yarn
       - run: yarn run build
+      - save_cache:
+          key: v5-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/repo
 
   deploy_staging:
     name: Deploy staging
@@ -20,7 +24,7 @@ jobs:
       - run: echo 'export SYNCANO_AUTH_KEY=${SYNCANO_AUTH_KEY}' >> $BASH_ENV
       - run: echo 'export SYNCANO_PROJECT_INSTANCE=${STAGING_SYNCANO_PROJECT_INSTANCE}' >> $BASH_ENV
       - run: npx syncano-cli deploy
-      # - run: npx syncano-cli hosting config web --cname YOUR_CNAME
+      - run: npx syncano-cli hosting config web -b true # --cname YOUR_CNAME
       - run: npx syncano-cli hosting sync web
 
   deploy_production:
@@ -34,9 +38,8 @@ jobs:
       - run: echo 'export SYNCANO_AUTH_KEY=${SYNCANO_AUTH_KEY}' >> $BASH_ENV
       - run: echo 'export SYNCANO_PROJECT_INSTANCE=${PRODUCTION_SYNCANO_PROJECT_INSTANCE}' >> $BASH_ENV
       - run: npx syncano-cli deploy
-      # - run: npx syncano-cli hosting config web --cname YOUR_CNAME
+      - run: npx syncano-cli hosting config web -b true # --cname YOUR_CNAME
       - run: npx syncano-cli hosting sync web
-
 
 workflows:
   version: 2

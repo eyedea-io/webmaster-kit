@@ -1,4 +1,5 @@
 export {syncano} from './syncano'
 export {isEmail} from './is-email'
+export {hashStr} from './hash-str'
 export {connect} from './connect'
 export {as} from './as'

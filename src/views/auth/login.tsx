@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
-import {Head, Page, Input, Button, InputList, Wrapper} from '../../components'
+import {Head, Page, Input, Button, InputList, Wrapper, Avatar} from '../../components'
 import {isEmail, as} from '../../utils'
 import {IStore} from '../../types'
 import {APP_TITLE, CSS} from '../../constants'

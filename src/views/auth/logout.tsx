@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Router from 'react-router'
-import {IStore} from '../../types'
-import {inject, observer} from 'mobx-react'
+import {inject, observer} from '@utils'
+import {IStore} from '@types'
 
 interface Props {
   store: IStore

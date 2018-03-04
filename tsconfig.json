@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@config": ["./constants"],
+      "@components": ["./components"],
+      "@types": ["./types"],
+      "@utils": ["./utils"],
+    },
     "experimentalDecorators": true,
     "outDir": "./build/",
     "sourceMap": true,

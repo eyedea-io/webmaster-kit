@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const {join, resolve} = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 
 module.exports = {
   context: resolve(__dirname, '../src'),
@@ -10,7 +11,10 @@ module.exports = {
     filename: 'main.js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    plugins: [
+      new TsConfigPathsPlugin()
+    ]
   },
   module: {
     rules: [

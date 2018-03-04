@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {CSS} from '../constants'
+import {CSS} from '@config'
 
 interface Props {
   children: React.ReactChild | Array<React.ReactChild>

@@ -1,5 +1,5 @@
 import {types} from 'mobx-state-tree'
-import {syncano} from '../utils'
+import {syncano} from '@utils'
 import {FormStore, Form} from './form'
 import {User, UserStore} from './user'
 import {Modal} from './modal'

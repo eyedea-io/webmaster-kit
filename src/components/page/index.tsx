@@ -3,7 +3,7 @@ import {Normalize} from './normalize'
 import {Typography} from './typography'
 import {Spacing} from './spacing'
 import {Widths} from './widths'
-import {CSS} from '../../constants'
+import {CSS} from '@config'
 
 interface Props {
   children?: React.ReactChild | Array<React.ReactChild>

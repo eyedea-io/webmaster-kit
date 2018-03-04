@@ -1,6 +1,6 @@
 import * as React from 'react'
-import {Head, Page, Link} from '../components'
-import {APP_TITLE} from '../constants'
+import {Head, Page, Link} from '@components'
+import {APP_TITLE} from '@config'
 
 export class MissingView extends React.Component {
   private readonly title = `Not Found - ${APP_TITLE}`

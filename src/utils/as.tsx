@@ -1,6 +1,6 @@
 import * as React from 'react'
-import {IStore} from '../types'
 import {observer} from 'mobx-react'
+import {IStore} from '@types'
 const hoistNonReactStatics = require('hoist-non-react-statics')
 
 interface Props {

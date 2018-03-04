@@ -1,10 +1,9 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
-import {Head, Page, Input, Button, InputList, Wrapper} from '../../components'
-import {isEmail, as} from '../../utils'
-import {IStore} from '../../types'
-import {APP_TITLE, CSS} from '../../constants'
-import {observer, inject} from 'mobx-react'
+import {Head, Page, Input, Button, InputList, Wrapper} from '@components'
+import {observer, inject, isEmail, as} from '@utils'
+import {IStore} from '@types'
+import {APP_TITLE, CSS} from '@config'
 
 interface Props extends Router.RouteComponentProps<{}> {
   store: IStore

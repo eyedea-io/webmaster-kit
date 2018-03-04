@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {List, Props as ListProps} from './list'
-import {CSS} from '../constants'
+import {CSS} from '@config'
 import {Message} from '.'
 
 type ErrorsPosition = 'each' | 'start' | 'end'

@@ -1,7 +1,7 @@
 import * as React from 'react'
-import {Modal} from '../components'
+import {Modal} from '@components'
+import {IStore} from '@types'
 import {Profile} from './profile'
-import {IStore} from '../types'
 
 export default () => (
   <React.Fragment>

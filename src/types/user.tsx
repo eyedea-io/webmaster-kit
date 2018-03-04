@@ -1,6 +1,6 @@
 import {types, getRoot, flow} from 'mobx-state-tree'
 import {IStore} from '.'
-import {syncano} from '../utils'
+import {syncano} from '@utils'
 
 export const User = types
   .model('User', {

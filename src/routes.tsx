@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
 import Modals from './modals'
-import {observer} from 'mobx-react'
+import {observer} from '@utils'
 
 import './icons'
 

@@ -2,7 +2,7 @@ import Server from '@syncano/core'
 
 export default async (ctx) => {
   const {users, response, logger} = new Server(ctx)
-  const {debug} = logger('api:profile')
+  const {debug} = logger('api:user/profile')
   const {user} = ctx.meta
 
   if (user === undefined) {

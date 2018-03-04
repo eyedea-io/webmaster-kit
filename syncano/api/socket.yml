@@ -1,19 +1,10 @@
 name: api
 version: 0.0.1
 endpoints:
-  profile:
-    file: profile.js
+  user/profile:
+    file: user/profile.js
     response:
       success:
-        description: Success
-        example: |
-          {
-            "username": "john"
-          }
+        exit_code: 200
       fail:
         exit_code: 400
-        description: Failed
-        example: |
-          {
-            "message": "User was not found."
-          }

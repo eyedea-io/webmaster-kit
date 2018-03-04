@@ -45,7 +45,7 @@ export const UserStore = types
 
       try {
         self.pending.set('fetch-profile', '')
-        self.profile = yield syncano('api/profile')
+        self.profile = yield syncano('api/user/profile')
       } catch (error) {
         if (error.response.data.message === 'User profile was not found.') {
           self.setToken()
@@ -73,7 +73,7 @@ export const UserStore = types
         self.pending.set('login', '')
         const session = yield syncano('user-auth/login', credentials)
         self.setToken(session.token)
-        self.fetchProfile()
+        yield self.fetchProfile()
       } catch (error) {
         throw error
       } finally {
@@ -88,6 +88,7 @@ export const UserStore = types
         self.pending.set('register', '')
         const session = yield syncano('user-auth/register', credentials)
         self.setToken(session.token)
+        yield self.fetchProfile()
       } catch (error) {
         throw error
       } finally {

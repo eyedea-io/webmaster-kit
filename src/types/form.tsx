@@ -26,7 +26,7 @@ export const Form = types
         ...self.fields,
         [name]: {
           ...self.fields[name],
-          value: val
+          value: val || ''
         }
       }
     }

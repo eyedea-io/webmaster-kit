@@ -24,7 +24,7 @@
     "jsx-alignment": false,
     "label-position": true,
     "max-line-length": [ true, 120 ],
-    "member-ordering": true,
+    "member-ordering": [true, {"order": "fields-first"}],
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [
@@ -48,7 +48,6 @@
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": false,
     "no-unused-expression": true,
-    "no-use-before-declare": true,
     "one-line": [
       true,
       "check-catch",

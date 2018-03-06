@@ -1,5 +1,13 @@
 name: api
 version: 0.0.1
+
+classes:
+  user:
+    - name: firstName
+      type: string
+    - name: lastName
+      type: string
+
 endpoints:
   user/profile:
     file: user/profile.js

@@ -6,17 +6,17 @@ export const User = types
   .model('User', {
     id: types.identifier(types.number),
     username: types.string,
-    first_name: types.maybe(types.string),
-    last_name: types.maybe(types.string)
+    firstName: types.maybe(types.string),
+    lastName: types.maybe(types.string)
   })
   .views(self => ({
     get fullName(): string {
-      return [self.first_name, self.last_name].join(' ')
+      return [self.firstName, self.lastName].join(' ')
     }
   }))
   .views(self => ({
     get displayName(): string {
-      return self.fullName || self.username
+      return self.fullName === ' ' ? self.username : self.fullName
     }
   }))
 

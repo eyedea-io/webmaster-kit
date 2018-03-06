@@ -2,15 +2,15 @@ import Server from '@syncano/core'
 
 export default async (ctx) => {
   const {users, response, logger} = new Server(ctx)
-  const {debug} = logger('api:user/profile')
-  const {user} = ctx.meta
+  const {warn} = logger('api:user/profile')
 
-  if (user === undefined) {
-    response.fail({
-      message: 'User profile was not found.'
-    })
+  if (ctx.meta.user === undefined) {
+    warn('User profile was not found.')
+    response.fail({message: 'User profile was not found.'})
   } else {
-    delete user.user_key
+    info('User profile was found.')
+
+    const user = users.field(MODELS.user).find(ctx.meta.user.id)
 
     response.json(user)
   }

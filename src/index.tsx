@@ -1,8 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as Router from 'react-router-dom'
 import {Routes} from './routes'
-import {observer, Provider} from 'mobx-react'
+import {Provider} from 'mobx-react'
 import {createStore} from 'utils/create-store'
 const root = document.createElement('div')
 

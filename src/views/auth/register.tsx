@@ -28,14 +28,10 @@ class RegisterView extends React.Component<Props> {
   }
 
   componentWillMount() {
-    this.props.store.formStore.add(this.formName, this.formFields)
+    this.props.store.formStore.add(this.formName, this.formFields).clear()
   }
 
   render() {
-    if (this.isLoggedIn) {
-      return <Router.Redirect to="/" />
-    }
-
     return (
       <Page>
         <Head>
@@ -71,10 +67,6 @@ class RegisterView extends React.Component<Props> {
 
   private get form() {
     return this.props.store.formStore.get(this.formName)
-  }
-
-  private get isLoggedIn(): boolean {
-    return this.props.store.userStore.isLoggedIn
   }
 
   private get isPending(): boolean {

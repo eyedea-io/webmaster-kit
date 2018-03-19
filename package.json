@@ -16,7 +16,6 @@
     "@types/react-router-dom": "4.2.4",
     "@types/styled-jsx": "^2.2.2",
     "@types/webpack-env": "1.13.5",
-    "awesome-typescript-loader": "5.0.0-1",
     "babel-runtime": "6.26.0",
     "hoist-non-react-statics": "^2.5.0",
     "mobx": "4.1.0",
@@ -31,6 +30,7 @@
     "@octokit/rest": "^14.0.9",
     "@types/jest": "22.1.4",
     "@types/react-hot-loader": "3.0.6",
+    "awesome-typescript-loader": "5.0.0-1",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.3",
     "babel-plugin-transform-class-properties": "6.24.1",
@@ -61,29 +61,5 @@
     "webpack-cli": "2.0.12",
     "webpack-dev-server": "3.1.1",
     "webpack-merge": "4.1.2"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file-mock.js"
-    },
-    "globals": {
-      "ts-jest": {
-        "useBabelrc": true
-      }
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testMatch": [
-      "**/src/**/*.test.(ts|tsx|js)"
-    ],
-    "setupFiles": [
-      "<rootDir>/src/utils/setup-tests.js"
-    ]
   }
 }

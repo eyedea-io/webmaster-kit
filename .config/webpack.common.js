@@ -11,7 +11,7 @@ module.exports = {
     filename: 'main.js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    extensions: ['.json', '.ts', '.tsx', '.js'],
     plugins: [
       new TsConfigPathsPlugin()
     ]

@@ -35,7 +35,7 @@ export const MessageBag = types
     first(key?: string): string {
       const message = self.messages.get(key)
 
-      if (key === undefined && self.messages.keys().length) {
+      if (key === undefined && self.messages.size) {
         const [name, value] = self.messages.entries()[0]
 
         return value || name
@@ -53,10 +53,9 @@ export const MessageBag = types
       return []
     },
     get all(): Array<string> {
-      const entries = self.messages.entries()
       let result = []
 
-      entries.forEach(([key, value], idx) => {
+      self.messages.forEach(([key, value], idx) => {
         if (value === '') {
           result.push(key)
         } else {
@@ -67,13 +66,13 @@ export const MessageBag = types
       return result
     },
     get count(): number {
-      return self.messages.keys().length
+      return self.messages.size
     },
     get any(): boolean {
-      return Boolean(self.messages.keys().length)
+      return Boolean(self.messages.size)
     },
     get isEmpty(): boolean {
-      return self.messages.keys().length === 0
+      return self.messages.size === 0
     },
   }))
 

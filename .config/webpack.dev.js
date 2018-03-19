@@ -5,7 +5,9 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
-  devtool: 'inline-source-map',
+  mode: 'development',
+  cache: true,
+  devtool: 'eval-source-map',
   output: {
     publicPath: '/'
   },

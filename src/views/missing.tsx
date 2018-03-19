@@ -1,8 +1,10 @@
 import * as React from 'react'
 import {Head, Page, Link} from '@components'
 import {APP_TITLE} from '@config'
+import {hot} from 'react-hot-loader'
 
-export class MissingView extends React.Component {
+@hot(module)
+class MissingView extends React.Component {
   private readonly title = `Not Found - ${APP_TITLE}`
 
   render() {
@@ -31,3 +33,5 @@ export class MissingView extends React.Component {
     )
   }
 }
+
+export {MissingView}

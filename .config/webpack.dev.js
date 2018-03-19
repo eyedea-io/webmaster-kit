@@ -11,10 +11,7 @@ module.exports = merge(common, {
   output: {
     publicPath: '/'
   },
-  entry: [
-    'react-hot-loader/patch',
-    '../src/index'
-  ],
+  entry: '../src/index',
   devServer: {
     historyApiFallback: true,
     contentBase: join(__dirname, '..', '.build'),

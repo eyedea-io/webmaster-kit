@@ -4,11 +4,13 @@ import {inject, observer} from '@utils'
 import {Head, Page, List, Wrapper} from '@components'
 import {IStore} from '@types'
 import {APP_TITLE, CSS} from '@config'
+import {hot} from 'react-hot-loader'
 
 interface Props extends Router.RouteComponentProps<{}> {
   store: IStore
 }
 
+@hot(module)
 @inject('store')
 @observer
 class IndexView extends React.Component<Props> {
@@ -26,7 +28,7 @@ class IndexView extends React.Component<Props> {
             <h1 className="u-mb">Webmaster Kit</h1>
 
             <List horizontal spacing="sm">
-              {this.props.store.userStore.isLoggedIn ? this.renderUserNav() : this.renderGuestNav()}
+              {this.isLoggedIn ? this.renderUserNav() : this.renderGuestNav()}
             </List>
           </div>
         </Wrapper>
@@ -59,6 +61,10 @@ class IndexView extends React.Component<Props> {
       <Router.Link to="/auth/register">Create account</Router.Link>
     </React.Fragment>
   )
+
+  private get isLoggedIn(): boolean {
+    return this.props.store.userStore.isLoggedIn
+  }
 }
 
 export {IndexView}

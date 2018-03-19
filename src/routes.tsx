@@ -1,5 +1,6 @@
 import * as React from 'react'
 import * as Router from 'react-router-dom'
+import {hot} from 'react-hot-loader'
 import Modals from './modals'
 import {observer} from '@utils'
 
@@ -9,6 +10,7 @@ import {IndexView} from './views'
 import {AuthView} from './views/auth'
 import {MissingView} from './views/missing'
 
+@hot(module)
 @observer
 class Routes extends React.Component {
   render() {

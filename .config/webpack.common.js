@@ -8,7 +8,7 @@ module.exports = {
   context: resolve(__dirname, '../src'),
   output: {
     path: resolve(__dirname, '..', '.build'),
-    filename: 'main.js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.json', '.ts', '.tsx', '.js'],
@@ -35,6 +35,17 @@ module.exports = {
         use: ['file-loader']
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({

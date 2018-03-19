@@ -1,9 +1,9 @@
-import {types} from 'mobx-state-tree'
 import {syncano} from '@utils'
-import {FormStore, Form} from './form'
-import {User, UserStore} from './user'
-import {Modal} from './modal'
+import {types} from 'mobx-state-tree'
 import {hot} from 'react-hot-loader'
+import {Form, FormStore} from './form'
+import {Modal} from './modal'
+import {User, UserStore} from './user'
 
 const Store = hot(module)(types
   .model('Store', {

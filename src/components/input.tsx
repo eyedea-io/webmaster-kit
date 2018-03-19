@@ -1,6 +1,6 @@
+import {CSS} from '@config'
 import * as React from 'react'
 import {Label} from './label'
-import {CSS} from '@config'
 
 export interface Props {
   short?: boolean

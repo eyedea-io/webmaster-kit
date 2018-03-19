@@ -1,5 +1,5 @@
-import * as React from 'react'
 import {CSS} from '@config'
+import * as React from 'react'
 
 type Spacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 

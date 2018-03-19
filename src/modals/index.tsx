@@ -1,6 +1,6 @@
-import * as React from 'react'
 import {Modal} from '@components'
 import {IStore} from '@types'
+import * as React from 'react'
 import {Profile} from './profile'
 
 export default () => (

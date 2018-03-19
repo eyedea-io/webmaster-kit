@@ -1,6 +1,6 @@
-import {Store, IStore} from '@types'
-import {IDisposer} from 'mobx-state-tree/dist/utils'
+import {IStore, Store} from '@types'
 import {destroy, getSnapshot, onSnapshot} from 'mobx-state-tree'
+import {IDisposer} from 'mobx-state-tree/dist/utils'
 
 let store: IStore
 let snapshotListener: IDisposer

@@ -1,5 +1,5 @@
-import * as React from 'react'
 import {CSS} from '@config'
+import * as React from 'react'
 
 interface Props {
   children: React.ReactChild | Array<React.ReactChild>

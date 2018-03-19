@@ -27,6 +27,7 @@
     "member-ordering": [true, {"order": "fields-first"}],
     "no-arg": true,
     "no-bitwise": true,
+    "ordered-imports": true,
     "no-console": [
         true,
         "log",

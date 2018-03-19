@@ -1,10 +1,10 @@
-import * as React from 'react'
-import * as Router from 'react-router-dom'
-import {inject, observer} from '@utils'
-import {Head, Page, List, Wrapper} from '@components'
-import {IStore} from '@types'
+import {Head, List, Page, Wrapper} from '@components'
 import {APP_TITLE, CSS} from '@config'
+import {IStore} from '@types'
+import {inject, observer} from '@utils'
+import * as React from 'react'
 import {hot} from 'react-hot-loader'
+import * as Router from 'react-router-dom'
 
 interface Props extends Router.RouteComponentProps<{}> {
   store: IStore
@@ -13,7 +13,7 @@ interface Props extends Router.RouteComponentProps<{}> {
 @hot(module)
 @inject('store')
 @observer
-class IndexView extends React.Component<Props> {
+class Index extends React.Component<Props> {
   private readonly title = APP_TITLE
 
   render() {
@@ -67,4 +67,4 @@ class IndexView extends React.Component<Props> {
   }
 }
 
-export {IndexView}
+export {Index}

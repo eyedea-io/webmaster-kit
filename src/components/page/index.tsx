@@ -1,9 +1,9 @@
+import {CSS} from '@config'
 import * as React from 'react'
 import {Normalize} from './normalize'
-import {Typography} from './typography'
 import {Spacing} from './spacing'
+import {Typography} from './typography'
 import {Widths} from './widths'
-import {CSS} from '@config'
 
 interface Props {
   children?: React.ReactChild | Array<React.ReactChild>

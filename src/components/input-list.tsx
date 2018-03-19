@@ -1,7 +1,7 @@
-import * as React from 'react'
-import {List, Props as ListProps} from './list'
 import {CSS} from '@config'
+import * as React from 'react'
 import {Message} from '.'
+import {List, Props as ListProps} from './list'
 
 type ErrorsPosition = 'each' | 'start' | 'end'
 

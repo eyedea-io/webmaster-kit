@@ -1,5 +1,5 @@
-import * as React from 'react'
 import {CSS} from '@config'
+import * as React from 'react'
 import {Spinner} from '.'
 
 export interface Props {

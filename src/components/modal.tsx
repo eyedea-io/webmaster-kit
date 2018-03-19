@@ -1,8 +1,8 @@
-import * as React from 'react'
-import {observer, inject} from 'mobx-react'
-import {Icon} from './icon'
 import {IconName} from '@fortawesome/fontawesome'
 import {IStore} from '@types'
+import {inject, observer} from 'mobx-react'
+import * as React from 'react'
+import {Icon} from './icon'
 
 interface Props {
   store?: IStore

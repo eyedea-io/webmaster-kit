@@ -1,9 +1,9 @@
+import {Button, Head, Input, InputList, Page, Wrapper} from '@components'
+import {APP_TITLE, CSS} from '@config'
+import {IStore} from '@types'
+import {as, inject, isEmail, observer} from '@utils'
 import * as React from 'react'
 import * as Router from 'react-router-dom'
-import {Head, Page, Input, Button, InputList, Wrapper} from '@components'
-import {observer, inject, isEmail, as} from '@utils'
-import {IStore} from '@types'
-import {APP_TITLE, CSS} from '@config'
 
 interface Props extends Router.RouteComponentProps<{}> {
   store: IStore
@@ -12,7 +12,7 @@ interface Props extends Router.RouteComponentProps<{}> {
 @inject ('store')
 @as.member(() => <Router.Redirect to="/" />)
 @observer
-class RegisterView extends React.Component<Props> {
+class Register extends React.Component<Props> {
   private readonly title = `Register - ${APP_TITLE}`
   private readonly formName = 'Register'
   private readonly formFields = {
@@ -90,4 +90,4 @@ class RegisterView extends React.Component<Props> {
   }
 }
 
-export {RegisterView}
+export {Register}

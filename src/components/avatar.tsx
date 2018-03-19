@@ -1,5 +1,5 @@
-import * as React from 'react'
 import {hashStr} from '@utils'
+import * as React from 'react'
 
 interface Props {
   id?: string,

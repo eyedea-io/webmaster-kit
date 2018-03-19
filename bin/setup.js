@@ -26,36 +26,64 @@ getConfig()
       token: config.github
     })
 
-    circle = (url, data) => axios.post(`${CIRCLE_ENDPOINT}${url}`, {
-      'circle-token': config.circle,
-      ...data
+    circle = (url, data) => axios({
+      url: `${CIRCLE_ENDPOINT}${url}`,
+      method: 'post',
+      data,
+      params: {
+        'circle-token': config.circle,
+      }
     })
 
     Promise.all([getUser(), getOrgs()])
       .then(([username, orgs]) => {
         const accounts = [username].concat(orgs)
 
-        prompt(accounts)
+        prompt(accounts, config)
           .then(data => ({username, ...data}))
           .then(createRepo)
           .then(pushToRepo)
-          // .then(attachSyncanoInstance)
+          .then(createEnvrc)
+          .then(attachSyncanoInstance)
           .then(setupCircle)
-          .then(() => console.log('Successfully initialized webmaster kit.'))
-          .catch(() => console.log('Failed to initialize webmaster kit.'))
+          .then(data => {
+            console.log('')
+            console.log(`✔ Live within 3 min at: https://${data.syncanoInstance}-staging.syncano.site`)
+          })
+          .catch(err => {
+            console.log('Failed to initialize webmaster kit.')
+            console.log(err)
+          })
       })
   })
 
+function createEnvrc(data) {
+  return new Promise((resolve) => {
+    fs.writeFile(".envrc", `export SYNCANO_PROJECT_INSTANCE=${data.syncanoInstance}`, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log(`✔ Created .envrc file`)
+      }
+
+      resolve(data)
+    });
+  })
+}
+
 function attachSyncanoInstance(data) {
-  return run(`npx s attach --instance ${data.syncanoInstance}`)
+  return run(`yes | npx s attach --create-instance ${data.syncanoInstance}`)
+    .then(() =>
+      run(`yes | npx s attach --create-instance ${data.syncanoInstance}-staging`)
+    )
     .then(() => {
-      console.log(`✔ Attached Syncano instance: ${data.syncanoInstance}.`)
+      console.log(`✔ Create Syncano instance: ${data.syncanoInstance}.`)
+      console.log(`✔ Created and attached Syncano instance: ${data.syncanoInstance}-staging.`)
 
       return data
     })
     .catch(err => {
       console.log(`ERROR: Failed to attach syncano instance.`)
-      console.log(err)
 
       throw err
     })
@@ -64,20 +92,19 @@ function attachSyncanoInstance(data) {
 function setupCircle(data) {
   const url = `project/github/${data.account}/${data.repo}`
   const variables = {
-    SYNCANO_PROJECT_INSTANCE: data.syncanoInstance,
+    STAGING_SYNCANO_PROJECT_INSTANCE: `${data.syncanoInstance}-staging`,
+    PRODUCTION_SYNCANO_PROJECT_INSTANCE: data.syncanoInstance,
     SYNCANO_AUTH_KEY: data.config.syncano
   }
 
-  return circle(`${url}/follow`)
-    .then(() =>
-      Promise.all(
-        variables.map(key =>
-          circle(`${url}/envvar`, {name: key, value: variables[key]})
-        )
-      )
+  return Promise.all(
+      Object.entries(variables).map(([name, value]) => {
+        circle(`${url}/envvar`, {name, value})
+      })
     )
+    .then(() => circle(`${url}/follow`))
     .then(res => {
-      console.log(`✔ Initialized circle.`)
+      console.log(`✔ Initialized CircleCI build and env vars.`)
 
       return data
     })
@@ -89,9 +116,7 @@ function setupCircle(data) {
     })
 }
 
-function prompt(accounts) {
-  let config = getConfig()
-
+function prompt(accounts, config) {
   if (config) {
     return defaultPrompt(accounts).then(data => ({...data, config}))
   }
@@ -101,10 +126,10 @@ function prompt(accounts) {
 
 function getConfig() {
   const FILENAME = '.webmasterconfig'
-  const configPath = path.join(os.homedir(), FILENAME)
+  const dir = path.join(os.homedir(), FILENAME)
 
-  if (fs.existsSync(configPath)) {
-    const config = JSON.parse(fs.readFileSync(configPath, {encoding: 'utf-8'}))
+  if (fs.existsSync(dir)) {
+    const config = JSON.parse(fs.readFileSync(dir, {encoding: 'utf-8'}))
 
     return new Promise(resolve => resolve(config))
   }
@@ -146,31 +171,32 @@ function getConfig() {
 
 function defaultPrompt(accounts) {
   return inquirer.prompt([
-    {
-      type: 'list',
-      name: 'account',
-      message: 'Select GitHub account',
-      choices: accounts
-    },
-    {
-      type: 'input',
-      name: 'repo',
-      message: "GitHub repository name",
-      validate: function(value) {
-        return value.length >= 1
+      {
+        type: 'list',
+        name: 'account',
+        message: 'Select GitHub account',
+        choices: accounts
+      },
+      {
+        type: 'input',
+        name: 'repo',
+        message: "GitHub repository name",
+        validate: function(value) {
+          return value.length >= 1
+        }
+      },
+      {
+        type: 'confirm',
+        name: 'private',
+        message: "Private repository"
+      },
+      {
+        type: 'input',
+        name: 'syncanoInstance',
+        message: "Syncano instance name",
+        validate: value => value.length >= 5 ? true : 'Min 5 characters'
       }
-    },
-    {
-      type: 'confirm',
-      name: 'private',
-      message: "Private repository"
-    },
-    {
-      type: 'input',
-      name: 'syncanoInstance',
-      message: "Syncano instance name"
-    }
-  ])
+    ])
 }
 
 function createRepo(data) {
@@ -238,7 +264,7 @@ function removeGit() {
     const content = fs.readFileSync('.git/config', {encoding: 'utf-8'})
 
     if (content.indexOf('https://github.com/eyedea-io/webmaster-kit.git') >= 0) {
-      // rimraf.sync('.git')
+      rimraf.sync('.git')
       console.log('✔ Removed .git directory.')
     }
   }
@@ -250,13 +276,14 @@ function pushToRepo(data) {
   const gitCommit = () => run(`git commit -m "chore: initial commit"`)
   const gitAddRemote = () => run(`git remote add origin https://github.com/${data.account}/${data.repo}.git`)
   const gitPush = () => run(`git push -u origin master`)
+
   return gitInit()
     .then(gitAdd)
     .then(gitCommit)
     .then(gitAddRemote)
-    .then(gtiPush)
+    .then(gitPush)
     .then(() => {
-      console.log(`✔ Pushed to repository https://github.com/${data.account}/${data.repo}.git`)
+      console.log(`✔ Pushed to repository https://github.com/${data.account}/${data.repo}`)
 
       return data
     })

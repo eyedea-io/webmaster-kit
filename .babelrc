@@ -1,6 +1,17 @@
 {
-  "presets": ["env", "react"],
+  "presets": [
+    ["env", {
+      "modules": false,
+        "targets": {
+          "browsers": [
+            "last 2 chrome versions"
+          ]
+        }
+    }],
+    "react"
+  ],
   "plugins": [
+    "loadable-components/babel",
     "styled-jsx/babel",
     "transform-runtime",
     "transform-export-extensions",

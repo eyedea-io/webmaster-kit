@@ -11,14 +11,15 @@
     "outDir": "./build/",
     "sourceMap": true,
     "noImplicitAny": false,
-    "module": "commonjs",
+    "module": "esnext",
     "lib": [
       "es6",
       "dom",
       "es2017"
     ],
+    "moduleResolution": "node",
     "jsx": "preserve",
-    "target": "es2017",
+    "target": "esnext",
     "typeRoots": [
       "node_modules/@types",
       "./typings"

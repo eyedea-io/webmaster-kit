@@ -4,7 +4,7 @@ const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   entry: '../src/index',
   plugins: [
     new CompressionPlugin({

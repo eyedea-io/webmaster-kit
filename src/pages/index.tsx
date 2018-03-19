@@ -67,4 +67,4 @@ class Index extends React.Component<Props> {
   }
 }
 
-export {Index}
+export default Index

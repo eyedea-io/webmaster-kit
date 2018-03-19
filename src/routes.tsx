@@ -1,32 +1,11 @@
-import {observer} from '@utils'
+import loadable from 'loadable-components'
 import * as React from 'react'
-import {hot} from 'react-hot-loader'
-import * as Router from 'react-router-dom'
 
-import './icons'
-import Modals from './modals'
-import {Index} from './pages'
-import {Auth} from './pages/auth'
-import {Missing} from './pages/missing'
-
-@hot(module)
-@observer
-class Routes extends React.Component {
-  render() {
-    return (
-      <Router.BrowserRouter>
-        <React.Fragment>
-          <Router.Switch>
-            <Router.Route exact path="/" component={Index} />
-            <Router.Route path="/auth" component={Auth} />
-            <Router.Route component={Missing} />
-          </Router.Switch>
-
-          <Modals />
-        </React.Fragment>
-      </Router.BrowserRouter>
-    )
-  }
+export const Index = loadable(() => import('./pages/index'))
+export const Missing = loadable(() => import('./pages/missing'))
+export const Auth = {
+  Index: loadable(() => import('./pages/auth')),
+  Login: loadable(() => import('./pages/auth/login')),
+  Logout: loadable(() => import('./pages/auth/logout')),
+  Register: loadable(() => import('./pages/auth/register'))
 }
-
-export {Routes}

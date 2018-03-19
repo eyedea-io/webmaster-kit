@@ -96,4 +96,4 @@ class Login extends React.Component<Props> {
   }
 }
 
-export {Login}
+export default Login

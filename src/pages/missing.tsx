@@ -34,4 +34,4 @@ class Missing extends React.Component {
   }
 }
 
-export {Missing}
+export default Missing

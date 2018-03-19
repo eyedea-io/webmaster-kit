@@ -90,4 +90,4 @@ class Register extends React.Component<Props> {
   }
 }
 
-export {Register}
+export default Register

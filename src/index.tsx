@@ -2,7 +2,7 @@ import {Provider} from 'mobx-react'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import {createStore} from 'utils/create-store'
-import {Routes} from './routes'
+import {App} from './app'
 const root = document.createElement('div')
 
 document
@@ -16,7 +16,7 @@ const initialState = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}')
 
 ReactDOM.render(
   <Provider store={createStore(initialState, LOCAL_STORAGE_KEY)}>
-    <Routes />
+    <App />
   </Provider>,
   root
 )

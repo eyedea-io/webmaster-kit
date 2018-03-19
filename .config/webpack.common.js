@@ -8,7 +8,8 @@ module.exports = {
   context: resolve(__dirname, '../src'),
   output: {
     path: resolve(__dirname, '..', '.build'),
-    filename: '[name].js'
+    filename: '[name].js',
+    chunkFilename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.json', '.ts', '.tsx', '.js'],
@@ -39,7 +40,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        commons: {
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           chunks: 'all'

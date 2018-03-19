@@ -19,4 +19,4 @@ class Logout extends React.Component<Props> {
   }
 }
 
-export {Logout}
+export default Logout

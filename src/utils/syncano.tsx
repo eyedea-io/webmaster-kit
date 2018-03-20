@@ -16,7 +16,7 @@ export function syncano(url: string, data?: object) {
   return new Promise(() => {
     // tslint:disable-next-line:no-console
     console.error(
-      `Syncano Client was used without instance name: ${url}`,
+      `Syncano Client was used without instance name: ${url}`
     )
   })
 }

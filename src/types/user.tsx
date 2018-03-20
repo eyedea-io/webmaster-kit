@@ -7,35 +7,35 @@ export const User = types
     id: types.identifier(types.number),
     username: types.string,
     firstName: types.maybe(types.string),
-    lastName: types.maybe(types.string)
+    lastName: types.maybe(types.string),
   })
   .views(self => ({
     get fullName(): string {
       return [self.firstName, self.lastName].join(' ')
-    }
+    },
   }))
   .views(self => ({
     get displayName(): string {
       return self.fullName === ' ' ? self.username : self.fullName
-    }
+    },
   }))
 
 export const UserStore = types
   .model('UserStore', {
     token: types.optional(types.string, ''),
     profile: types.maybe(User),
-    pending: types.optional(types.map(types.string), {})
+    pending: types.optional(types.map(types.string), {}),
   })
   .views(self => ({
     get isLoggedIn(): boolean {
       return Boolean(self.token && self.profile)
-    }
+    },
   }))
   .actions(self => ({
     setToken(token: string = '') {
       self.token = token
       localStorage.setItem('token', token)
-    }
+    },
   }))
   .actions(self => ({
     fetchProfile: flow(function * () {
@@ -94,7 +94,7 @@ export const UserStore = types
       } finally {
         self.pending.delete('register')
       }
-    })
+    }),
   }))
 
 export type IUser = typeof User.Type

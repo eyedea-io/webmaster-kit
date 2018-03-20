@@ -1,6 +1,6 @@
 import {IStore} from '@types'
 import {inject, observer} from 'mobx-react'
-import * as React from  'react'
+import * as React from 'react'
 
 interface Props {
   store: IStore

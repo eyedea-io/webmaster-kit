@@ -18,6 +18,6 @@ export const CSS = {
     // Meta text color
     meta: color('#999999'),
     // Icons color
-    icon: color('#ccc')
-  }
+    icon: color('#ccc'),
+  },
 }

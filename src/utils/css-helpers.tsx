@@ -17,7 +17,7 @@ export function color (hex: string) {
     rgba: (alpha = 1) => `${rgb}, ${alpha}`,
     rgb,
     hex,
-    toString: () => hex
+    toString: () => hex,
   }
 }
 
@@ -29,6 +29,6 @@ export function spacing (value: number) {
     lg: `${value * 1.5}px`,
     xl: `${value * 2}px`,
     xxl: `${value * 4}px`,
-    toString: () => `${value}px`
+    toString: () => `${value}px`,
   }
 }

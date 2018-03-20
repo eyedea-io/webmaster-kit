@@ -9,7 +9,7 @@ const Store = hot(module)(types
   .model('Store', {
     modal: types.optional(Modal, {}),
     userStore: types.optional(UserStore, {}),
-    formStore: types.optional(FormStore, {})
+    formStore: types.optional(FormStore, {}),
   }))
 
 export {Store}

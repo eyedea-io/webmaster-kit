@@ -19,12 +19,12 @@ class Register extends React.Component<Props> {
     username: {
       autoFocus: true,
       placeholder: 'your@email.com',
-      label: 'Your email'
+      label: 'Your email',
     },
     password: {
       type: 'password',
-      label: 'Your password'
-    }
+      label: 'Your password',
+    },
   }
 
   componentWillMount() {

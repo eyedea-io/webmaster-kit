@@ -13,9 +13,9 @@ export const Form = types
         .keys(self.fields)
         .reduce((all, fieldName) => ({
           ...all,
-          [fieldName]: self.fields[fieldName].value
+          [fieldName]: self.fields[fieldName].value,
         }), {})
-    }
+    },
   }))
   .actions(self => ({
     handleChange(event: React.FormEvent<HTMLInputElement> | string, value?: any) {
@@ -26,10 +26,10 @@ export const Form = types
         ...self.fields,
         [name]: {
           ...self.fields[name],
-          value: val || ''
-        }
+          value: val || '',
+        },
       }
-    }
+    },
   }))
   .actions(self => ({
     clear() {
@@ -37,8 +37,8 @@ export const Form = types
         ...all,
         [name]: {
           ...self.fields[name],
-          value: self.fields[name].value || ''
-        }
+          value: self.fields[name].value || '',
+        },
       }), {})
     },
     editable(name: string) {
@@ -48,12 +48,12 @@ export const Form = types
         id: name,
         onChange: self.handleChange,
       }
-    }
+    },
   }))
 
 export const FormStore = types
   .model('FormStore', {
-    forms: types.optional(types.array(Form), [])
+    forms: types.optional(types.array(Form), []),
   })
   .actions(self => ({
     add(name: string, fields: any) {
@@ -74,7 +74,7 @@ export const FormStore = types
 
     get(name: string): IForm {
       return self.forms.find(form => form.name === name)
-    }
+    },
   }))
 
 export type IForm = typeof Form.Type

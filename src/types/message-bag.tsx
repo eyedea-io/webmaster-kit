@@ -2,7 +2,7 @@ import {types} from 'mobx-state-tree'
 
 export const MessageBag = types
   .model('MessageBag', {
-    messages: types.optional(types.map(types.string), {})
+    messages: types.optional(types.map(types.string), {}),
   })
   .actions(self => ({
     merge(messages: string | object) {
@@ -26,7 +26,7 @@ export const MessageBag = types
     },
     remove(key: string) {
       self.messages.delete(key)
-    }
+    },
   }))
   .views(self => ({
     has(key: string): boolean {
@@ -53,7 +53,7 @@ export const MessageBag = types
       return []
     },
     get all(): Array<string> {
-      let result = []
+      const result = []
 
       self.messages.forEach(([key, value], idx) => {
         if (value === '') {

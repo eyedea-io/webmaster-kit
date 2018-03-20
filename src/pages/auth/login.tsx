@@ -19,12 +19,12 @@ class Login extends React.Component<Props> {
     username: {
       autoFocus: true,
       placeholder: 'your@email.com',
-      label: 'Your email'
+      label: 'Your email',
     },
     password: {
       type: 'password',
-      label: 'Your password'
-    }
+      label: 'Your password',
+    },
   }
 
   componentWillMount() {
@@ -90,7 +90,7 @@ class Login extends React.Component<Props> {
       await this.props.store.userStore.login(this.form.data)
     } catch (err) {
       this.form.errors.replace({
-        message: err.response.data.message
+        message: err.response.data.message,
       })
     }
   }

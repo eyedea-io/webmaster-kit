@@ -1,4 +1,4 @@
-import loadable from 'loadable-components'
+import {loadable} from '@utils'
 import * as React from 'react'
 
 export const Index = loadable(() => import('./pages/index'))

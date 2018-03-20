@@ -6,10 +6,14 @@ const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 
 module.exports = {
   context: resolve(__dirname, '../src'),
+  entry: {
+    main: '../src/index'
+  },
   output: {
     path: resolve(__dirname, '..', '.build'),
     filename: '[name].js',
-    chunkFilename: '[name].bundle.js',
+    chunkFilename: '[name].chunk.js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.json', '.ts', '.tsx', '.js'],
@@ -39,10 +43,13 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
+      chunks: 'all',
       cacheGroups: {
-        vendor: {
+        vendors: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
+          priority: 2,
+          name: 'vendors',
+          enforce: true,
           chunks: 'all'
         }
       }

@@ -1,6 +1,6 @@
 import * as fontawesome from '@fortawesome/fontawesome'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import * as React from 'react'
-const FontAwesomeIcon =  require('@fortawesome/react-fontawesome')
 
 export interface Props {
   name: fontawesome.IconProp

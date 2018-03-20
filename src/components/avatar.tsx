@@ -1,7 +1,7 @@
 import {hashStr} from '@utils'
 import * as React from 'react'
 
-interface Props {
+export interface Props {
   id?: string,
   src?: string
   size?: number

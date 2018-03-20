@@ -7,12 +7,6 @@ const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
   mode: 'development',
-  cache: true,
-  devtool: 'eval-source-map',
-  output: {
-    publicPath: '/'
-  },
-  entry: '../src/index',
   devServer: {
     historyApiFallback: true,
     contentBase: join(__dirname, '..', '.build'),

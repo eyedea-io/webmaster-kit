@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "test": "jest src",
+    "test": "jest src --config ./.config/jest/config.js",
     "build": "webpack -p --config ./.config/webpack.prod.js",
     "start": "webpack-dev-server --config ./.config/webpack.dev.js",
     "format": "npx tslint --fix -c tslint.json ./src/**/*.tsx"

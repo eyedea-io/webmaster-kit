@@ -3,8 +3,8 @@ import {observer} from '@utils'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 import * as Router from 'react-router-dom'
+import Modals from './components/modals'
 import './icons'
-import Modals from './modals'
 import * as Routes from './routes'
 
 @hot(module)

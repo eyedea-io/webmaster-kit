@@ -16,7 +16,9 @@ class App extends React.Component {
         <React.Fragment>
           <Router.Switch>
             <Router.Route exact path="/" component={Routes.Index} />
-            <Router.Route path="/auth" component={Routes.Auth.Index} />
+            <Router.Route exact path="/auth/login" component={Routes.Auth.Login} />
+            <Router.Route exact path="/auth/register" component={Routes.Auth.Register} />
+            <Router.Route exact path="/auth/logout" component={Routes.Auth.Logout} />
             <Router.Route component={Routes.Missing} />
           </Router.Switch>
 

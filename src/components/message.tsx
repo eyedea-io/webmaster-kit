@@ -33,7 +33,7 @@ export const Message = ({
       }
 
       .Message--negative {
-        color: ${UI.colors.negative};{UI.{UI.{UI.{UI.{UI.
+        color: ${UI.colors.negative};
         background: rgba(${UI.colors.negative.rgb}, .3);
         box-shadow: 0 0 0 1px ${UI.colors.negative} inset, 0 0 0 0 transparent;
       }

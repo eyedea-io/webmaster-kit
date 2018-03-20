@@ -42,15 +42,22 @@ module.exports = {
     ]
   },
   optimization: {
+    occurrenceOrder: true ,
+    runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
+        commons: {
+          chunks: "initial",
+          minChunks: 2,
+          maxInitialRequests: 5
+				},
         vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: 2,
-          name: 'vendors',
-          enforce: true,
-          chunks: 'all'
+          test: /node_modules/,
+          chunks: "initial",
+          name: "vendor",
+          priority: 10,
+          enforce: true
         }
       }
     }

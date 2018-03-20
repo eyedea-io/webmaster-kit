@@ -15,7 +15,6 @@ module.exports = merge(common, {
   },
   plugins: [
     new HardSourceWebpackPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {

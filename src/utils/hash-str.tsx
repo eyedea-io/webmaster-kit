@@ -11,5 +11,6 @@ export function hashStr(str: string = '') {
     // tslint:disable-next-line:no-bitwise
     hash |= 0
   }
+
   return hash
 }

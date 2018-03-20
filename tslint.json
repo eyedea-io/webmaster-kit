@@ -78,6 +78,7 @@
         "variable-declaration": "nospace"
       }
     ],
+    "newline-before-return": true,
     "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
     "whitespace": [
       true,

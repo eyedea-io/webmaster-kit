@@ -6,6 +6,7 @@ export function syncano(url: string, data?: object) {
     const s = new Syncano(SYNCANO_PROJECT_INSTANCE)
     const token = window.localStorage.getItem('token')
     s.setToken(token)
+
     return s.post(url, data)
   } catch (err) {
     // tslint:disable-next-line:no-console

@@ -7,6 +7,7 @@ export const loadable = promise => _loadable(() => {
   return promise()
     .then(res => {
       NProgress.done()
+
       return res
     })
     .catch(err => {

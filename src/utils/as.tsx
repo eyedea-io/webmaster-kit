@@ -21,6 +21,7 @@ function defineAs(check: any) {
         class Composed extends React.Component {
           render() {
             const {props: p} = this
+
             return check(p) ? <Handle {...p} /> : <Component {...p} />
           }
         }

@@ -61,6 +61,7 @@ function getUnmatchedErrors(matchedErrors: any, errors: object) {
     .filter(err => Object.keys(matchedErrors).indexOf(err) < 0)
     .reduce((all, key) => {
       all[key] = errors[key]
+
       return all
     }, [])
 }
@@ -73,6 +74,7 @@ function getMatchedErrors(children: React.ReactNode, errors: object) {
     .filter(item => errorKeys.indexOf(item) >= 0)
     .reduce((all, key) => {
       all[key] = errors[key]
+
       return all
     }, [])
 }

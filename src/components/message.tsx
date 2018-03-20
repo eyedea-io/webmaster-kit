@@ -1,4 +1,4 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import * as React from 'react'
 
 type Style = 'positive' | 'negative'
@@ -27,21 +27,21 @@ export const Message = ({
         position: relative;
         min-height: 1em;
         line-height: 1em;
-        padding: ${CSS.spacing.sm};
-        border-radius: ${CSS.radius};
+        padding: ${UI.spacing.sm};
+        border-radius: ${UI.radius};
         font-size: 14px;
       }
 
       .Message--negative {
-        color: ${CSS.colors.negative};
-        background: rgba(${CSS.colors.negative.rgb}, .3);
-        box-shadow: 0 0 0 1px ${CSS.colors.negative} inset, 0 0 0 0 transparent;
+        color: ${UI.colors.negative};{UI.{UI.{UI.{UI.{UI.
+        background: rgba(${UI.colors.negative.rgb}, .3);
+        box-shadow: 0 0 0 1px ${UI.colors.negative} inset, 0 0 0 0 transparent;
       }
 
       .Message--positive {
-        color: ${CSS.colors.positive};
-        background: rgba(${CSS.colors.positive.rgb}, .3);
-        box-shadow: 0 0 0 1px ${CSS.colors.positive} inset, 0 0 0 0 transparent;
+        color: ${UI.colors.positive};
+        background: rgba(${UI.colors.positive.rgb}, .3);
+        box-shadow: 0 0 0 1px ${UI.colors.positive} inset, 0 0 0 0 transparent;
       }
     `}</style>
   </div>

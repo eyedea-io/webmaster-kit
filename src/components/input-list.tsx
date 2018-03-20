@@ -1,4 +1,4 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import * as React from 'react'
 import {Message} from '.'
 import {List, Props as ListProps} from './list'
@@ -49,7 +49,7 @@ export const InputList = ({children, errors, errorsPosition = 'each', ...props}:
         .InputList__error {
           text-align: left;
           font-size: 14px;
-          color: ${CSS.colors.negative};
+          color: ${UI.colors.negative};
         }
       `}</style>
     </List>

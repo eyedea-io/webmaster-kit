@@ -1,4 +1,4 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import * as React from 'react'
 import {Spinner} from '.'
 
@@ -33,7 +33,7 @@ export const Button = ({
         .Button {
           font-family: inherit;
           display: inline-block;
-          border-radius: ${CSS.radius};
+          border-radius: ${UI.radius};
           font-weight: bold;
           border: 0;
           padding: 15px 24px;
@@ -70,21 +70,21 @@ export const Button = ({
          * Button - PRIMARY
          */
         .Button--primary {
-          background: ${CSS.colors.primary};
+          background: ${UI.colors.primary};
         }
 
         /**
          * Button - POSITIVE
          */
         .Button--positive {
-          background: ${CSS.colors.positive};
+          background: ${UI.colors.positive};
         }
 
         /**
          * Button - NEGATIVE
          */
         .Button--negative {
-          background: ${CSS.colors.negative};
+          background: ${UI.colors.negative};
         }
 
         /**

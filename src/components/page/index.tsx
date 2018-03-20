@@ -1,4 +1,4 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 import {Normalize} from './normalize'
@@ -26,7 +26,7 @@ class Page extends React.Component<Props> {
 
         <style jsx global>{`
           html {
-            color: ${CSS.colors.default};
+            color: ${UI.colors.default};
             font-size: 1em;
             line-height: 1.25;
             background: #fff;

@@ -1,4 +1,4 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import {observer} from '@utils'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
@@ -29,7 +29,7 @@ class App extends React.Component {
               }
               #nprogress .bar {
                 position: fixed;
-                background: ${CSS.colors.primary};
+                background: ${UI.colors.primary};
                 z-index: 1031;
                 top: 0;
                 left: 0;
@@ -42,7 +42,7 @@ class App extends React.Component {
                 right: 0px;
                 width: 100px;
                 height: 100%;
-                box-shadow: 0 0 10px ${CSS.colors.primary}, 0 0 5px ${CSS.colors.primary};
+                box-shadow: 0 0 10px ${UI.colors.primary}, 0 0 5px ${UI.colors.primary};
                 opacity: 1.0;
                 transform: rotate(3deg) translate(0px, -4px);
               }
@@ -54,8 +54,8 @@ class App extends React.Component {
                 height: 18px;
                 box-sizing: border-box;
                 border: solid 2px transparent;
-                border-top-color: ${CSS.colors.primary};
-                border-left-color: ${CSS.colors.primary};
+                border-top-color: ${UI.colors.primary};
+                border-left-color: ${UI.colors.primary};
                 border-radius: 50%;
                 animation: nprogress-spinner 400ms linear infinite;
               }

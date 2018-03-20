@@ -1,5 +1,5 @@
 import {Button, Head, Input, InputList, Page, Wrapper} from '@components'
-import {APP_TITLE, CSS} from '@config'
+import {APP_TITLE, UI} from '@config'
 import {IStore} from '@types'
 import {as, inject, isEmail, observer} from '@utils'
 import * as React from 'react'
@@ -58,7 +58,7 @@ class Register extends React.Component<Props> {
             margin-left: auto;
             margin-right: auto;
             max-width: 480px;
-            padding: ${CSS.spacing} 0;
+            padding: ${UI.spacing} 0;
           }
         `}</style>
       </Page>

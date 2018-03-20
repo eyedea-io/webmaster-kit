@@ -1,4 +1,4 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import * as React from 'react'
 
 interface Props {
@@ -11,9 +11,9 @@ export const Wrapper = ({children}: Props) => (
 
     <style jsx>{`
       .Wrapper {
-        max-width: ${CSS.contentWidth};
-        padding-left: ${CSS.spacing.sm};
-        padding-right: ${CSS.spacing.sm};
+        max-width: ${UI.contentWidth};
+        padding-left: ${UI.spacing.sm};
+        padding-right: ${UI.spacing.sm};
         margin-left: auto;
         margin-right: auto;
         width: 100%;
@@ -21,8 +21,8 @@ export const Wrapper = ({children}: Props) => (
 
       @media screen and (min-width: 769px) {
         .Wrapper {
-          padding-left: ${CSS.spacing};
-          padding-right: ${CSS.spacing};
+          padding-left: ${UI.spacing};
+          padding-right: ${UI.spacing};
         }
       }
     `}</style>

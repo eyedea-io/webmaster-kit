@@ -3,7 +3,7 @@ import {color, spacing} from './utils/css-helpers'
 export const APP_TITLE = 'Webmaster App'
 export const SYNCANO_PROJECT_INSTANCE = process.env.SYNCANO_PROJECT_INSTANCE
 
-export const CSS = {
+export const UI = {
   contentWidth: '960px',
   spacing: spacing(32),
   radius: '5px',

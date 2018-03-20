@@ -1,10 +1,10 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import * as React from 'react'
 
 export const Typography = () => (
   <style jsx global>{`
     a {
-      color: ${CSS.colors.primary};
+      color: ${UI.colors.primary};
       cursor: pointer;
       text-decoration: none;
     }

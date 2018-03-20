@@ -1,4 +1,4 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import * as React from 'react'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 export const Spinner = ({white, small}: Props) => (
   <React.Fragment>
     <svg
-      fill={white ? 'white' : CSS.colors.primary.hex}
+      fill={white ? 'white' : UI.colors.primary.hex}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
     >

@@ -1,4 +1,4 @@
-import {CSS} from '@config'
+import {UI} from '@config'
 import * as React from 'react'
 
 type Spacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
@@ -33,20 +33,20 @@ export const FlexLayout = ({children, middle, split, wrap, full, spacing = 'md'}
       .FlexLayout--wrap { flex-wrap: wrap;  }
       .FlexLayout--full { width: 100%; }
 
-      .FlexLayout--xs { margin-left: -${CSS.spacing.xs}; }
-      .FlexLayout--xs > :global(*) { margin-left: ${CSS.spacing.xs}; }
+      .FlexLayout--xs { margin-left: -${UI.spacing.xs}; }
+      .FlexLayout--xs > :global(*) { margin-left: ${UI.spacing.xs}; }
 
-      .FlexLayout--sm { margin-left: -${CSS.spacing.sm}; }
-      .FlexLayout--sm > :global(*) { margin-left: ${CSS.spacing.sm}; }
+      .FlexLayout--sm { margin-left: -${UI.spacing.sm}; }
+      .FlexLayout--sm > :global(*) { margin-left: ${UI.spacing.sm}; }
 
-      .FlexLayout--md { margin-left: -${CSS.spacing}; }
-      .FlexLayout--md > :global(*) { margin-left: ${CSS.spacing}; }
+      .FlexLayout--md { margin-left: -${UI.spacing}; }
+      .FlexLayout--md > :global(*) { margin-left: ${UI.spacing}; }
 
-      .FlexLayout--lg { margin-left: -${CSS.spacing.lg}; }
-      .FlexLayout--lg > :global(*) { margin-left: ${CSS.spacing.lg}; }
+      .FlexLayout--lg { margin-left: -${UI.spacing.lg}; }
+      .FlexLayout--lg > :global(*) { margin-left: ${UI.spacing.lg}; }
 
-      .FlexLayout--xl { margin-left: -${CSS.spacing.xl}; }
-      .FlexLayout--xl > :global(*) { margin-left: ${CSS.spacing.xl}; }
+      .FlexLayout--xl { margin-left: -${UI.spacing.xl}; }
+      .FlexLayout--xl > :global(*) { margin-left: ${UI.spacing.xl}; }
 
       .FlexLayout--split,
       .FlexLayout--split > :global(*) { margin-left: 0; }

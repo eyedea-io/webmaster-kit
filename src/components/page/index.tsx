@@ -19,26 +19,27 @@ class Page extends React.Component<Props> {
 
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
-        <Normalize />
-        <Typography />
-        <Spacing />
-        <Widths />
+        <div>
+          <Normalize />
+          <Typography />
+          <Spacing />
+          <Widths />
+          <style jsx global>{`
+            html {
+              color: ${UI.colors.default};
+              font-size: 1em;
+              line-height: 1.25;
+              background: #fff;
+              font-family: "Roboto", sans-serif;
+            }
 
-        <style jsx global>{`
-          html {
-            color: ${UI.colors.default};
-            font-size: 1em;
-            line-height: 1.25;
-            background: #fff;
-            font-family: "Roboto", sans-serif;
-          }
-
-          body {
-            overflow-y: scroll;
-            overflow-x: hidden;
-            min-height: 100vh;
-          }
-        `}</style>
+            body {
+              overflow-y: scroll;
+              overflow-x: hidden;
+              min-height: 100vh;
+            }
+          `}</style>
+        </div>
       </React.Fragment>
     )
   }

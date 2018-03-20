@@ -1,8 +1,8 @@
 import {Provider} from 'mobx-react'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {createStore} from 'utils/create-store'
 import {App} from './app'
+import {createStore} from './utils/create-store'
 const root = document.createElement('div')
 
 document

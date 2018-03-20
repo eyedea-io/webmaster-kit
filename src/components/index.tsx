@@ -2,6 +2,8 @@ import loadable from 'loadable-components'
 
 export {NavLink} from 'react-router-dom'
 export {Link} from 'react-router-dom'
+export {Modals} from './modals'
+export {NProgress} from './nprogress'
 export {FlexLayout} from './flex-layout'
 export {InputList} from './input-list'
 export {List} from './list'

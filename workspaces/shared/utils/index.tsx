@@ -1,7 +1,6 @@
 export {syncano, subscribe} from './syncano'
 export {isEmail} from './is-email'
 export {hashStr} from './hash-str'
-export {connect} from './connect'
-export {as} from './as'
+export {defineAs} from './define-as'
 export {loadable} from './loadable'
 export {observer, inject} from 'mobx-react'

@@ -1,7 +1,8 @@
 import {Avatar, Button, Head, Input, InputList, Page, Wrapper} from '@shared/components'
 import {APP_TITLE, UI} from '@shared/config'
-import {as, inject, isEmail, observer} from '@shared/utils'
-import {IStore} from '@types'
+import {inject, isEmail, observer} from '@shared/utils'
+import {IStore} from '@website/types'
+import {as} from '@website/utils/as'
 import * as React from 'react'
 import * as Router from 'react-router-dom'
 

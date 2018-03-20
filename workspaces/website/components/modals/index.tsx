@@ -1,5 +1,4 @@
 import {Modal} from '@shared/components'
-import {IStore} from '@types'
 import * as React from 'react'
 import {Profile} from './profile'
 

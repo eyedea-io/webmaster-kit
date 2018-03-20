@@ -1,11 +1,10 @@
-import {IStore, Store} from '@types'
-import {destroy, getSnapshot, onSnapshot} from 'mobx-state-tree'
+import {destroy, getSnapshot, IModelType, onSnapshot} from 'mobx-state-tree'
 import {IDisposer} from 'mobx-state-tree/dist/utils'
 
-let store: IStore
+let store
 let snapshotListener: IDisposer
 
-export const createStore = (snapshot: object, storageKey) => {
+export const createStore = (Store: IModelType<{}, {}>, snapshot: object, storageKey) => {
   // clean up snapshot listener
   if (snapshotListener) { snapshotListener() }
   // kill old store to prevent accidental use and run clean up hooks

@@ -1,19 +1,8 @@
-import {IStore} from '@types'
 import {observer} from 'mobx-react'
 import * as React from 'react'
 const hoistNonReactStatics = require('hoist-non-react-statics')
 
-interface Props {
-  store: IStore
-}
-
-export const as = {
-  guest: defineAs(props => !props.store.userStore.isLoggedIn),
-  member: defineAs(props => props.store.userStore.isLoggedIn),
-  // admin: defineAs(props => props.store.userStore.isAdmin),
-}
-
-function defineAs(check: any) {
+export function defineAs(check: any) {
   return Handle => {
     if (!Handle.name) {
       return Component => {
@@ -30,7 +19,7 @@ function defineAs(check: any) {
       }
     }
 
-    return hoistNonReactStatics((props: Props) =>
+    return hoistNonReactStatics((props) =>
       check(props) ? <Handle {...props} /> : null,
       Handle
     )

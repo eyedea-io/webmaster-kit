@@ -1,4 +1,5 @@
 import {createStore} from '@shared/utils/create-store'
+import {Store} from '@website/types'
 import {Provider} from 'mobx-react'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -15,7 +16,7 @@ const LOCAL_STORAGE_KEY = ''
 const initialState = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}')
 
 ReactDOM.render(
-  <Provider store={createStore(initialState, LOCAL_STORAGE_KEY)}>
+  <Provider store={createStore(Store, initialState, LOCAL_STORAGE_KEY)}>
     <App />
   </Provider>,
   root

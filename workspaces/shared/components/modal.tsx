@@ -1,4 +1,4 @@
-import {IStore} from '@types'
+import {IStore} from '@website/types'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 

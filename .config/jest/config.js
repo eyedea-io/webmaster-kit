@@ -19,7 +19,7 @@ module.exports = {
     "\\.(ts|tsx)$": "<rootDir>/../../node_modules/ts-jest/preprocessor.js"
   },
   "testMatch": [
-    "**/src/**/*.test.(ts|tsx|js)"
+    "**/workspaces/**/*.test.(ts|tsx|js)"
   ],
   "setupFiles": [
     "<rootDir>/setup-tests.js"

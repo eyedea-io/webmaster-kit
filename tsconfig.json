@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./workspaces",
     "paths": {
-      "@config": ["./constants"],
-      "@components": ["./components"],
-      "@types": ["./types"],
-      "@utils": ["./utils"],
+      "@shared/*": ["./shared/*"],
+      "@website/*": ["./website/*"]
     },
     "experimentalDecorators": true,
     "outDir": "./build/",
@@ -25,7 +23,7 @@
     ]
   },
   "include": [
-    "src/**/*"
+    "workspaces/**/*"
   ],
   "exclude": [
     ".config/**/*"

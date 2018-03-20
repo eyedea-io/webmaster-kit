@@ -5,9 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 
 module.exports = {
-  context: resolve(__dirname, '../src'),
+  context: resolve(__dirname, '../workspaces'),
   entry: {
-    main: '../src/index'
+    main: '../workspaces/website/index'
   },
   output: {
     path: resolve(__dirname, '..', '.build'),

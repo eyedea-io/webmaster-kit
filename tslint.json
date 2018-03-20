@@ -1,22 +1,16 @@
 {
   "extends": ["tslint-react", "tslint-eslint-rules"],
   "rules": {
-    "align": [
-      true,
-      "statements"
-    ],
+    "align": [true, "statements"],
     "ban": false,
     "import-spacing": true,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
+    "comment-format": [true, "check-space"],
     "object-curly-spacing": [true, "never"],
     "curly": true,
     "forin": true,
     "prefer-const": [true, {"destructuring": "all"}],
-    "indent": [ true, "spaces" ],
+    "indent": [true, "spaces"],
     "interface-name": [true, "never-prefix"],
     "jsdoc-format": true,
     "jsx-no-lambda": false,
@@ -87,11 +81,7 @@
       }
     ],
     "triple-equals": [ true, "allow-null-check" ],
-    "typedef": [
-        true,
-        "parameter",
-        "property-declaration"
-    ],
+    "typedef": [true, "parameter", "property-declaration"],
     "typedef-whitespace": [
       true,
       {

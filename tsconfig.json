@@ -21,8 +21,7 @@
     "jsx": "preserve",
     "target": "esnext",
     "typeRoots": [
-      "node_modules/@types",
-      "./typings"
+      "node_modules/@types"
     ]
   },
   "include": [

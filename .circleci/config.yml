@@ -23,8 +23,8 @@ jobs:
           key: webmasterkit-{{ .Environment.CIRCLE_SHA1 }}
       - run: echo 'export SYNCANO_PROJECT_INSTANCE=$STAGING_SYNCANO_PROJECT_INSTANCE' >> $BASH_ENV
       - run: npx syncano-cli deploy
-      - run: npx syncano-cli hosting config web -b true # --cname YOUR_CNAME
-      - run: npx syncano-cli hosting sync web
+      - run: npx syncano-cli hosting config website -b true # --cname YOUR_CNAME
+      - run: npx syncano-cli hosting sync website
 
   deploy_production:
     name: Deploy production
@@ -36,8 +36,8 @@ jobs:
           key: webmasterkit-{{ .Environment.CIRCLE_SHA1 }}
       - run: echo 'export SYNCANO_PROJECT_INSTANCE=$PRODUCTION_SYNCANO_PROJECT_INSTANCE' >> $BASH_ENV
       - run: npx syncano-cli deploy
-      - run: npx syncano-cli hosting config web -b true # --cname YOUR_CNAME
-      - run: npx syncano-cli hosting sync web
+      - run: npx syncano-cli hosting config website -b true # --cname YOUR_CNAME
+      - run: npx syncano-cli hosting sync website
 
 workflows:
   version: 2

@@ -1,6 +1,6 @@
 hosting:
-  web:
-    src: ../.build
+  website:
+    src: ../.build/website
     config:
       browser_router: true
 dependencies:

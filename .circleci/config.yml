@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: yarn
-      - run: yarn run build
+      - run: yarn build website
       - save_cache:
           key: webmasterkit-{{ .Environment.CIRCLE_SHA1 }}
           paths:

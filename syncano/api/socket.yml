@@ -1,4 +1,5 @@
 name: api
+description: Project API
 version: 0.0.1
 
 classes:
@@ -10,7 +11,7 @@ classes:
 
 endpoints:
   user/profile:
-    file: user/profile.js
+    description: Get user profile
     response:
       success:
         exit_code: 200

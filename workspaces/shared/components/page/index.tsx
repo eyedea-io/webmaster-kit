@@ -17,8 +17,6 @@ class Page extends React.Component<Props> {
       <React.Fragment>
         {this.props.children}
 
-        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-
         <div>
           <Normalize />
           <Typography />

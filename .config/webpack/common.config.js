@@ -1,21 +1,17 @@
 const webpack = require('webpack')
 const {join, resolve} = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 
 module.exports = {
   context: resolve(__dirname, '../../workspaces'),
   output: {
-    path: resolve(__dirname, '..', '..', '.build'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     publicPath: '/'
   },
   resolve: {
     extensions: ['.json', '.ts', '.tsx', '.js'],
-    plugins: [
-      new TsConfigPathsPlugin()
-    ]
+    plugins: [new TsConfigPathsPlugin()]
   },
   module: {
     rules: [
@@ -59,9 +55,6 @@ module.exports = {
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Set app title in .config/webpack/common.config.js'
-    }),
     new webpack.DefinePlugin({
       'process.env.SYNCANO_PROJECT_INSTANCE': JSON.stringify(
         process.env.SYNCANO_PROJECT_INSTANCE

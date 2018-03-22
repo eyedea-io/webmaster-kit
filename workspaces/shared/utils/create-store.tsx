@@ -4,7 +4,9 @@ import {IDisposer} from 'mobx-state-tree/dist/utils'
 let store
 let snapshotListener: IDisposer
 
-export const createStore = (Store: IModelType<{}, {}>, snapshot: object, storageKey) => {
+export const createStore = (Store: IModelType<{}, {}>, storageKey) => {
+  const snapshot = JSON.parse(localStorage.getItem(storageKey) || '{}')
+
   // clean up snapshot listener
   if (snapshotListener) { snapshotListener() }
   // kill old store to prevent accidental use and run clean up hooks

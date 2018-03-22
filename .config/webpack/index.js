@@ -5,6 +5,11 @@ const prod = require('./prod.config.js')
 const dev = require('./dev.config.js')
 
 module.exports = function(name) {
+  if (name === true) {
+    console.error(`\n Workspace name is required. \n\n Example: yarn dev website \n`)
+    process.exit(0)
+  }
+
   const config = process.argv.indexOf('-p') !== -1 ? prod : dev
 
   return merge(config, {

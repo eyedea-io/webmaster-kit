@@ -12,10 +12,9 @@ module.exports = function(workspace) {
     process.exit(0)
   }
 
-  const config = process.argv.indexOf('-p') !== -1 ? prod : dev
+  const envConfig = process.argv.indexOf('-p') !== -1 ? prod : dev
   const htmlConfig = getHTMLConfig(workspace)
-
-  return merge(config, {
+  const config = merge(envConfig, {
     entry: `../workspaces/${workspace}`,
     output: {
       path: resolve(__dirname, '..', '..', `.build/${workspace}`),
@@ -25,8 +24,9 @@ module.exports = function(workspace) {
       new CleanWebpackPlugin([workspace], {root: join(__dirname, '../../.build')}),
     ]
   })
-}
 
+  return mergeWithCustomConfig(config, workspace)
+}
 
 function getHTMLConfig(workspace) {
   const html = {
@@ -39,4 +39,16 @@ function getHTMLConfig(workspace) {
   if (fs.existsSync(favicon)) { html.template = template}
 
   return html
+}
+
+function mergeWithCustomConfig(config, workspace) {
+  const filepath = resolve(__dirname, `../../workspaces/${workspace}/webpack.config.js`)
+
+  if (fs.existsSync(filepath)) {
+    let customConfig = require(filepath)
+
+    return typeof customConfig === 'function' ? customConfig(config) : customConfig
+  }
+
+  return config
 }

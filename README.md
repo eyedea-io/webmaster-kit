@@ -31,3 +31,14 @@ Just create `workspaces/<workspace_name>/index.tsx` and run:
 ```sh
 yarn dev <workspace_name>
 ```
+
+## Custom workspace webpack config
+
+Create `workspaces/<workspace_name>/webpack.config.js`:
+
+```js
+module.exports = function(config) {
+  // Modify config and return it
+  return config
+}
+```

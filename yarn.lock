@@ -60,15 +60,17 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@syncano/cli@0.9.0-alpha.85a10c7b":
-  version "0.9.0-alpha.85a10c7b"
-  resolved "https://registry.yarnpkg.com/@syncano/cli/-/cli-0.9.0-alpha.85a10c7b.tgz#6a0acc5d43ed787b53becb7c353766fff76eb5af"
+"@syncano/cli@^0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/cli/-/cli-0.12.0-alpha.a517577a.tgz#349004f449a0811625d9ea3aa6fb818eed07a7b3"
   dependencies:
-    "@syncano/core" "0.9.0-alpha.85a10c7b"
-    "@syncano/template-project-empty" "0.9.0-alpha.85a10c7b"
-    "@syncano/template-project-hello" "0.9.0-alpha.85a10c7b"
-    "@syncano/template-socket-es6" "0.9.0-alpha.85a10c7b"
-    "@syncano/template-socket-vanilla" "0.9.0-alpha.85a10c7b"
+    "@syncano/core" "0.12.0-alpha.a517577a"
+    "@syncano/template-project-empty" "0.12.0-alpha.a517577a"
+    "@syncano/template-project-hello" "0.12.0-alpha.a517577a"
+    "@syncano/template-socket-es6" "0.12.0-alpha.a517577a"
+    "@syncano/template-socket-es6-validate" "0.12.0-alpha.a517577a"
+    "@syncano/template-socket-vanilla" "0.12.0-alpha.a517577a"
+    "@syncano/validate" "0.12.0-alpha.a517577a"
     analytics-node "^3.1.1"
     archiver "^2.1.0"
     axios "^0.17.1"
@@ -112,9 +114,9 @@
   dependencies:
     axios "^0.17.1"
 
-"@syncano/core@0.9.0-alpha.85a10c7b":
-  version "0.9.0-alpha.85a10c7b"
-  resolved "https://registry.yarnpkg.com/@syncano/core/-/core-0.9.0-alpha.85a10c7b.tgz#1bec59b39869706ee88f870a5b3a00c5cdd72b8a"
+"@syncano/core@0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/core/-/core-0.12.0-alpha.a517577a.tgz#67ce6071ed678adbaaff4db5863b9bd1683cdda9"
   dependencies:
     debug "^3.1.0"
     form-data "^2.3.1"
@@ -123,21 +125,40 @@
     lodash.set "^4.3.2"
     node-fetch "2.0.0-alpha.9"
 
-"@syncano/template-project-empty@0.9.0-alpha.85a10c7b":
-  version "0.9.0-alpha.85a10c7b"
-  resolved "https://registry.yarnpkg.com/@syncano/template-project-empty/-/template-project-empty-0.9.0-alpha.85a10c7b.tgz#da908f547d61e1db228b41d8210863f8df0a97a6"
+"@syncano/schema@0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/schema/-/schema-0.12.0-alpha.a517577a.tgz#918d26c7a6e758d20c439fbe9709331e83e3f7c6"
 
-"@syncano/template-project-hello@0.9.0-alpha.85a10c7b":
-  version "0.9.0-alpha.85a10c7b"
-  resolved "https://registry.yarnpkg.com/@syncano/template-project-hello/-/template-project-hello-0.9.0-alpha.85a10c7b.tgz#cbb4cee35516149ab06e36c5e3ae1f69b1c0c72c"
+"@syncano/template-project-empty@0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/template-project-empty/-/template-project-empty-0.12.0-alpha.a517577a.tgz#765f20b7d20205e08718ecea3220ad795b0e705f"
 
-"@syncano/template-socket-es6@0.9.0-alpha.85a10c7b":
-  version "0.9.0-alpha.85a10c7b"
-  resolved "https://registry.yarnpkg.com/@syncano/template-socket-es6/-/template-socket-es6-0.9.0-alpha.85a10c7b.tgz#f6b4862f431e304b34099347106e9c9835e5098d"
+"@syncano/template-project-hello@0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/template-project-hello/-/template-project-hello-0.12.0-alpha.a517577a.tgz#25bce3458f33d32731ee7c7f6f3bd955072bc6dc"
 
-"@syncano/template-socket-vanilla@0.9.0-alpha.85a10c7b":
-  version "0.9.0-alpha.85a10c7b"
-  resolved "https://registry.yarnpkg.com/@syncano/template-socket-vanilla/-/template-socket-vanilla-0.9.0-alpha.85a10c7b.tgz#31bee1ba0baad5cb3cf6d0768160569fb3132575"
+"@syncano/template-socket-es6-validate@0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/template-socket-es6-validate/-/template-socket-es6-validate-0.12.0-alpha.a517577a.tgz#567d874804fcc124e1a1bbff2293f6224a0ac2d4"
+
+"@syncano/template-socket-es6@0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/template-socket-es6/-/template-socket-es6-0.12.0-alpha.a517577a.tgz#764e7509a1e9dbbe604cf2dcdd601fc55939e9d1"
+
+"@syncano/template-socket-vanilla@0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/template-socket-vanilla/-/template-socket-vanilla-0.12.0-alpha.a517577a.tgz#5d4be6af602d26c34bfe86c9d4545ddd21cbe918"
+
+"@syncano/validate@0.12.0-alpha.a517577a":
+  version "0.12.0-alpha.a517577a"
+  resolved "https://registry.yarnpkg.com/@syncano/validate/-/validate-0.12.0-alpha.a517577a.tgz#ed0c34e227b7e912a5b333ea5ae5885cf489047a"
+  dependencies:
+    "@syncano/schema" "0.12.0-alpha.a517577a"
+    ajv "^6.2.0"
+    ajv-error-messages "^1.0.0"
+    ajv-errors "^1.0.0"
+    ajv-keywords "^3.1.0"
+    lodash.isempty "^4.4.0"
 
 "@types/history@*":
   version "4.6.2"
@@ -224,6 +245,14 @@ acorn@^5.0.0, acorn@^5.3.0:
   version "5.5.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
 
+ajv-error-messages@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ajv-error-messages/-/ajv-error-messages-1.0.0.tgz#4db7ee8115612e1355b6c3dc7f79fa451e897c8a"
+
+ajv-errors@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.0.tgz#ecf021fa108fd17dfb5e6b383f2dd233e31ffc59"
+
 ajv-keywords@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.1.0.tgz#ac2b27939c543e95d2c06e7f7f5c27be4aa543be"
@@ -244,7 +273,7 @@ ajv@^5.1.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-ajv@^6.1.0:
+ajv@^6.1.0, ajv@^6.2.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.3.0.tgz#1650a41114ef00574cac10b8032d8f4c14812da7"
   dependencies:
@@ -4924,6 +4953,10 @@ lodash.flattendeep@^4.4.0:
 lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+
+lodash.isempty@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.isempty/-/lodash.isempty-4.4.0.tgz#6f86cbedd8be4ec987be9aaf33c9684db1b31e7e"
 
 lodash.isstring@^4.0.1:
   version "4.0.1"

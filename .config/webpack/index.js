@@ -7,6 +7,8 @@ const prod = require('./prod.config.js')
 const dev = require('./dev.config.js')
 const fs = require('fs')
 
+process.noDeprecation = true
+
 module.exports = function(workspace) {
   if (workspace === true) {
     console.error(`\n Workspace name is required. \n\n Example: yarn dev website \n`)

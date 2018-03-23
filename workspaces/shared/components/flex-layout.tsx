@@ -3,7 +3,7 @@ import * as React from 'react'
 
 type Spacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
-interface Props {
+export interface Props {
   children: React.ReactChild | Array<React.ReactChild>
   middle?: boolean
   split?: boolean

@@ -1,6 +1,6 @@
 import {Form, FormStore} from '@shared/types/form'
 import {User, UserStore} from '@shared/types/user'
-import {syncano} from '@shared/utils'
+import {syncano} from '@shared/utils/syncano'
 import {types} from 'mobx-state-tree'
 import {hot} from 'react-hot-loader'
 import {Modal} from './modal'

@@ -1,11 +1,11 @@
 import {UI} from '@shared/config'
 import * as React from 'react'
-import {Message} from '.'
 import {List, Props as ListProps} from './list'
+import {Message} from './message'
 
 type ErrorsPosition = 'each' | 'start' | 'end'
 
-interface Props extends ListProps {
+export interface Props extends ListProps {
   children: React.ReactNode
   errors: object
   errorsPosition?: ErrorsPosition

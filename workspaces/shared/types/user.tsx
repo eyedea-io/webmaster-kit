@@ -1,4 +1,4 @@
-import {syncano} from '@shared/utils'
+import {syncano} from '@shared/utils/syncano'
 import {flow, types} from 'mobx-state-tree'
 
 export const User = types

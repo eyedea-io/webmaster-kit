@@ -1,32 +1,38 @@
-import {NProgress} from '@shared/components'
-import {loadable, observer} from '@shared/utils'
+import {createStore} from '@shared/utils/create-store'
+import {loadable} from '@shared/utils/loadable'
 import {Modals} from '@website/components'
-import '@website/utils/icons'
+import {Store} from '@website/types'
+import {observer, Provider} from 'mobx-react'
+import nprogress from 'nprogress'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
-import * as Router from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 const Routes = getRoutes()
+
+// INFO: Set this value, to save the store to localStorage on every change
+const LOCAL_STORAGE_KEY = ''
 
 @hot(module)
 @observer
 class App extends React.Component {
   render() {
     return (
-      <Router.BrowserRouter>
-        <React.Fragment>
-          <Router.Switch>
-            <Router.Route exact path="/" component={Routes.Index} />
-            <Router.Route exact path="/auth/login" component={Routes.Auth.Login} />
-            <Router.Route exact path="/auth/register" component={Routes.Auth.Register} />
-            <Router.Route exact path="/auth/logout" component={Routes.Auth.Logout} />
-            <Router.Route component={Routes.Missing} />
-          </Router.Switch>
+      <Provider store={createStore(Store, LOCAL_STORAGE_KEY)}>
+        <BrowserRouter>
+          <React.Fragment>
+            <Switch>
+              <Route exact path="/" component={Routes.Index} />
+              <Route exact path="/auth/login" component={Routes.Auth.Login} />
+              <Route exact path="/auth/register" component={Routes.Auth.Register} />
+              <Route exact path="/auth/logout" component={Routes.Auth.Logout} />
+              <Route component={Routes.Missing} />
+            </Switch>
 
-          <Modals />
-          <NProgress />
-        </React.Fragment>
-      </Router.BrowserRouter>
+            <Modals />
+          </React.Fragment>
+        </BrowserRouter>
+      </Provider>
     )
   }
 }

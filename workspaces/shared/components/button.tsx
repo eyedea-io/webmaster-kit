@@ -1,6 +1,6 @@
 import {UI} from '@shared/config'
 import * as React from 'react'
-import {Spinner} from '.'
+import {Spinner} from './spinner'
 
 export interface Props {
   children: React.ReactChild | string,

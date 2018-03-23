@@ -4,11 +4,6 @@ const common = require('./common.config.js')
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: 'source-map',
-  output: {
-    filename: '[name].[hash].bundle.js',
-    chunkFilename: '[name].[hash].bundle.js',
-  },
   plugins: [
     new CompressionPlugin({
       asset: '[path].gz[query]',

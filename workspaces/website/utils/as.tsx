@@ -1,4 +1,4 @@
-import {defineAs} from '@shared/utils'
+import {defineAs} from '@shared/utils/define-as'
 import {IStore} from '@website/types'
 import * as React from 'react'
 

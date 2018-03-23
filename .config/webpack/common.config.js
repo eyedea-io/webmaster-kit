@@ -5,8 +5,8 @@ const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 module.exports = {
   context: resolve(__dirname, '../../workspaces'),
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[hash].chunk.js',
     publicPath: '/'
   },
   resolve: {
@@ -34,25 +34,7 @@ module.exports = {
     ]
   },
   optimization: {
-    occurrenceOrder: true ,
-    runtimeChunk: 'single',
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        commons: {
-          chunks: "initial",
-          minChunks: 2,
-          maxInitialRequests: 5
-				},
-        vendors: {
-          test: /node_modules/,
-          chunks: "initial",
-          name: "vendor",
-          priority: 10,
-          enforce: true
-        }
-      }
-    }
+    runtimeChunk: 'single'
   },
   plugins: [
     new webpack.DefinePlugin({

@@ -1,5 +1,5 @@
-import {inject, observer} from '@shared/utils'
 import {IStore} from '@website/types'
+import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import * as Router from 'react-router'
 

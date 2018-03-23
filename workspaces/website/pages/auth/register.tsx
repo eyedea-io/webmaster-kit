@@ -1,8 +1,9 @@
 import {Button, Head, Input, InputList, Page, Wrapper} from '@shared/components'
 import {APP_TITLE, UI} from '@shared/config'
-import {inject, isEmail, observer} from '@shared/utils'
+import {isEmail} from '@shared/utils/is-email'
 import {IStore} from '@website/types'
 import {as} from '@website/utils/as'
+import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import * as Router from 'react-router-dom'
 
@@ -10,7 +11,7 @@ interface Props extends Router.RouteComponentProps<{}> {
   store: IStore
 }
 
-@inject ('store')
+@inject('store')
 @as.member(() => <Router.Redirect to="/" />)
 @observer
 class Register extends React.Component<Props> {

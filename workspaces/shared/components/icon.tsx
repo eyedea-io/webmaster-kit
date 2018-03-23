@@ -1,10 +1,10 @@
-import * as fontawesome from '@fortawesome/fontawesome'
+import {IconProp, SizeProp} from '@fortawesome/fontawesome'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 
 export interface Props {
-  name: fontawesome.IconProp
-  size?: fontawesome.SizeProp
+  name: IconProp
+  size?: SizeProp
   solid?: boolean
   light?: boolean
   brands?: boolean
@@ -26,3 +26,11 @@ function getType(props: {
     : props.solid === true ? 'fas'
     : props.brands === true ? 'fab' : 'far'
   }
+
+/**
+ * @link https://fontawesome.com/how-to-use/js-component-packages
+ */
+import {library} from '@fortawesome/fontawesome'
+const faCheckCircle = require('@fortawesome/fontawesome-free-regular/faCheckCircle')
+
+library.add(faCheckCircle)

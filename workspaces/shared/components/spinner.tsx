@@ -1,7 +1,7 @@
 import {UI} from '@shared/config'
 import * as React from 'react'
 
-interface Props {
+export interface Props {
   white?: boolean
   small?: boolean
 }

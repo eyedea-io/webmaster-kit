@@ -1,7 +1,7 @@
 import {Head, List, Page, Wrapper} from '@shared/components'
 import {APP_TITLE, UI} from '@shared/config'
-import {inject, observer} from '@shared/utils'
 import {IStore} from '@website/types'
+import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 import * as Router from 'react-router-dom'

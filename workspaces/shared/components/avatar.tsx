@@ -1,4 +1,4 @@
-import {hashStr} from '@shared/utils'
+import {hashStr} from '@shared/utils/hash-str'
 import * as React from 'react'
 
 export interface Props {

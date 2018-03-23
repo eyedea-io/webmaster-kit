@@ -1,16 +1,7 @@
-import {createStore} from '@shared/utils/create-store'
-import {Store} from '@website/types'
-import {Provider} from 'mobx-react'
+import {loadable} from '@shared/utils/loadable'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {App} from './app'
 
-// INFO: Set this value, to save the store to localStorage on every change
-const LOCAL_STORAGE_KEY = ''
+const App = loadable(() => import('./app').then(res => res.App || res))
 
-ReactDOM.render(
-  <Provider store={createStore(Store, LOCAL_STORAGE_KEY)}>
-    <App />
-  </Provider>,
-  document.querySelector('#root')
-)
+ReactDOM.render(<App />, document.querySelector('#root'))

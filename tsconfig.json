@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "baseUrl": "./workspaces",
     "paths": {
       "@shared/*": ["./shared/*"],
@@ -23,7 +25,8 @@
     ]
   },
   "include": [
-    "workspaces/**/*"
+    "workspaces/**/*",
+    "syncano/**/*"
   ],
   "exclude": [
     ".config/**/*"

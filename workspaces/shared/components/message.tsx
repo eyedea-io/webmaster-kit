@@ -1,8 +1,6 @@
 import {UI} from '@shared/config'
 import * as React from 'react'
 
-type Style = 'positive' | 'negative'
-
 export interface Props {
   positive?: boolean
   negative?: boolean
@@ -11,7 +9,7 @@ export interface Props {
 }
 
 export const Message = ({
-  content, positive, negative, children, ...props
+  content, positive, negative, children,
 }: Props) => children || content ? (
   <div className={`
     Message

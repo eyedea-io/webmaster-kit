@@ -46,7 +46,7 @@ export const UserStore = types
         self.pending.set('fetch-profile', '')
         self.profile = yield syncano('api/user/profile')
       } catch (error) {
-        if (error.response.data.message === 'User profile was not found.') {
+        if (error.response.status === 401) {
           self.setToken()
         }
         throw error

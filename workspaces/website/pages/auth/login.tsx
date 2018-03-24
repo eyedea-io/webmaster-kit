@@ -1,4 +1,4 @@
-import {Avatar, Button, Head, Input, InputList, Page, Wrapper} from '@shared/components'
+import {Button, Head, Input, InputList, Page, Wrapper} from '@shared/components'
 import {APP_TITLE, UI} from '@shared/config'
 import {isEmail} from '@shared/utils/is-email'
 import {IStore} from '@website/types'
@@ -69,10 +69,6 @@ class Login extends React.Component<Props> {
 
   private get form() {
     return this.props.store.formStore.get(this.formName)
-  }
-
-  private get isLoggedIn(): boolean {
-    return this.props.store.userStore.isLoggedIn
   }
 
   private get isPending(): boolean {

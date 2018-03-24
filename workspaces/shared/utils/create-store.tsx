@@ -1,4 +1,4 @@
-import {destroy, getSnapshot, IModelType, onSnapshot} from 'mobx-state-tree'
+import {destroy, IModelType, onSnapshot} from 'mobx-state-tree'
 import {IDisposer} from 'mobx-state-tree/dist/utils'
 
 let store

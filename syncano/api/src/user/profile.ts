@@ -13,7 +13,7 @@ export default async (ctx) => {
 
   const user = await users.fields(MODELS.user).find(ctx.meta.user.id)
 
-  info('User profile was found.')
+  info('User profile was found.', user)
 
   response.json(user)
 }

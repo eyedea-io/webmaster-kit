@@ -60,17 +60,17 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@syncano/cli@^0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/cli/-/cli-0.12.0-alpha.a517577a.tgz#349004f449a0811625d9ea3aa6fb818eed07a7b3"
+"@syncano/cli@^0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/cli/-/cli-0.12.0-alpha.cb34c83f.tgz#479ebb95fa20e8c079ac887421ffb4fd12d6ed11"
   dependencies:
-    "@syncano/core" "0.12.0-alpha.a517577a"
-    "@syncano/template-project-empty" "0.12.0-alpha.a517577a"
-    "@syncano/template-project-hello" "0.12.0-alpha.a517577a"
-    "@syncano/template-socket-es6" "0.12.0-alpha.a517577a"
-    "@syncano/template-socket-es6-validate" "0.12.0-alpha.a517577a"
-    "@syncano/template-socket-vanilla" "0.12.0-alpha.a517577a"
-    "@syncano/validate" "0.12.0-alpha.a517577a"
+    "@syncano/core" "0.12.0-alpha.cb34c83f"
+    "@syncano/template-project-empty" "0.12.0-alpha.cb34c83f"
+    "@syncano/template-project-hello" "0.12.0-alpha.cb34c83f"
+    "@syncano/template-socket-es6" "0.12.0-alpha.cb34c83f"
+    "@syncano/template-socket-es6-validate" "0.12.0-alpha.cb34c83f"
+    "@syncano/template-socket-vanilla" "0.12.0-alpha.cb34c83f"
+    "@syncano/validate" "0.12.0-alpha.cb34c83f"
     analytics-node "^3.1.1"
     archiver "^2.1.0"
     axios "^0.17.1"
@@ -114,9 +114,9 @@
   dependencies:
     axios "^0.17.1"
 
-"@syncano/core@0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/core/-/core-0.12.0-alpha.a517577a.tgz#67ce6071ed678adbaaff4db5863b9bd1683cdda9"
+"@syncano/core@0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/core/-/core-0.12.0-alpha.cb34c83f.tgz#746114bb169c74b858c0bb5e511aa8167abe2bc6"
   dependencies:
     debug "^3.1.0"
     form-data "^2.3.1"
@@ -125,35 +125,35 @@
     lodash.set "^4.3.2"
     node-fetch "2.0.0-alpha.9"
 
-"@syncano/schema@0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/schema/-/schema-0.12.0-alpha.a517577a.tgz#918d26c7a6e758d20c439fbe9709331e83e3f7c6"
+"@syncano/schema@0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/schema/-/schema-0.12.0-alpha.cb34c83f.tgz#bd6ef7447f0499b5d283c00238aece19f793fef6"
 
-"@syncano/template-project-empty@0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/template-project-empty/-/template-project-empty-0.12.0-alpha.a517577a.tgz#765f20b7d20205e08718ecea3220ad795b0e705f"
+"@syncano/template-project-empty@0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/template-project-empty/-/template-project-empty-0.12.0-alpha.cb34c83f.tgz#427035a53a933960326140161708b876f2004868"
 
-"@syncano/template-project-hello@0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/template-project-hello/-/template-project-hello-0.12.0-alpha.a517577a.tgz#25bce3458f33d32731ee7c7f6f3bd955072bc6dc"
+"@syncano/template-project-hello@0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/template-project-hello/-/template-project-hello-0.12.0-alpha.cb34c83f.tgz#9a8d13fbbb8dcf77bd3e367dfb97a2a91cbb6698"
 
-"@syncano/template-socket-es6-validate@0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/template-socket-es6-validate/-/template-socket-es6-validate-0.12.0-alpha.a517577a.tgz#567d874804fcc124e1a1bbff2293f6224a0ac2d4"
+"@syncano/template-socket-es6-validate@0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/template-socket-es6-validate/-/template-socket-es6-validate-0.12.0-alpha.cb34c83f.tgz#93e1631215ad69b00535fff83db3384f9f6a3458"
 
-"@syncano/template-socket-es6@0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/template-socket-es6/-/template-socket-es6-0.12.0-alpha.a517577a.tgz#764e7509a1e9dbbe604cf2dcdd601fc55939e9d1"
+"@syncano/template-socket-es6@0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/template-socket-es6/-/template-socket-es6-0.12.0-alpha.cb34c83f.tgz#203b5d5116a2faf516babe449a30487582e4e77b"
 
-"@syncano/template-socket-vanilla@0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/template-socket-vanilla/-/template-socket-vanilla-0.12.0-alpha.a517577a.tgz#5d4be6af602d26c34bfe86c9d4545ddd21cbe918"
+"@syncano/template-socket-vanilla@0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/template-socket-vanilla/-/template-socket-vanilla-0.12.0-alpha.cb34c83f.tgz#5400d12bef9cf5d101b2c011afa66aaab0ccb164"
 
-"@syncano/validate@0.12.0-alpha.a517577a":
-  version "0.12.0-alpha.a517577a"
-  resolved "https://registry.yarnpkg.com/@syncano/validate/-/validate-0.12.0-alpha.a517577a.tgz#ed0c34e227b7e912a5b333ea5ae5885cf489047a"
+"@syncano/validate@0.12.0-alpha.cb34c83f":
+  version "0.12.0-alpha.cb34c83f"
+  resolved "https://registry.yarnpkg.com/@syncano/validate/-/validate-0.12.0-alpha.cb34c83f.tgz#93eb30c17ab6a326af4e6e789a1d0cfae4a2978b"
   dependencies:
-    "@syncano/schema" "0.12.0-alpha.a517577a"
+    "@syncano/schema" "0.12.0-alpha.cb34c83f"
     ajv "^6.2.0"
     ajv-error-messages "^1.0.0"
     ajv-errors "^1.0.0"

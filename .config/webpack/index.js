@@ -12,7 +12,7 @@ process.noDeprecation = true
 module.exports = function(workspace) {
   if (workspace === true) {
     console.error(`\n Workspace name is required. \n\n Example: yarn dev website \n`)
-    process.exit(0)
+    process.exit(1)
   }
 
   const envConfig = process.argv.indexOf('-p') !== -1 ? prod : dev

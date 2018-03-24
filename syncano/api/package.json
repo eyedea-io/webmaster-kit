@@ -6,20 +6,13 @@
     "build:env": "sh ./bin/compile-env"
   },
   "dependencies": {
-    "@syncano/core": "^0.10.0-alpha.f21aa8b8",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "@syncano/core": "^0.10.0-alpha.f21aa8b8"
   },
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "node": "8"
-          }
-        }
-      ]
-    ]
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-typescript": "^7.0.0-beta.42",
+    "typescript": "^2.7.2"
   }
 }

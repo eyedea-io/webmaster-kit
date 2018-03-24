@@ -14,5 +14,15 @@
     "@babel/preset-env": "^7.0.0-beta.42",
     "@babel/preset-typescript": "^7.0.0-beta.42",
     "typescript": "^2.7.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-typescript",
+      ["@babel/preset-env", {
+        "targets": {
+          "node": "8"
+        }
+      }]
+    ]
   }
 }

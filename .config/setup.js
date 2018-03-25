@@ -31,7 +31,7 @@ getConfig()
       method: 'post',
       data,
       params: {
-        'circle-token': config.circle,
+        'circle-token': config.circle
       }
     })
 
@@ -57,21 +57,21 @@ getConfig()
       })
   })
 
-function createEnvrc(data) {
+function createEnvrc (data) {
   return new Promise((resolve) => {
-    fs.writeFile(".envrc", `export SYNCANO_PROJECT_INSTANCE=${data.syncanoInstance}`, function(err) {
-      if(err) {
-        console.log(err);
+    fs.writeFile('.envrc', `export SYNCANO_PROJECT_INSTANCE=${data.syncanoInstance}`, function (err) {
+      if (err) {
+        console.log(err)
       } else {
         console.log(`✔ Created .envrc file`)
       }
 
       resolve(data)
-    });
+    })
   })
 }
 
-function attachSyncanoInstance(data) {
+function attachSyncanoInstance (data) {
   return run(`yes | npx s attach --create-instance ${data.syncanoInstance}`)
     .then(() =>
       run(`yes | npx s attach --create-instance ${data.syncanoInstance}-staging`)
@@ -89,7 +89,7 @@ function attachSyncanoInstance(data) {
     })
 }
 
-function setupCircle(data) {
+function setupCircle (data) {
   const url = `project/github/${data.account}/${data.repo}`
   const variables = {
     STAGING_SYNCANO_PROJECT_INSTANCE: `${data.syncanoInstance}-staging`,
@@ -116,15 +116,15 @@ function setupCircle(data) {
     })
 }
 
-function prompt(accounts, config) {
+function prompt (accounts, config) {
   if (config) {
     return defaultPrompt(accounts).then(data => ({...data, config}))
   }
 
-  return  configPrompt(accounts)
+  return configPrompt(accounts)
 }
 
-function getConfig() {
+function getConfig () {
   const FILENAME = '.webmasterconfig'
   const dir = path.join(os.homedir(), FILENAME)
 
@@ -139,16 +139,16 @@ function getConfig() {
       {
         type: 'input',
         name: 'circle',
-        message: "CircleCI token(https://circleci.com/account/api)",
-        validate: function(value) {
+        message: 'CircleCI token(https://circleci.com/account/api)',
+        validate: function (value) {
           return value.length >= 1
         }
       },
       {
         type: 'input',
         name: 'github',
-        message: "GitHub token(https://github.com/settings/tokens/new - repo, read:user)",
-        validate: function(value) {
+        message: 'GitHub token(https://github.com/settings/tokens/new - repo, read:user)',
+        validate: function (value) {
           return value.length >= 1
         }
       }
@@ -169,37 +169,37 @@ function getConfig() {
     })
 }
 
-function defaultPrompt(accounts) {
+function defaultPrompt (accounts) {
   return inquirer.prompt([
-      {
-        type: 'list',
-        name: 'account',
-        message: 'Select GitHub account',
-        choices: accounts
-      },
-      {
-        type: 'input',
-        name: 'repo',
-        message: "GitHub repository name",
-        validate: function(value) {
-          return value.length >= 1
-        }
-      },
-      {
-        type: 'confirm',
-        name: 'private',
-        message: "Private repository"
-      },
-      {
-        type: 'input',
-        name: 'syncanoInstance',
-        message: "Syncano instance name",
-        validate: value => value.length >= 5 ? true : 'Min 5 characters'
+    {
+      type: 'list',
+      name: 'account',
+      message: 'Select GitHub account',
+      choices: accounts
+    },
+    {
+      type: 'input',
+      name: 'repo',
+      message: 'GitHub repository name',
+      validate: function (value) {
+        return value.length >= 1
       }
-    ])
+    },
+    {
+      type: 'confirm',
+      name: 'private',
+      message: 'Private repository'
+    },
+    {
+      type: 'input',
+      name: 'syncanoInstance',
+      message: 'Syncano instance name',
+      validate: value => value.length >= 5 ? true : 'Min 5 characters'
+    }
+  ])
 }
 
-function createRepo(data) {
+function createRepo (data) {
   // TODO: Add homepage
   const options = {
     name: data.repo,
@@ -215,7 +215,7 @@ function createRepo(data) {
       .repos
       .create(options)
       .then(() => {
-        console.log(`✔ Created ${data.private ? 'private ': ''}repository on your account.`)
+        console.log(`✔ Created ${data.private ? 'private ' : ''}repository on your account.`)
 
         return data
       })
@@ -230,7 +230,7 @@ function createRepo(data) {
     .repos
     .createForOrg({org: data.account, ...options})
     .then(() => {
-      console.log(`✔ Created ${data.private ? 'private ': ''}repository on organization account: ${data.account}`)
+      console.log(`✔ Created ${data.private ? 'private ' : ''}repository on organization account: ${data.account}`)
 
       return data
     })
@@ -241,7 +241,7 @@ function createRepo(data) {
     })
 }
 
-function getUser() {
+function getUser () {
   return octokit
     .users
     .get()
@@ -250,7 +250,7 @@ function getUser() {
     })
 }
 
-function getOrgs() {
+function getOrgs () {
   return octokit
     .users
     .getOrgMemberships()
@@ -259,7 +259,7 @@ function getOrgs() {
     })
 }
 
-function removeGit() {
+function removeGit () {
   if (fs.existsSync('.git/config')) {
     const content = fs.readFileSync('.git/config', {encoding: 'utf-8'})
 
@@ -270,7 +270,7 @@ function removeGit() {
   }
 }
 
-function pushToRepo(data) {
+function pushToRepo (data) {
   const gitInit = () => run(`git init`)
   const gitAdd = () => run(`git add .`)
   const gitCommit = () => run(`git commit -m "chore: initial commit"`)
@@ -295,12 +295,12 @@ function pushToRepo(data) {
     })
 }
 
-function run(command, cb){
+function run (command, cb) {
   return new Promise((resolve, reject) => {
-    exec(command, function(err, stdout, stderr) {
-      if(err != null) {
+    exec(command, function (err, stdout, stderr) {
+      if (err != null) {
         return reject(new Error(err))
-      } else if(typeof(stderr) != "string") {
+      } else if (typeof (stderr) !== 'string') {
         return reject(new Error(stderr))
       } else {
         return resolve(stdout)

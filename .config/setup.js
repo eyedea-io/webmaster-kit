@@ -154,6 +154,7 @@ function getConfig () {
       }
     ])
     .then(config => {
+      let syncano
       const dir = path.join(os.homedir(), FILENAME)
       const syncanoConfig = path.join(os.homedir(), 'syncano.yml')
 
@@ -205,7 +206,6 @@ function createRepo (data) {
     name: data.repo,
     private: data.private,
     allow_rebase_merge: false,
-    private: data.private,
     has_projects: false,
     has_wiki: false
   }

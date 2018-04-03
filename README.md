@@ -26,7 +26,7 @@ yarn build website
 
 ## Adding new workspaces
 
-Just create `workspaces/<workspace_name>/index.tsx` and run:
+Create `workspaces/<workspace_name>/index.tsx` and run:
 
 ```sh
 yarn dev <workspace_name>
@@ -41,4 +41,11 @@ module.exports = function(config) {
   // Modify config and return it
   return config
 }
+```
+## Configure service worker for production
+
+To setup service worker, during build set `PUBLIC_PATH` to website URL.
+
+```sh
+PUBLIC_PATH=https://website.example yarn build website
 ```

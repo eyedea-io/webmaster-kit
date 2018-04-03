@@ -46,7 +46,7 @@ function getHTMLConfig(workspace) {
   const template = resolve(__dirname, `../../workspaces/${workspace}/public/index.html`)
 
   if (fs.existsSync(favicon)) { html.favicon = favicon }
-  if (fs.existsSync(favicon)) { html.template = template}
+  if (fs.existsSync(template)) { html.template = template}
 
   return html
 }

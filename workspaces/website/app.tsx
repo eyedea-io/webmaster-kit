@@ -1,3 +1,4 @@
+import {SENTRY_URL} from '@shared/config'
 import {createStore} from '@shared/utils/create-store'
 import {loadable} from '@shared/utils/loadable'
 import {Modals} from '@website/components'
@@ -7,6 +8,8 @@ import * as React from 'react'
 import {hot} from 'react-hot-loader'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
+declare var Raven: any
+
 const Routes = getRoutes()
 
 // INFO: Set this value, to save the store to localStorage on every change
@@ -15,6 +18,11 @@ const LOCAL_STORAGE_KEY = ''
 @hot(module)
 @observer
 class App extends React.Component {
+  componentDidMount() {
+    if (SENTRY_URL) {
+      Raven.config('https://64091c2992624e8d8c5ab456a13dfc98@sentry.io/1229606').install()
+    }
+  }
   render() {
     return (
       <Provider store={createStore(Store, LOCAL_STORAGE_KEY)}>

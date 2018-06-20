@@ -40,6 +40,9 @@ module.exports = function(workspace) {
 
 function getHTMLConfig(workspace) {
   const html = {
+    templateParameters: {
+      sentry: process.env.SENTRY_URL
+    },
     template: resolve(__dirname, `./template.html`)
   }
   const favicon = resolve(__dirname, `../../workspaces/${workspace}/public/favicon.ico`)

@@ -41,6 +41,9 @@ module.exports = {
       'process.env.SYNCANO_PROJECT_INSTANCE': JSON.stringify(
         process.env.SYNCANO_PROJECT_INSTANCE
       ),
+      'process.env.SENTRY_URL': JSON.stringify(
+        process.env.SENTRY_URL
+      ),
       'process.env.PUBLIC_URL': JSON.stringify(
         process.env.PUBLIC_URL
       )

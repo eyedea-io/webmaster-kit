@@ -49,3 +49,11 @@ To setup service worker, during build set `PUBLIC_PATH` to website URL.
 ```sh
 PUBLIC_PATH=https://website.example yarn build website
 ```
+
+## Configure error tracking with Sentry
+
+To setup error tracking, set `SENTRY_URL` environment variable to your sentry project url.
+
+```sh
+SENTRY_URL=https://XXXXXXXXX@sentry.io/XXXXXXX
+```

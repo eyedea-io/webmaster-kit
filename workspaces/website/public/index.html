@@ -8,6 +8,9 @@
   <meta name="description" content="Webmaster kit app">
   <link rel="manifest" href="/manifest.json">
   <title>React App</title>
+  <% if(sentry) { %>
+    <script src="https://cdn.ravenjs.com/3.26.2/raven.min.js" crossorigin="anonymous"></script>
+  <% } %>
 </head>
 <body>
   <noscript>

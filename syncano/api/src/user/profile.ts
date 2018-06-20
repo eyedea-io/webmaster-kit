@@ -1,19 +1,14 @@
-import Server from '@syncano/core'
 import {MODELS} from '../constants'
+import * as Syncano from '../syncano'
 
-export default async (ctx) => {
-  const {users, response, logger} = new Server(ctx)
-  const {info, warn} = logger('api:user/profile')
+class UserProfile extends Syncano.Endpoint {
+  async run() {
+    if (this.user === undefined) {
+      throw new Syncano.respondWith.Unauthorized()
+    }
 
-  if (ctx.meta.user === undefined) {
-    warn('Unauthorized.')
-
-    return response.json({message: 'Unauthorized.'}, 401)
+    return this.syncano.users.fields(MODELS.user).first()
   }
-
-  const user = await users.fields(MODELS.user).find(ctx.meta.user.id)
-
-  info('User profile was found.', user)
-
-  response.json(user)
 }
+
+export default ctx => new UserProfile(ctx)

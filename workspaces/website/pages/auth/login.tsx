@@ -47,7 +47,7 @@ class Login extends React.Component<Props> {
             <InputList errors={this.form.errors.all}>
               <Input value={this.form.fields.username.value} {...this.form.editable('username')}/>
               <Input value={this.form.fields.password.value} {...this.form.editable('password')}/>
-              <Button primary loading={this.isPending} disabled={!this.allowSubmit}>Sign in</Button>
+              <Button variant="primary" loading={this.isPending} disabled={!this.allowSubmit}>Sign in</Button>
               <div>
                 <Router.Link to="/auth/register">Create account</Router.Link>
               </div>

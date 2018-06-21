@@ -29,8 +29,9 @@ export class Endpoint {
     try {
       if (typeof this.run === 'function') {
         const res = await this.run(this.syncano, this.ctx)
+        const isResponse = res._mimetype && res._status
 
-        if (res !== null && typeof res === 'object') {
+        if (res !== null && typeof res === 'object' && !isResponse) {
           this.syncano.response.json(res)
         }
       } else {

@@ -7,6 +7,7 @@ const common = require('./common.config.js')
 
 module.exports = merge(common, {
   mode: 'development',
+  devtool: 'cheap-module-source-map',
   devServer: {
     historyApiFallback: true,
     contentBase: join(__dirname, '..', '.build'),

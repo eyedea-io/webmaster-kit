@@ -1,7 +1,9 @@
 // tslint:disable-next-line:no-var-requires
 const Syncano = require('@syncano/core')
 import {SyncanoContext, User} from './typings/syncano-context'
-import {Logger} from './typings/syncano-core'
+import {Logger, SyncanoCore} from './typings/syncano-core'
+export {SyncanoCore as ICore}
+export {SyncanoContext as IContext}
 
 export class Endpoint {
   public ctx: SyncanoContext
@@ -17,7 +19,7 @@ export class Endpoint {
     this.execute()
   }
 
-  public run?(): any
+  public run?(core: SyncanoCore, ctx: SyncanoContext): any
 
   public endpointDidCatch(err: Error) {
     console.warn(err)
@@ -26,66 +28,18 @@ export class Endpoint {
   private async execute() {
     try {
       if (typeof this.run === 'function') {
-        const res = await this.run()
+        const res = await this.run(this.syncano, this.ctx)
 
-        if (res !== undefined) {
+        if (res !== null && typeof res === 'object') {
           this.syncano.response.json(res)
         }
       } else {
-        throw new Error(
-          'No `run` method found on the returned endpoint instance: you may have forgotten to define `run`.'
-        )
+        this.syncano.response.json({
+          message: 'No `run` method found on the returned endpoint instance: you may have forgotten to define `run`.',
+        })
       }
     } catch (err) {
-      if (err instanceof HttpResponse) {
-        this.syncano.response.json({
-          message: err.message || err.name,
-        }, err.status)
-      } else {
-        this.endpointDidCatch(err)
-      }
+      this.endpointDidCatch(err)
     }
   }
-}
-
-class HttpResponse extends Error {
-  status: number
-}
-
-export const respondWith = {
-  BadRequest: class extends HttpResponse {
-    constructor(message?: any) {
-      super(message)
-      this.status = 400
-      this.name = 'BadRequest'
-    }
-  },
-  Unauthorized: class extends HttpResponse {
-    constructor(message?: any) {
-      super(message)
-      this.status = 401
-      this.name = 'Unauthorized'
-    }
-  },
-  Forbidden: class extends HttpResponse {
-    constructor(message?: any) {
-      super(message)
-      this.status = 403
-      this.name = 'Forbidden'
-    }
-  },
-  NotFound: class extends HttpResponse {
-    constructor(message?: any) {
-      super(message)
-      this.status = 404
-      this.name = 'NotFound'
-    }
-  },
-  MethodNotAllowed: class extends HttpResponse {
-    constructor(message?: any) {
-      super(message)
-      this.status = 405
-      this.name = 'MethodNotAllowed'
-    }
-  },
 }

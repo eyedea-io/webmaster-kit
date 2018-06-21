@@ -2,12 +2,12 @@ import {MODELS} from '../constants'
 import * as Syncano from '../syncano'
 
 class UserProfile extends Syncano.Endpoint {
-  async run() {
+  async runa({users, response}: Syncano.ICore) {
     if (this.user === undefined) {
-      throw new Syncano.respondWith.Unauthorized()
+      response({message: 'Unauthorized'}, 401)
     }
 
-    return this.syncano.users.fields(MODELS.user).first()
+    return users.fields(MODELS.user).first()
   }
 }
 

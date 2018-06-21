@@ -4,6 +4,15 @@ import * as React from 'react'
 export const Spacing = () => (
   <div>
     <style jsx global>{`
+      /* Margin */
+      .u-m\\+\\+\\+ { margin: ${UI.spacing.xxl} !important; }
+      .u-m\\+\\+    { margin: ${UI.spacing.xl} !important; }
+      .u-m\\+       { margin: ${UI.spacing.lg} !important; }
+      .u-m          { margin: ${UI.spacing} !important; }
+      .u-m-         { margin: ${UI.spacing.sm} !important; }
+      .u-m--        { margin: ${UI.spacing.xs} !important; }
+      .u-m---       { margin: ${UI.spacing.xxs} !important; }
+
       /* Top margin */
       .u-mt\\+\\+\\+ { margin-top: ${UI.spacing.xxl} !important; }
       .u-mt\\+\\+    { margin-top: ${UI.spacing.xl} !important; }
@@ -61,6 +70,15 @@ export const Spacing = () => (
       /**
        * PADDINGS
        */
+
+      /* Padding */
+      .u-p\\+\\+\\+ { padding: ${UI.spacing.xxl} !important; }
+      .u-p\\+\\+    { padding: ${UI.spacing.xl} !important; }
+      .u-p\\+       { padding: ${UI.spacing.lg} !important; }
+      .u-p          { padding: ${UI.spacing} !important; }
+      .u-p-         { padding: ${UI.spacing.sm} !important; }
+      .u-p--        { padding: ${UI.spacing.xs} !important; }
+      .u-p---       { padding: ${UI.spacing.xxs} !important; }
 
       /* Top padding */
       .u-pt\\+\\+\\+ { padding-top: ${UI.spacing.xxl} !important; }

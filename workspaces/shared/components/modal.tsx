@@ -75,19 +75,19 @@ class Modal extends React.Component<Props> {
             z-index: -1;
             cursor: pointer;
             opacity: .9;
-            background: linear-gradient(to bottom,#000,#333);
+            background: linear-gradient(to bottom,hsl(0, 0%, 0%),hsl(0, 0%, 20%));
           }
 
           .Modal__inner {
             display: flex;
             max-height: 100%;
             min-height: 100%;
-            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.15);
           }
 
           .Modal__content {
-            background-color: #ffffff;
-            color: #868686;
+            background-color: hsl(0, 0%, 100%);
+            color: hsl(0, 0%, 53%);
             padding: 32px;
             position: relative;
             overflow-y: auto;
@@ -97,7 +97,7 @@ class Modal extends React.Component<Props> {
             flex-grow: 1;
             transition-duration: 0.25s;
             transition-property: transform;
-            box-shadow: 0 2px 30px rgba(0,0,0,.5);
+            box-shadow: 0 2px 30px hsla(0, 0%, 0%, 0.5);
           }
 
           .is-visible .Modal__content {
@@ -105,7 +105,7 @@ class Modal extends React.Component<Props> {
           }
 
           .Modal__close {
-            color: #ccc;
+            color: hsl(0, 0%, 80%);
             transition: color 0.25s;
             display: flex;
             align-items: center;
@@ -121,12 +121,12 @@ class Modal extends React.Component<Props> {
           }
 
           .Modal__close:hover {
-            color: #aaa;
+            color: hsl(0, 0%, 67%);
           }
 
           .Modal__title {
             font-size: 28px;
-            color: #171b21;
+            color: hsl(216, 18%, 11%);
             font-weight: 700;
             margin-bottom: 32px;
             line-height: 40px;

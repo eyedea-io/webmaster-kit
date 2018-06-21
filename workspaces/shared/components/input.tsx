@@ -40,8 +40,8 @@ export const Input = ({short, type = 'text', label, ...props}: Props) => {
         }
 
         input {
-          background-color: #f8f8f8;
-          color: #999;
+          background-color: hsl(0, 0%, 97%);
+          color: hsl(0, 0%, 60%);
           padding: 14px 16px;
           border-radius: ${UI.radius};
           border: 1px solid ${UI.colors.ui};
@@ -56,12 +56,12 @@ export const Input = ({short, type = 'text', label, ...props}: Props) => {
 
         input:focus {
           outline: 0;
-          box-shadow: 0 1px 4px rgba(0,0,0, .1);
+          box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.1);
           border-color: ${UI.colors.primary};
         }
 
         input::placeholder {
-          color: #999;
+          color: hsl(0, 0%, 60%);
         }
       `}</style>
     </div>

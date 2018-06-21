@@ -32,14 +32,14 @@ export const Message = ({
 
       .Message--negative {
         color: ${UI.colors.negative};
-        background: rgba(${UI.colors.negative.rgb}, .3);
-        box-shadow: 0 0 0 1px ${UI.colors.negative} inset, 0 0 0 0 transparent;
+        background: hsla(${UI.colors.negative.hsla(.3)});
+        box-shadow: 0 0 0 1px hsl(${UI.colors.negative.hsl}) inset, 0 0 0 0 transparent;
       }
 
       .Message--positive {
         color: ${UI.colors.positive};
-        background: rgba(${UI.colors.positive.rgb}, .3);
-        box-shadow: 0 0 0 1px ${UI.colors.positive} inset, 0 0 0 0 transparent;
+        background: hsla(${UI.colors.positive.hsla(.3)});
+        box-shadow: 0 0 0 1px hsl(${UI.colors.positive.hsl}) inset, 0 0 0 0 transparent;
       }
     `}</style>
   </div>

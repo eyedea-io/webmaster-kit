@@ -27,7 +27,7 @@ class Page extends React.Component<Props> {
               color: ${UI.colors.default};
               font-size: 1em;
               line-height: 1.25;
-              background: #fff;
+              background: hsl(0, 0%, 100%);
               font-family: "Roboto", sans-serif;
             }
 

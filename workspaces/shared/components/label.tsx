@@ -13,7 +13,7 @@ export const Label = ({children, htmlFor, ...props}: Props) => (
       .Label {
         font-size: 14px;
         font-weight: 600;
-        color: #333;
+        color: hsl(0, 0%, 20%);
         cursor: pointer;
       }
     `}</style>

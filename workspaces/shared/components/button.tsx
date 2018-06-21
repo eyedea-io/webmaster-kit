@@ -35,17 +35,17 @@ export const Button = ({
         width: ${short ? 'auto' : '100%'};
         font-weight: 600;
         letter-spacing: .02em;
-        color: #fff;
+        color: hsl(0, 0%, 100%);
       }
 
       .Button:focus,
       .Button:hover {
-        box-shadow: inset 0 0 100px 0 rgba(255, 255, 255, 0.2), 0 3px 6px 0 rgba(0, 0, 0, .2);
+        box-shadow: inset 0 0 100px 0 hsla(0, 0%, 100%, 0.2), 0 3px 6px 0 hsla(0, 0%, 0%, 0.2);
         transform: translateY(-1px)
       }
 
       .Button:active {
-        box-shadow: inset 0 0 100px 0 rgba(0, 0, 0, 0.07);
+        box-shadow: inset 0 0 100px 0 hsla(0, 0%, 0%, 0.07);
         transform: translateY(1px);
       }
 
@@ -81,8 +81,8 @@ export const Button = ({
       .Button[disabled]:focus,
       .Button[disabled]:hover,
       .Button[disabled]:active {
-        background-color: #f5f5f5;
-        color: #bbb;
+        background-color: hsl(0, 0%, 96%);
+        color: hsl(0, 0%, 73%);
         transform: none;
         box-shadow: none;
       }

@@ -46,6 +46,12 @@ module.exports = {
       ),
       'process.env.PUBLIC_URL': JSON.stringify(
         process.env.PUBLIC_URL
+      ),
+      'process.env.TRACKJS_KEY': JSON.stringify(
+        process.env.TRACKJS_KEY
+      ),
+      'process.env.LOCAL_STORAGE_KEY': JSON.stringify(
+        process.env.LOCAL_STORAGE_KEY
       )
     })
   ]

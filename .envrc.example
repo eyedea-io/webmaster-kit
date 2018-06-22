@@ -1,4 +1,12 @@
+#  Syncano instance attached to project
 export SYNCANO_PROJECT_INSTANCE=
-export SENTRY_URL=
+
+# Website url needed to setup service worker
 export PUBLIC_URL=
+
+# Key under which whole app data will be stored
 export LOCAL_STORAGE_KEY=
+
+# Bug tracking
+export SENTRY_URL=
+export TRACKJS_KEY=

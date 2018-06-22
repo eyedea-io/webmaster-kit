@@ -1,3 +1,4 @@
+import {LOCAL_STORAGE_KEY} from '@shared/config'
 import {syncano} from '@shared/utils/syncano'
 import {flow, types} from 'mobx-state-tree'
 
@@ -63,6 +64,7 @@ export const UserStore = types
     logout() {
       self.setToken()
       self.profile = null
+      localStorage.removeItem(LOCAL_STORAGE_KEY)
     },
     login: flow(function * (credentials: {
       username: string,

@@ -2,6 +2,7 @@ import {color, spacing} from '@shared/utils/css-helpers'
 
 export const APP_TITLE = 'Webmaster App'
 export const SENTRY_URL = process.env.SENTRY_URL
+export const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY
 export const SYNCANO_PROJECT_INSTANCE = process.env.SYNCANO_PROJECT_INSTANCE
 export const UI = {
   contentWidth: '960px',

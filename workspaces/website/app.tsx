@@ -12,9 +12,6 @@ declare var Raven: any
 
 const Routes = getRoutes()
 
-// INFO: Set this value, to save the store to localStorage on every change
-const LOCAL_STORAGE_KEY = ''
-
 @hot(module)
 @observer
 class App extends React.Component {
@@ -25,7 +22,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <Provider store={createStore(Store, LOCAL_STORAGE_KEY)}>
+      <Provider store={createStore(Store)}>
         <BrowserRouter>
           <React.Fragment>
             <Switch>

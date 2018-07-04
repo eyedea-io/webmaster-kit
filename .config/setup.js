@@ -11,10 +11,7 @@ const Octokit = require('@octokit/rest')
 
 const octokit = new Octokit()
 const CIRCLE_ENDPOINT = 'https://circleci.com/api/v1.1/'
-const CIRCLE_VARIABLES = {}
 let circle
-
-console.log('')
 
 // Remove webmaster-kit .git directory
 removeGit()
@@ -89,7 +86,8 @@ function setupCircle (data) {
   const variables = {
     STAGING_SYNCANO_PROJECT_INSTANCE: `${data.syncanoInstance}-staging`,
     PRODUCTION_SYNCANO_PROJECT_INSTANCE: data.syncanoInstance,
-    SYNCANO_AUTH_KEY: data.config.syncano
+    SYNCANO_AUTH_KEY: data.config.syncano,
+    FONTAWESOME_TOKEN: data.config.fontawesome
   }
 
   return Promise.all(
@@ -121,8 +119,7 @@ function prompt (accounts, config) {
 
 async function getConfig () {
   let syncano
-  const FILENAME = '.webmasterconfig'
-  const dir = path.join(os.homedir(), FILENAME)
+  const dir = path.join(os.homedir(), '.webmasterconfig')
   const syncanoConfig = path.join(os.homedir(), 'syncano.yml')
 
   if (fs.existsSync(dir)) {
@@ -181,6 +178,11 @@ function defaultPrompt (accounts) {
       type: 'confirm',
       name: 'private',
       message: 'Private repository'
+    },
+    {
+      type: 'input',
+      name: 'fontawesome',
+      message: 'FontAwesome Pro token'
     },
     {
       type: 'input',

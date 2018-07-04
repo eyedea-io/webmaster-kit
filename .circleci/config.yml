@@ -6,6 +6,7 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
+      - run: echo '@fortawesome:registry=https://npm.fontawesome.com/$FONTAWESOME_TOKEN' >> .npmrc
       - run: yarn
       - run: yarn build website
       - save_cache:

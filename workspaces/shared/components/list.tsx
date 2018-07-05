@@ -33,24 +33,30 @@ export const List = ({children, separated, horizontal, spacing = 'md'}: Props) =
       }
 
 
+      .List--xxs:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xxs}; }
       .List--xs:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xs}; }
       .List--sm:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.sm}; }
       .List--md:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing}; }
       .List--lg:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.lg}; }
       .List--xl:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xl}; }
+      .List--xxl:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xxl}; }
 
       .List--separated:not(.List--horizontal) > :global(* + *) { border-top: 1px solid ${UI.colors.ui} }
+      .List--xxs.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xxs}; }
       .List--xs.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xs}; }
       .List--sm.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.sm}; }
       .List--md.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing}; }
       .List--lg.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.lg}; }
       .List--xl.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xl}; }
+      .List--xxl.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xxl}; }
 
+      .List--xxs.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.xxs} }
       .List--xs.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.xs} }
       .List--sm.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.sm} }
       .List--md.List--horizontal > :global(* + *) { margin-left: ${UI.spacing} }
       .List--lg.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.lg} }
       .List--xl.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.xl} }
+      .List--xxl.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.xxl} }
     `}</style>
   </div>
 )

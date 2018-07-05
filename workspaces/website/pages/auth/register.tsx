@@ -5,6 +5,7 @@ import {IStore} from '@website/types'
 import {as} from '@website/utils/as'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
+import {hot} from 'react-hot-loader'
 import * as Router from 'react-router-dom'
 
 interface Props extends Router.RouteComponentProps<{}> {
@@ -14,6 +15,7 @@ interface Props extends Router.RouteComponentProps<{}> {
 @inject('store')
 @as.member(() => <Router.Redirect to="/" />)
 @observer
+@hot(module)
 class Register extends React.Component<Props> {
   private readonly title = `Register - ${APP_TITLE}`
   private readonly formName = 'Register'

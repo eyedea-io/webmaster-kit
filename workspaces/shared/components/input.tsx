@@ -2,14 +2,9 @@ import {UI} from '@shared/config'
 import * as React from 'react'
 import {Label} from './label'
 
-export interface Props {
+export interface Props extends React.InputHTMLAttributes<{}> {
   short?: boolean
-  type?: string
-  id?: string
   label?: string
-  name: string
-  value: string
-  onChange(event: any): void
 }
 
 export const Input = ({short, type = 'text', label, ...props}: Props) => {

@@ -15,7 +15,7 @@ const Routes = getRoutes()
 class App extends React.Component {
   componentDidMount() {
     if (SENTRY_URL) {
-      Raven.config('https://64091c2992624e8d8c5ab456a13dfc98@sentry.io/1229606').install()
+      Raven.config(SENTRY_URL).install()
     }
   }
   render() {

@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const {join, resolve} = require('path')
+const {resolve} = require('path')
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 
 module.exports = {

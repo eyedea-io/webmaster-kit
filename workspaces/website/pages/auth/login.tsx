@@ -25,7 +25,6 @@ class Login extends React.Component<Props> {
   private readonly formFields = {
     username: {
       autoFocus: true,
-      label: 'Type email',
       placeholder: 'Type email...',
     },
     password: {

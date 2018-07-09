@@ -1,4 +1,14 @@
-export function color (hex: string) {
+import {Color} from '@shared/utils/styled'
+
+export function toPx (values: any[]) {
+  return values.map(value => typeof value === 'number' ? `${value}px` : value)
+}
+
+export function toEm (values: any[]) {
+  return values.map(value => typeof value === 'number' ? `${value}em` : value)
+}
+
+export function color (hex: string): Color {
   const toRGB = (hexColor) => {
     const bigint = parseInt(hexColor, 16)
     // tslint:disable-next-line:no-bitwise
@@ -50,7 +60,7 @@ export function color (hex: string) {
     hsl,
     rgb,
     hex,
-    toString: () => hex,
+    // toString: () => hex,
   }
 }
 
@@ -59,6 +69,7 @@ export function spacing (value: number) {
     xxs: `${value / 8}px`,
     xs: `${value / 4}px`,
     sm: `${value / 2}px`,
+    md: `${value}px`,
     lg: `${value * 1.5}px`,
     xl: `${value * 2}px`,
     xxl: `${value * 4}px`,

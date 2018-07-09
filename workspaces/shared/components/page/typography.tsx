@@ -5,7 +5,7 @@ export const Typography = () => (
   <div>
     <style jsx global>{`
       a {
-        color: ${UI.colors.primary};
+        color: ${UI.colors.primary.hex};
         cursor: pointer;
         text-decoration: none;
       }

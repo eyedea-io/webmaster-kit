@@ -1,4 +1,4 @@
-import {UI} from '@shared/config'
+import styled from '@shared/utils/styled'
 import * as React from 'react'
 import {List, Props as ListProps} from './list'
 import {Message} from './message'
@@ -10,6 +10,12 @@ export interface Props extends ListProps {
   errors: object
   errorsPosition?: ErrorsPosition
 }
+
+const InputError = styled.div`
+  text-align: left;
+  font-size: 14px;
+  color: ${props => props.theme.colors.negative.hex};
+`
 
 export const InputList = ({children, errors, errorsPosition = 'each', ...props}: Props) => {
   const matchedErrors = getMatchedErrors(children, errors)
@@ -29,7 +35,7 @@ export const InputList = ({children, errors, errorsPosition = 'each', ...props}:
           {input}
 
           {errorsPosition === 'each' && errors[input.props.name] && (
-            <div className="InputList__error u-mt---">{errors[input.props.name]}</div>
+            <InputError>{errors[input.props.name]}</InputError>
           )}
         </React.Fragment>
       ))}
@@ -44,14 +50,6 @@ export const InputList = ({children, errors, errorsPosition = 'each', ...props}:
           <UnmatchedErrors errors={unmatchedErrors} />
         </React.Fragment>
       )}
-
-      <style jsx>{`
-        .InputList__error {
-          text-align: left;
-          font-size: 14px;
-          color: ${UI.colors.negative};
-        }
-      `}</style>
     </List>
   )
 }
@@ -85,7 +83,7 @@ function MatchedErrors({errors}: any) {
   }
 
   return (
-    <Message negative>
+    <Message variant="negative">
       <List spacing="xs">
         {Object.keys(errors).map(key => (
           <div key={key}><b>{key}:</b> {errors[key]}</div>
@@ -97,13 +95,13 @@ function MatchedErrors({errors}: any) {
 
 function UnmatchedErrors({errors}: any) {
   if (typeof errors === 'string') {
-    return <Message negative>{errors}</Message>
+    return <Message variant="negative">{errors}</Message>
   }
 
   return (
     <div>
       {Object.keys(errors).map(key => (
-        <Message negative key={key}>{errors[key] || key}</Message>
+        <Message variant="negative" key={key}>{errors[key] || key}</Message>
       ))}
     </div>
   )

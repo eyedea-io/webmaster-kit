@@ -1,10 +1,10 @@
+import {Normalize} from '@shared/components/page/normalize'
+import {Spacing} from '@shared/components/page/spacing'
+import {Typography} from '@shared/components/page/typography'
+import {Widths} from '@shared/components/page/widths'
 import {UI} from '@shared/config'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
-import {Normalize} from './normalize'
-import {Spacing} from './spacing'
-import {Typography} from './typography'
-import {Widths} from './widths'
 
 export interface Props {
   children?: React.ReactChild | Array<React.ReactChild>
@@ -24,7 +24,7 @@ class Page extends React.Component<Props> {
           <Widths />
           <style jsx global>{`
             html {
-              color: ${UI.colors.default};
+              color: ${UI.colors.default.hex};
               font-size: 1em;
               line-height: 1.25;
               background: hsl(0, 0%, 100%);

@@ -55,7 +55,7 @@ export const MessageBag = types
     get all(): Array<string> {
       const result = []
 
-      self.messages.forEach(([key, value]) => {
+      self.messages.forEach((value, key) => {
         if (value === '') {
           result.push(key)
         } else {

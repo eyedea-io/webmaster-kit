@@ -1,8 +1,10 @@
-import {Button, Head, Input, InputList, Page, Wrapper} from '@shared/components'
-import {APP_TITLE, UI} from '@shared/config'
+import {Button, Head, Input, InputList, Page} from '@shared/components'
+import {APP_TITLE} from '@shared/config'
 import {isEmail} from '@shared/utils/is-email'
+import {Form, Heading} from '@website/pages/auth/styled'
 import {IStore} from '@website/types'
 import {as} from '@website/utils/as'
+import {observable} from 'mobx'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
@@ -14,20 +16,20 @@ interface Props extends Router.RouteComponentProps<{}> {
 
 @inject('store')
 @as.member(() => <Router.Redirect to="/" />)
-@observer
 @hot(module)
+@observer
 class Register extends React.Component<Props> {
+  @observable isLoading = false
   private readonly title = `Register - ${APP_TITLE}`
   private readonly formName = 'Register'
   private readonly formFields = {
     username: {
       autoFocus: true,
-      placeholder: 'your@email.com',
-      label: 'Your email',
+      placeholder: 'Type email...',
     },
     password: {
       type: 'password',
-      label: 'Your password',
+      placeholder: 'Type password',
     },
   }
 
@@ -42,39 +44,24 @@ class Register extends React.Component<Props> {
           <title>{this.title}</title>
         </Head>
 
-        <Wrapper>
-          <form className="Form" onSubmit={this.handleSubmit}>
-            <h1 className="u-mb">Create account</h1>
+        <Form onSubmit={this.handleSubmit}>
+          <Heading>Create account</Heading>
 
-            <InputList errors={this.form.errors.all}>
-              <Input value={this.form.fields.username.value} {...this.form.editable('username')}/>
-              <Input value={this.form.fields.password.value} {...this.form.editable('password')}/>
-              <Button variant="primary" loading={this.isPending} disabled={!this.allowSubmit}>Sign up</Button>
-              <div>
-                <Router.Link to="/auth/login">Sign in</Router.Link>
-              </div>
-            </InputList>
-          </form>
-        </Wrapper>
-
-        <style jsx>{`
-          .Form {
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 480px;
-            padding: ${UI.spacing} 0;
-          }
-        `}</style>
+          <InputList errors={this.form.errors.all}>
+            <Input value={this.form.fields.username.value} {...this.form.editable('username')}/>
+            <Input value={this.form.fields.password.value} {...this.form.editable('password')}/>
+            <Button variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>Sign up</Button>
+            <div>
+              <Router.Link to="/auth/login">Sign in</Router.Link>
+            </div>
+          </InputList>
+        </Form>
       </Page>
     )
   }
 
   private get form() {
     return this.props.store.formStore.get(this.formName)
-  }
-
-  private get isPending(): boolean {
-    return this.props.store.userStore.pending.has('register')
   }
 
   private get allowSubmit(): boolean {
@@ -86,10 +73,14 @@ class Register extends React.Component<Props> {
   private handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    this.isLoading = true
+
     try {
       await this.props.store.userStore.register(this.form.data)
     } catch (err) {
       this.form.errors.replace(err.response.data)
+    } finally {
+      this.isLoading = false
     }
   }
 }

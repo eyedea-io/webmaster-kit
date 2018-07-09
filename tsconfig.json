@@ -22,6 +22,11 @@
     "target": "esnext",
     "typeRoots": [
       "node_modules/@types"
+    ],
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
     ]
   },
   "files": [

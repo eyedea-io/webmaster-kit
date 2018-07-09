@@ -1,5 +1,6 @@
 import {Head, Link, Page} from '@shared/components'
 import {APP_TITLE} from '@shared/config'
+import {View} from '@website/pages/missing/styled'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 
@@ -14,21 +15,10 @@ class Missing extends React.Component {
           <title>{this.title}</title>
         </Head>
 
-        <div className="Missing">
+        <View>
           <h1 className="u-mb-">Page was not found</h1>
           <Link to="/">Back to home</Link>
-        </div>
-
-        <style jsx>{`
-          .Missing {
-            text-align: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-          }
-        `}</style>
+        </View>
       </Page>
     )
   }

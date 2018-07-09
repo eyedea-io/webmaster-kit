@@ -3,7 +3,7 @@ import registerServiceWorker from '@shared/utils/register-service-worker'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-const App = loadable(() => import('./app').then(res => res.App || res))
+const App = loadable(() => import('@website/app').then(res => res.App || res))
 
 ReactDOM.render(<App />, document.querySelector('#root'))
 

@@ -41,7 +41,7 @@ export const List = ({children, separated, horizontal, spacing = 'md'}: Props) =
       .List--xl:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xl}; }
       .List--xxl:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xxl}; }
 
-      .List--separated:not(.List--horizontal) > :global(* + *) { border-top: 1px solid ${UI.colors.ui} }
+      .List--separated:not(.List--horizontal) > :global(* + *) { border-top: 1px solid ${UI.colors.ui.hex} }
       .List--xxs.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xxs}; }
       .List--xs.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xs}; }
       .List--sm.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.sm}; }

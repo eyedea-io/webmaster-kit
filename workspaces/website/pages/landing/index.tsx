@@ -1,5 +1,6 @@
-import {Head, List, Page, Wrapper} from '@shared/components'
-import {APP_TITLE, UI} from '@shared/config'
+import {Head, List, Page} from '@shared/components'
+import {APP_TITLE} from '@shared/config'
+import {View} from '@website/pages/landing/styled'
 import {IStore} from '@website/types'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
@@ -23,24 +24,13 @@ class Index extends React.Component<Props> {
           <title>{this.title}</title>
         </Head>
 
-        <Wrapper>
-          <div className="View">
-            <h1 className="u-mb">Webmaster Kit</h1>
+        <View>
+          <h1 className="u-mb">Webmaster Kit</h1>
 
-            <List horizontal spacing="sm">
-              {this.isLoggedIn ? this.renderUserNav() : this.renderGuestNav()}
-            </List>
-          </div>
-        </Wrapper>
-
-        <style jsx>{`
-          .View {
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 480px;
-            padding: ${UI.spacing} 0;
-          }
-        `}</style>
+          <List horizontal spacing="sm">
+            {this.isLoggedIn ? this.renderUserNav() : this.renderGuestNav()}
+          </List>
+        </View>
       </Page>
     )
   }
@@ -49,9 +39,9 @@ class Index extends React.Component<Props> {
     <React.Fragment>
       <Router.Link to="/auth/logout">Sign out</Router.Link>
 
-      <a onClick={() => this.props.store.modal.open('profile')}>
+      {/* <a onClick={() => this.props.store.modal.open('profile')}>
         My profile
-      </a>
+      </a> */}
     </React.Fragment>
   )
 

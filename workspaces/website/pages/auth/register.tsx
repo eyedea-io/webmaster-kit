@@ -33,7 +33,8 @@ class Register extends React.Component<Props> {
     },
   }
 
-  componentWillMount() {
+  constructor(props: Props) {
+    super(props)
     this.props.store.formStore.add(this.formName, this.formFields).clear()
   }
 

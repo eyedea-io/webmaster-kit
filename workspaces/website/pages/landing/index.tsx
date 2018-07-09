@@ -37,18 +37,18 @@ class Index extends React.Component<Props> {
 
   renderUserNav = () => (
     <React.Fragment>
-      <Router.Link to="/auth/logout">Sign out</Router.Link>
+      <Router.Link to="/auth/logout">{this.props.store.t`Sign out`}</Router.Link>
 
-      {/* <a onClick={() => this.props.store.modal.open('profile')}>
-        My profile
-      </a> */}
+      <a onClick={() => this.props.store.modal.open('profile')}>
+        {this.props.store.t`My profile`}
+      </a>
     </React.Fragment>
   )
 
   renderGuestNav = () => (
     <React.Fragment>
-      <Router.Link to="/auth/login">Sign in</Router.Link>
-      <Router.Link to="/auth/register">Create account</Router.Link>
+      <Router.Link to="/auth/login">{this.props.store.t`Sign in`}</Router.Link>
+      <Router.Link to="/auth/register">{this.props.store.t`Create account`}</Router.Link>
     </React.Fragment>
   )
 

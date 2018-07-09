@@ -38,6 +38,8 @@ class Register extends React.Component<Props> {
   }
 
   render() {
+    const {t} = this.props.store
+
     return (
       <Page>
         <Head>
@@ -50,9 +52,11 @@ class Register extends React.Component<Props> {
           <InputList errors={this.form.errors.all}>
             <Input value={this.form.fields.username.value} {...this.form.editable('username')}/>
             <Input value={this.form.fields.password.value} {...this.form.editable('password')}/>
-            <Button variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>Sign up</Button>
+            <Button variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>
+              {t`Sign up`}
+            </Button>
             <div>
-              <Router.Link to="/auth/login">Sign in</Router.Link>
+              <Router.Link to="/auth/login">{t`Sign in`}</Router.Link>
             </div>
           </InputList>
         </Form>

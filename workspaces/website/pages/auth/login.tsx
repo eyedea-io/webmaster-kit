@@ -39,6 +39,8 @@ class Login extends React.Component<Props> {
   }
 
   render() {
+    const {t} = this.props.store
+
     return (
       <Page>
         <Head>
@@ -46,14 +48,16 @@ class Login extends React.Component<Props> {
         </Head>
 
         <Form onSubmit={this.handleSubmit}>
-          <Heading>Welcome back!</Heading>
+          <Heading>{t`Welcome back!`}</Heading>
 
           <InputList errors={this.form.errors.all}>
             <Input value={this.form.fields.username.value} {...this.form.editable('username')}/>
             <Input value={this.form.fields.password.value} {...this.form.editable('password')}/>
-            <Button variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>Sign in</Button>
+            <Button variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>
+              {t`Sign in`}
+            </Button>
             <div>
-              <Router.Link to="/auth/register">Create account</Router.Link>
+              <Router.Link to="/auth/register">{t`Create account`}</Router.Link>
             </div>
           </InputList>
         </Form>

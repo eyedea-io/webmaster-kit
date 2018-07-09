@@ -2,12 +2,13 @@ import {SENTRY_URL, UI} from '@shared/config'
 import {createStore} from '@shared/utils/create-store'
 import {loadable} from '@shared/utils/loadable'
 import {ThemeProvider} from '@shared/utils/styled'
-// import {Modals} from '@website/components'
+import {Modals} from '@website/components'
 import {Store} from '@website/types'
 import {observer, Provider} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import RedBox from 'redbox-react'
 
 const Routes = getRoutes()
 
@@ -30,7 +31,7 @@ class App extends React.Component<{}, {
   }
   render() {
     if (this.state.error) {
-      return <div>Something went wrong.</div>
+      return <RedBox error={this.state.error} />
     }
 
     return (
@@ -46,7 +47,7 @@ class App extends React.Component<{}, {
                 <Route component={Routes.Missing} />
               </Switch>
 
-              {/* <Modals /> */}
+              <Modals />
             </React.Fragment>
           </ThemeProvider>
         </BrowserRouter>

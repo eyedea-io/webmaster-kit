@@ -12,7 +12,17 @@ export interface Color {
 
 export interface Theme {
   breakpoints: number[]
-  fontSizes: number[]
+  fontSizes: {
+    alpha: string
+    beta: string
+    gamma: string
+    delta: string
+    epsilon: string
+    zeta: string
+    milli: string
+    micro: string
+    nano: string
+  }
   fontWeights: number[]
   lineHeights: {
     solid: number
@@ -24,10 +34,6 @@ export interface Theme {
     tracked: string
     tight: string
     mega: string
-  }
-  fonts: {
-    serif: string
-    sansSerif: string
   }
   spacing: {
     xxs: string

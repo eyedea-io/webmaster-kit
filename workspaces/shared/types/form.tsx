@@ -1,5 +1,5 @@
 import {MessageBag} from '@shared/types/message-bag'
-import {types} from 'mobx-state-tree'
+import {getRoot, types} from 'mobx-state-tree'
 
 export const Form = types
   .model('Form', {
@@ -44,6 +44,7 @@ export const Form = types
     editable(name: string) {
       return {
         ...self.fields[name],
+        placeholder: getRoot(self).t`${self.fields[name].placeholder}`,
         name,
         id: name,
         onChange: self.handleChange,

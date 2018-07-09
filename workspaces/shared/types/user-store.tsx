@@ -1,4 +1,3 @@
-import {LOCAL_STORAGE_KEY} from '@shared/config'
 import {User} from '@shared/types/user'
 import {syncano} from '@shared/utils/syncano'
 import {applySnapshot, flow, getRoot, types} from 'mobx-state-tree'
@@ -17,7 +16,6 @@ export const UserStore = types
     setToken(token: string = '') {
       self.token = token
       localStorage.setItem('token', token)
-      applySnapshot(getRoot(self), {})
     },
   }))
   .actions(self => ({
@@ -44,7 +42,7 @@ export const UserStore = types
     logout() {
       self.setToken()
       self.profile = null
-      localStorage.removeItem(LOCAL_STORAGE_KEY)
+      applySnapshot(getRoot(self), {})
     },
     login: flow(function * (credentials: {username: string, password: string}) {
       const {token} = yield syncano('user-auth/login', credentials)

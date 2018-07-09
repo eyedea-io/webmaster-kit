@@ -1,3 +1,4 @@
+import {Label} from '@shared/components/label'
 import styled from '@shared/utils/styled'
 import {observer} from 'mobx-react'
 import * as React from 'react'
@@ -7,6 +8,10 @@ export interface Props extends React.InputHTMLAttributes<{}> {
   label?: string
 }
 
+const StyledWrapper = styled.div.attrs({})<Props>`
+  display: inline-block;
+  width: ${({short}) => short ? 'auto' : '100%'};
+`
 const StyledInput = styled.input.attrs({})<Props>`
   background-color: hsl(0, 0%, 97%);
   color: hsl(0, 0%, 60%);
@@ -30,66 +35,19 @@ const StyledInput = styled.input.attrs({})<Props>`
 @observer
 export class Input extends React.Component<Props> {
   render() {
+    const {label} = this.props
+    const id = this.props.id || this.props.name
+
     return (
-      <StyledInput {...this.props}>
-        {this.props.children}
-      </StyledInput>
+      <StyledWrapper short={this.props.short}>
+        {label && (
+          <div className="u-mb---">
+            <Label htmlFor={id}>{label}</Label>
+          </div>
+        )}
+
+        <StyledInput {...this.props} type={this.props.type || 'text'} id={id} />
+      </StyledWrapper>
     )
   }
 }
-
-// export const Input = ({short, type = 'text', label, ...props}: Props) => {
-//   const wrapperClassName = `
-//     Input
-//     ${short ? 'Input--short' : ''}
-//   `
-
-//   const id = props.id || props.name
-
-//   return (
-//     <div className={wrapperClassName}>
-//       {label && (
-//         <div className="u-mb---">
-//           <Label htmlFor={id}>{label}</Label>
-//         </div>
-//       )}
-//       <input type={type} id={id} {...props} />
-
-//       <style jsx>{`
-//         .Input {
-//           display: inline-block;
-//           width: 100%;
-//         }
-
-//         .Input--short {
-//           width: auto;
-//         }
-
-//         input {
-//           background-color: hsl(0, 0%, 97%);
-//           color: hsl(0, 0%, 60%);
-//           padding: 14px 16px;
-//           border-radius: ${UI.radius};
-//           border: 1px solid ${UI.colors.ui};
-//           font-family: inherit;
-//           transition: border-color 0.25s, box-shadow 0.25s;
-//           width: 100%;
-//         }
-
-//         input.is-invalid {
-//           border-color: ${UI.colors.negative};
-//         }
-
-//         input:focus {
-//           outline: 0;
-//           box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.1);
-//           border-color: ${UI.colors.primary};
-//         }
-
-//         input::placeholder {
-//           color: hsl(0, 0%, 60%);
-//         }
-//       `}</style>
-//     </div>
-//   )
-// }

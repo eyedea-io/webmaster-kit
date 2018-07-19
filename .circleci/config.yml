@@ -48,7 +48,6 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - *setup-env
       - attach_workspace:
           at: .
       - run:
@@ -77,7 +76,7 @@ jobs:
     docker:
       - image: circleci/node:9.10.0
     working_directory: ~/repo
-    steps:
+    steps: &upload-website-steps
       - checkout
       - *setup-env
       - attach_workspace:
@@ -88,11 +87,17 @@ jobs:
             npx syncano-cli hosting sync website
             npx syncano-cli hosting config website -b true # --cname YOUR_CNAME
 
+  upload-staging-website:
+    docker:
+      - image: circleci/node:9.10.0
+    working_directory: ~/repo
+    steps: *upload-website-steps
+
   deploy-sockets:
     working_directory: ~/repo
     docker:
       - image: circleci/node:9.10.0
-    steps:
+    steps: &deploy-sockets-steps
       - checkout
       - *setup-env
       - attach_workspace:
@@ -101,6 +106,12 @@ jobs:
       - run: npx syncano-cli deploy
       - run: npx syncano-cli hosting config website -b true # --cname YOUR_CNAME
       - run: npx syncano-cli hosting sync website
+
+  deploy-staging-sockets:
+    docker:
+      - image: circleci/node:9.10.0
+    working_directory: ~/repo
+    steps: *deploy-sockets-steps
 
 workflows:
   version: 2
@@ -116,20 +127,29 @@ workflows:
       - test-unit:
           requires:
             - build-website
-      - upload-website:
-          requires:
-            - install
       - deploy-staging-sockets:
           requires:
             - install
           filters:
             branches:
-              only: master
+              only: refactor
+      - upload-staging-website:
+          requires:
+            - install
+          filters:
+            branches:
+              only: refactor
       - deploy-sockets:
           requires:
             - test-lint
             - test-unit
           filters:
             branches:
-              only: refactor
+              only: production
+      - upload-website:
+          requires:
+            - deploy-sockets
+          filters:
+            branches:
+              only: production
 

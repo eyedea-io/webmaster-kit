@@ -132,24 +132,24 @@ workflows:
             - install
           filters:
             branches:
-              only: refactor
+              only: master
       - upload-staging-website:
           requires:
             - build-website
           filters:
             branches:
-              only: refactor
+              only: master
       - deploy-sockets:
           requires:
             - test-lint
             - test-unit
           filters:
             branches:
-              only: production
+              only: refactor
       - upload-website:
           requires:
             - deploy-sockets
           filters:
             branches:
-              only: production
+              only: refactor
 

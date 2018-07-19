@@ -119,7 +119,7 @@ workflows:
       - upload-website:
           requires:
             - install
-      - deploy-sockets:
+      - deploy-staging-sockets:
           requires:
             - install
           filters:

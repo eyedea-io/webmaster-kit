@@ -123,7 +123,7 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              only: refactor
       - deploy-sockets:
           requires:
             - test-lint

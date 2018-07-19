@@ -1,41 +1,103 @@
 version: 2
+
+setup-env: &setup-env
+  run:
+    name: Setting up env variables
+    command: |
+      if [ "${CIRCLE_BRANCH}" == "master" ]; then
+        env=STAGING
+      else
+        env=PRODUCTION
+      fi
+
+      eval echo "export SYNCANO_PROJECT_INSTANCE=\$${env}_SYNCANO_PROJECT_INSTANCE" >> $BASH_ENV
+      eval echo "export SYNCANO_AUTH_KEY=\$${env}_SYNCANO_AUTH_KEY" >> $BASH_ENV
+      eval echo "export PUBLIC_URL=\$${env}_PUBLIC_URL" >> $BASH_ENV
+
 jobs:
-  build:
-    working_directory: ~/repo
+
+  install:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:9.10.0
+    working_directory: ~/repo
     steps:
       - checkout
-      - run: echo '@fortawesome:registry=https://npm.fontawesome.com/$FONTAWESOME_TOKEN' >> .npmrc
-      - run: yarn
-      - run: yarn build website
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run:
+          name: Create .npmrc with Font Awesome Pro token
+          command: echo '@fortawesome:registry=https://npm.fontawesome.com/$FONTAWESOME_TOKEN' >> .npmrc
+      - run:
+          name: Installing Dependencies
+          command: yarn
       - save_cache:
-          key: webmasterkit-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/repo
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
 
-  deploy_staging:
-    name: Deploy staging
+  build-website:
+    docker:
+      - image: circleci/node:9.10.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - *setup-env
+      - attach_workspace:
+          at: .
+      - run:
+          name: Build website workspace
+          command: yarn build website
+      - store_artifacts:
+          path: .build/website
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .build/website
+
+  test-lint:
+    docker:
+      - image: circleci/node:9.10.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Linting Code
+          command: yarn test-lint
+
+  upload-website:
+    docker:
+      - image: circleci/node:9.10.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - *setup-env
+      - attach_workspace:
+          at: .
+      - run:
+          name: Uploading website and setting CNAME
+          command: |
+            npx syncano-cli hosting sync website
+            npx syncano-cli hosting config website -b true # --cname YOUR_CNAME
+
+  deploy-sockets:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:9.10.0
     steps:
-      - restore_cache:
-          key: webmasterkit-{{ .Environment.CIRCLE_SHA1 }}
+      - checkout
+      - *setup-env
+      - attach_workspace:
+          at: .
       - run: echo 'export SYNCANO_PROJECT_INSTANCE=$STAGING_SYNCANO_PROJECT_INSTANCE' >> $BASH_ENV
-      - run: npx syncano-cli deploy
-      - run: npx syncano-cli hosting config website -b true # --cname YOUR_CNAME
-      - run: npx syncano-cli hosting sync website
-
-  deploy_production:
-    name: Deploy production
-    working_directory: ~/repo
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - restore_cache:
-          key: webmasterkit-{{ .Environment.CIRCLE_SHA1 }}
-      - run: echo 'export SYNCANO_PROJECT_INSTANCE=$PRODUCTION_SYNCANO_PROJECT_INSTANCE' >> $BASH_ENV
       - run: npx syncano-cli deploy
       - run: npx syncano-cli hosting config website -b true # --cname YOUR_CNAME
       - run: npx syncano-cli hosting sync website
@@ -44,16 +106,19 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - build
-      - deploy_staging:
+      - install
+      - build-website:
           requires:
-            - build
-          filters:
-            branches:
-              only: master
-      - deploy_production:
+            - install
+      - test-lint:
           requires:
-            - build
-          filters:
-            branches:
-              only: production
+            - build-website
+      - test-unit:
+          requires:
+            - build-website
+      - upload-website:
+          requires:
+            - install
+      - deploy-sockets:
+          requires:
+            - install

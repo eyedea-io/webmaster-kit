@@ -124,12 +124,12 @@ workflows:
             - install
           filters:
             branches:
-              only: refactor
+              only: master
       - deploy-sockets:
           requires:
             - test-lint
             - test-unit
           filters:
             branches:
-              only: production
+              only: refactor
 

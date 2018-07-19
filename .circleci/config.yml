@@ -135,7 +135,7 @@ workflows:
               only: refactor
       - upload-staging-website:
           requires:
-            - install
+            - build-website
           filters:
             branches:
               only: refactor

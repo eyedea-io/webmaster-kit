@@ -121,3 +121,14 @@ workflows:
       - deploy-sockets:
           requires:
             - install
+          filters:
+            branches:
+              only: master
+      - deploy-sockets:
+          requires:
+            - test-lint
+            - test-unit
+          filters:
+            branches:
+              only: production
+

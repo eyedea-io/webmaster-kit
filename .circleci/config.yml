@@ -15,6 +15,7 @@ setup-env: &setup-env
       eval echo "export PUBLIC_URL=\$${env}_PUBLIC_URL" >> $BASH_ENV
 
 jobs:
+
   install:
     docker:
       - image: circleci/node:9.10.0

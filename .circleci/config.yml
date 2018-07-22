@@ -132,10 +132,10 @@ workflows:
             - install
       - test-lint:
           requires:
-            - build-website
+            - install
       - test-unit:
           requires:
-            - build-website
+            - install
       - deploy-staging-sockets:
           requires:
             - install

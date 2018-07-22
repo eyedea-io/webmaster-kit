@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config .config/webpack --env",
     "build": "webpack -p --config .config/webpack --env",
-    "test-unit": "jest workspaces --config .config/jest/config.js",
+    "test-unit": "NODE_ENV=test jest workspaces --config .config/jest/config.js",
     "test-lint": "stylelint './workspaces/**/*.tsx' --config ./.config/stylelint.json",
     "format": "npx tslint --fix -c tslint.json ./workspaces/**/*.tsx"
   },

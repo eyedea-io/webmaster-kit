@@ -12,7 +12,7 @@ setup-env: &setup-env
 
       eval echo "export SYNCANO_PROJECT_INSTANCE=\$${env}_SYNCANO_PROJECT_INSTANCE" >> $BASH_ENV
       eval echo "export PUBLIC_URL=\$${env}_PUBLIC_URL" >> $BASH_ENV
-      eval echo "export SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY" >> $BASH_ENV
+      echo 'export SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY' >> $BASH_ENV
 
 jobs:
 

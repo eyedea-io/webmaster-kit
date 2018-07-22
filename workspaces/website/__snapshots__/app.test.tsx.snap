@@ -1,0 +1,182 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> renders 1`] = `
+<Provider
+  store={
+    Object {
+      "formStore": Object {
+        "forms": Array [],
+      },
+      "langStore": Object {
+        "language": "EN",
+      },
+      "modal": Object {
+        "active": null,
+      },
+      "userStore": Object {
+        "profile": null,
+        "token": "",
+      },
+    }
+  }
+>
+  <BrowserRouter>
+    <ThemeProvider
+      theme={
+        Object {
+          "breakpoints": Array [
+            "32em",
+            "48em",
+            "64em",
+          ],
+          "colors": Object {
+            "default": Object {
+              "hex": "#56687C",
+              "hsl": "211, 18%, 41%",
+              "hsla": [Function],
+              "rgb": "86, 104, 124",
+              "rgba": [Function],
+            },
+            "icon": Object {
+              "hex": "#ccc",
+              "hsl": "236, 100%, 40%",
+              "hsla": [Function],
+              "rgb": "0, 12, 204",
+              "rgba": [Function],
+            },
+            "meta": Object {
+              "hex": "#999999",
+              "hsl": "0, 0%, 60%",
+              "hsla": [Function],
+              "rgb": "153, 153, 153",
+              "rgba": [Function],
+            },
+            "negative": Object {
+              "hex": "#db2828",
+              "hsl": "0, 71%, 50%",
+              "hsla": [Function],
+              "rgb": "219, 40, 40",
+              "rgba": [Function],
+            },
+            "positive": Object {
+              "hex": "#26c344",
+              "hsl": "131, 67%, 45%",
+              "hsla": [Function],
+              "rgb": "38, 195, 68",
+              "rgba": [Function],
+            },
+            "primary": Object {
+              "hex": "#494de4",
+              "hsl": "238, 74%, 59%",
+              "hsla": [Function],
+              "rgb": "73, 77, 228",
+              "rgba": [Function],
+            },
+            "ui": Object {
+              "hex": "#d3d7e0",
+              "hsl": "221, 17%, 85%",
+              "hsla": [Function],
+              "rgb": "211, 215, 224",
+              "rgba": [Function],
+            },
+          },
+          "fontSizes": Object {
+            "alpha": "32px",
+            "beta": "28px",
+            "delta": "20px",
+            "epsilon": "18px",
+            "gamma": "24px",
+            "micro": "13px",
+            "milli": "14px",
+            "nano": "12px",
+            "zeta": "16px",
+          },
+          "fontWeights": Array [
+            "100px",
+            "200px",
+            "300px",
+            "400px",
+            "500px",
+            "600px",
+            "700px",
+            "800px",
+            "900px",
+          ],
+          "heights": Array [
+            "16px",
+            "32px",
+            "64px",
+            "128px",
+            "256px",
+          ],
+          "letterSpacing": Object {
+            "mega": "0.25em",
+            "normal": "normal",
+            "tight": "-0.05em",
+            "tracked": "0.1em",
+          },
+          "lineHeights": Object {
+            "copy": 1.5,
+            "solid": 1,
+            "title": 1.25,
+          },
+          "radius": Array [
+            "0px",
+            "2px",
+            "4px",
+            "16px",
+            "9999px",
+            "100%",
+          ],
+          "spacing": Object {
+            "lg": "48px",
+            "md": "32px",
+            "sm": "16px",
+            "toString": [Function],
+            "xl": "64px",
+            "xs": "8px",
+            "xxl": "128px",
+            "xxs": "4px",
+          },
+          "widths": Array [
+            "16px",
+            "32px",
+            "64px",
+            "128px",
+            "256px",
+          ],
+        }
+      }
+    >
+      <React.Fragment>
+        <Switch>
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/auth/login"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/auth/register"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/auth/logout"
+          />
+          <Route
+            component={[Function]}
+          />
+        </Switch>
+        <Modals />
+      </React.Fragment>
+    </ThemeProvider>
+  </BrowserRouter>
+</Provider>
+`;

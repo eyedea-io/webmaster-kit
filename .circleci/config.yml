@@ -4,7 +4,7 @@ setup-env: &setup-env
   run:
     name: Setting up env variables
     command: |
-      if [ "${CIRCLE_BRANCH}" == "master" ]; then
+      if [ "${CIRCLE_BRANCH}" == "refactor" ]; then
         env=STAGING
       else
         env=PRODUCTION
@@ -144,13 +144,13 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              only: refactor
       - upload-staging-website:
           requires:
             - build-website
           filters:
             branches:
-              only: master
+              only: refactor
       - deploy-sockets:
           requires:
             - test-lint

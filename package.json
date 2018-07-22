@@ -37,6 +37,7 @@
     "@octokit/rest": "14.0.9",
     "@types/jest": "23.1.5",
     "@types/react-hot-loader": "4.1.0",
+    "@types/react-test-renderer": "^16.0.1",
     "awesome-typescript-loader": "5.2.0",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.5",

@@ -27,6 +27,12 @@ module.exports = {
                 "workspaces/**/*.{ts,tsx}"
               ]
             }
+          },
+          {
+            loader: 'stylelint-custom-processor-loader',
+            options: {
+              configPath: './.config/stylelint.json'
+            }
           }
         ]
       },

@@ -9,12 +9,12 @@ export interface Props {
 
 const StyledAvatar = styled.div`
   display: inline-flex;
-  border: ${(props: Props) =>  props.src ? 'none' : `1px solid ${`hsl(${hashStr(props.id) % 360}, 60%, 92%)`}`}
+  border: ${(props: Props) =>  props.src ? 'none' : `1px solid ${`hsl(${hashStr(props.id) % 360}, 60%, 92%)`}`};
 `
 
 const StyledAvatarInner = styled.div`
   border-radius: 50%;
-  color: #5b55f7;;
+  color: #5b55f7;
   background: ${props => `hsl(${hashStr(props.id) % 360}, 60%, 98%)`};
   display: inline-flex;
   align-items: center;
@@ -24,13 +24,13 @@ const StyledAvatarInner = styled.div`
   overflow: hidden;
 
   & > svg {
-    fill: ${props => `hsl(${hashStr(props.id) % 360}, 60%, 82%)`}
-    width: ${props => props.size / 2.666}px
-    height: ${props => props.size / 2.666}px
+    fill: ${props => `hsl(${hashStr(props.id) % 360}, 60%, 82%)`};
+    width: ${props => props.size / 2.666}px;
+    height: ${props => props.size / 2.666}px;
   }
   & > img {
-    max-width: 100%
-    height: auto
+    max-width: 100%;
+    height: auto;
   }
 `
 

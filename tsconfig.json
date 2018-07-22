@@ -14,10 +14,10 @@
     "moduleResolution": "node",
     "jsx": "preserve",
     "target": "esnext",
-    "module": "esnext",
     "typeRoots": [
       "node_modules/@types"
     ],
+    "module": "esnext",
     "lib": [
       "es6",
       "dom",

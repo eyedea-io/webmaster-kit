@@ -2,8 +2,4 @@ hosting:
   website:
     src: ../.build/website
     config:
-      browser_router: false
-dependencies:
-  sockets:
-    user-auth:
-      version: 0.0.5
+      browser_router: true

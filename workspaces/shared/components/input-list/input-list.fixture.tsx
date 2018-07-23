@@ -1,6 +1,6 @@
 import * as React from 'react'
-import {Input} from './input'
-import {InputList} from './input-list'
+import {Input} from '../input'
+import {InputList} from './'
 
 const errors: any = ['General error message']
 

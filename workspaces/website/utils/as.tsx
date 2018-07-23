@@ -1,8 +1,8 @@
 import {defineAs} from '@shared/utils/define-as'
-import {IStore} from '@website/types'
+import {Store} from '@website/types'
 
 interface Props {
-  store: IStore
+  store: Store
 }
 
 export const as = {

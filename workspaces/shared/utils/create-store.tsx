@@ -1,8 +1,7 @@
 import {LOCAL_STORAGE_KEY} from '@shared/config'
 import {IModelType, onSnapshot} from 'mobx-state-tree'
-import {IDisposer} from 'mobx-state-tree/dist/utils'
 
-let snapshotListener: IDisposer
+let snapshotListener: any
 
 export const createStore = (Store: IModelType<{}, {}>) => {
   const snapshot = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}')

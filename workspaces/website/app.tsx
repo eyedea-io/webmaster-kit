@@ -14,7 +14,7 @@ const Routes = getRoutes()
 
 @hot(module)
 @observer
-class App extends React.Component<{}, {
+export class App extends React.Component<{}, {
   error: any
 }> {
   constructor(props: any) {
@@ -46,7 +46,6 @@ class App extends React.Component<{}, {
                 <Route exact path="/auth/logout" component={Routes.Auth.Logout} />
                 <Route component={Routes.Missing} />
               </Switch>
-
               <Modals />
             </React.Fragment>
           </ThemeProvider>
@@ -55,8 +54,6 @@ class App extends React.Component<{}, {
     )
   }
 }
-
-export {App}
 
 function getRoutes() {
   return {

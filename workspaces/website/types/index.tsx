@@ -5,7 +5,7 @@ import {Modal} from '@website/types/modal'
 import {types} from 'mobx-state-tree'
 import {hot} from 'react-hot-loader'
 
-const Store = hot(module)(types
+export const Store = hot(module)(types
   .model('Store', {
     modal: types.optional(Modal, {}),
     langStore: types.optional(LangStore, {}),
@@ -18,12 +18,5 @@ const Store = hot(module)(types
     },
   }))
 
-export {Store}
-export {IUser} from '@shared/types/user'
-export {ILangStore} from '@shared/types/lang-store'
-export {IUserStore} from '@shared/types/user-store'
-export {IForm} from '@shared/types/form'
-export {IFormStore} from '@shared/types/form-store'
-export {IModal} from '@website/types/modal'
-
-export type IStore = typeof Store.Type
+type StoreType = typeof Store.Type
+export interface Store extends StoreType {}

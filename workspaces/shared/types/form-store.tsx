@@ -1,4 +1,4 @@
-import {Form, IForm} from '@shared/types/form'
+import {Form} from '@shared/types/form'
 import {types} from 'mobx-state-tree'
 
 export const FormStore = types
@@ -22,9 +22,10 @@ export const FormStore = types
       return form
     },
 
-    get(name: string): IForm {
+    get(name: string): Form {
       return self.forms.find(form => form.name === name)
     },
   }))
 
-export type IFormStore = typeof FormStore.Type
+type FormStoreType = typeof FormStore.Type
+export interface FormStore extends FormStoreType {}

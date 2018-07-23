@@ -1,14 +1,14 @@
 import {Head, List, Page} from '@shared/components'
 import {APP_TITLE} from '@shared/config'
 import {View} from '@website/pages/landing/styled'
-import {IStore} from '@website/types'
+import {Store} from '@website/types'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 import * as Router from 'react-router-dom'
 
 interface Props extends Router.RouteComponentProps<{}> {
-  store: IStore
+  store: Store
 }
 
 @hot(module)

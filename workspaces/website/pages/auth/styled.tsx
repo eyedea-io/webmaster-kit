@@ -4,7 +4,7 @@ export const Heading = styled.h1`
   margin-bottom: ${props => props.theme.spacing.md}
 `
 
-export const Form = styled.form`
+export const AuthForm = styled.form`
   margin-left: auto;
   margin-right: auto;
   max-width: 480px;

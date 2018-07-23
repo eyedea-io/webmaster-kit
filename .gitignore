@@ -18,6 +18,7 @@ node_modules
 .DS_Store
 Thumbs.db
 .envrc
+.npmrc
 .vscode
 .history
 .idea
@@ -28,4 +29,5 @@ coverage
 syncano/.build
 syncano/.dist
 syncano/.bundles
+syncano/**/.zip
 syncano/**/scripts/.bundles

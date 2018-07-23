@@ -18,4 +18,5 @@ export const User = types
     },
   }))
 
-export type IUser = typeof User.Type
+type UserType = typeof User.Type
+export interface User extends UserType {}

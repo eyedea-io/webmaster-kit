@@ -76,4 +76,5 @@ export const MessageBag = types
     },
   }))
 
-export type IMessageBag = typeof MessageBag.Type
+type MessageBagType = typeof MessageBag.Type
+export interface MessageBag extends MessageBagType {}

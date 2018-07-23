@@ -5,6 +5,7 @@ export const Form = types
   .model('Form', {
     name: types.string,
     fields: types.frozen,
+    originalFields: types.frozen,
     errors: types.optional(MessageBag, {}),
   })
   .views(self => ({
@@ -18,6 +19,9 @@ export const Form = types
     },
   }))
   .actions(self => ({
+    afterCreate() {
+      self.originalFields = self.fields
+    },
     handleChange(event: React.FormEvent<HTMLInputElement> | string, value?: any) {
       const name = typeof event === 'string' ? event : event.currentTarget.name
       const val = typeof event === 'string' ? value : event.currentTarget.value
@@ -37,7 +41,7 @@ export const Form = types
         ...all,
         [name]: {
           ...self.fields[name],
-          value: self.fields[name].value || '',
+          value: self.originalFields[name].value || '',
         },
       }), {})
     },
@@ -52,4 +56,5 @@ export const Form = types
     },
   }))
 
-export type IForm = typeof Form.Type
+type FormType = typeof Form.Type
+export interface Form extends FormType {}

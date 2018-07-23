@@ -1,8 +1,9 @@
 import {Button, Head, Input, InputList, Page} from '@shared/components'
 import {APP_TITLE} from '@shared/config'
+import {Form} from '@shared/types/form'
 import {isEmail} from '@shared/utils/is-email'
-import {Form, Heading} from '@website/pages/auth/styled'
-import {IStore} from '@website/types'
+import {AuthForm, Heading} from '@website/pages/auth/styled'
+import {Store} from '@website/types'
 import {as} from '@website/utils/as'
 import {observable} from 'mobx'
 import {inject, observer} from 'mobx-react'
@@ -11,7 +12,7 @@ import {hot} from 'react-hot-loader'
 import * as Router from 'react-router-dom'
 
 interface Props extends Router.RouteComponentProps<{}> {
-  store: IStore
+  store: Store
 }
 
 @inject('store')
@@ -19,23 +20,25 @@ interface Props extends Router.RouteComponentProps<{}> {
 @hot(module)
 @observer
 class Register extends React.Component<Props> {
-  @observable isLoading = false
-  private readonly title = `Register - ${APP_TITLE}`
-  private readonly formName = 'Register'
-  private readonly formFields = {
-    username: {
-      autoFocus: true,
-      placeholder: 'Type email...',
-    },
-    password: {
-      type: 'password',
-      placeholder: 'Type password',
-    },
-  }
+  @observable private errors = observable.map()
+  @observable private isLoading = false
+  private form: Form
 
   constructor(props: Props) {
     super(props)
-    this.props.store.formStore.add(this.formName, this.formFields).clear()
+
+    const {t} = this.props.store
+
+    this.form = this.props.store.formStore.add('register', {
+      username: {
+        autoFocus: true,
+        placeholder: t`Type email...`,
+      },
+      password: {
+        type: 'password',
+        placeholder: t`Type password`,
+      },
+    })
   }
 
   render() {
@@ -44,29 +47,26 @@ class Register extends React.Component<Props> {
     return (
       <Page>
         <Head>
-          <title>{this.title}</title>
+          <title>Register - {APP_TITLE}</title>
         </Head>
 
-        <Form onSubmit={this.handleSubmit}>
+        <AuthForm onSubmit={this.handleSubmit}>
           <Heading>Create account</Heading>
 
-          <InputList errors={this.form.errors.all}>
+          <InputList errors={this.errors}>
             <Input value={this.form.fields.username.value} {...this.form.editable('username')}/>
             <Input value={this.form.fields.password.value} {...this.form.editable('password')}/>
-            <Button variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>
-              {t`Sign up`}
-            </Button>
-            <div>
-              <Router.Link to="/auth/login">{t`Sign in`}</Router.Link>
-            </div>
           </InputList>
-        </Form>
+
+          <Button className="u-mt--" variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>
+            {t`Sign up`}
+          </Button>
+          <div className="u-mt--">
+            <Router.Link to="/auth/login">{t`Sign in`}</Router.Link>
+          </div>
+        </AuthForm>
       </Page>
     )
-  }
-
-  private get form() {
-    return this.props.store.formStore.get(this.formName)
   }
 
   private get allowSubmit(): boolean {
@@ -78,12 +78,13 @@ class Register extends React.Component<Props> {
   private handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    this.isLoading = true
-
     try {
+      this.isLoading = true
       await this.props.store.userStore.register(this.form.data)
+      this.errors.clear()
+      this.form.clear()
     } catch (err) {
-      this.form.errors.replace(err.response.data)
+      this.errors.replace(err.response.data)
     } finally {
       this.isLoading = false
     }

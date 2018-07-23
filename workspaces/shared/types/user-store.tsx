@@ -60,4 +60,5 @@ export const UserStore = types
     }),
   }))
 
-export type IUserStore = typeof UserStore.Type
+type UserStoreType = typeof UserStore.Type
+export interface UserStore extends UserStoreType {}

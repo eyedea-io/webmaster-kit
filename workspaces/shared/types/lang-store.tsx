@@ -28,4 +28,5 @@ export const LangStore = types
     },
   }))
 
-export type ILangStore = typeof LangStore.Type
+type LangStoreType = typeof LangStore.Type
+export interface LangStore extends LangStoreType {}

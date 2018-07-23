@@ -22,7 +22,7 @@ const StyledButton = styled.button.attrs({})<Props>`
   color: hsl(0, 0%, 100%);
   border-radius: ${({theme}) => theme.radius[2]};
   width: ${({short}) => short ? 'auto' : '100%'};
-  background: ${({theme, variant}) => theme.colors[variant].hex};
+  background: ${({theme, variant = 'primary'}) => theme.colors[variant].hex};
 
   &:focus,
   &:hover {

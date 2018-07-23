@@ -1,3 +1,4 @@
+import {Icon} from '@shared/components/icon'
 import styled from '@shared/utils/styled'
 import * as React from 'react'
 
@@ -14,14 +15,29 @@ const StyledMessage = styled.div.attrs({})<Props>`
   padding: ${({theme}) => theme.spacing.sm};
   border-radius: ${({theme}) => theme.radius[2]};
   font-size: 14px;
+  display: flex;
+  border: 1px solid  hsla(${({theme, variant = 'positive'}) => theme.colors[variant].hsla(.3)});
 
-  color: ${({theme, variant}) => theme.colors[variant].hex};
-  background: hsla(${({theme, variant}) => theme.colors[variant].hsla(.3)});
-  box-shadow: 0 0 0 1px hsl(${({theme, variant}) => theme.colors[variant].hsl}) inset, 0 0 0 0 transparent;
+  > svg {
+    height: 14px;
+    vertical-align: top;
+    position: relative;
+    top: -.1em;
+    margin-right: ${({theme}) => theme.spacing.xs};
+    color: ${({theme, variant = 'positive'}) => theme.colors[variant].hex};
+  }
 `
 
 export const Message = (props: Props) => props.children || props.content ? (
   <StyledMessage {...props}>
-    {props.children || props.content}
+    <React.Fragment>
+      <Icon
+        variant="solid"
+        name={props.variant === 'negative' ? 'times-circle' : 'check-circle'}
+        />
+      <div>
+        {props.children || props.content}
+      </div>
+    </React.Fragment>
   </StyledMessage>
 ) : null

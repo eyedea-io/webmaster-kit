@@ -1,7 +1,9 @@
+import {List, Props as ListProps} from '@shared/components/list'
+import {Message} from '@shared/components/message'
 import styled from '@shared/utils/styled'
+import {isObservableMap} from 'mobx'
 import * as React from 'react'
-import {List, Props as ListProps} from './list'
-import {Message} from './message'
+import {hot} from 'react-hot-loader'
 
 type ErrorsPosition = 'each' | 'start' | 'end'
 
@@ -17,42 +19,47 @@ const InputError = styled.div`
   color: ${props => props.theme.colors.negative.hex};
 `
 
-export const InputList = ({children, errors, errorsPosition = 'each', ...props}: Props) => {
-  const matchedErrors = getMatchedErrors(children, errors)
-  const unmatchedErrors = getUnmatchedErrors(matchedErrors, errors)
+export const InputList: React.SFC<Props> = hot(module)(
+  ({children, errors, errorsPosition = 'each', ...props}: Props) => {
+    const err = isObservableMap(errors) ? errors.toJSON() : errors
+    const matchedErrors = getMatchedErrors(children, err)
+    const unmatchedErrors = getUnmatchedErrors(matchedErrors, err)
 
-  return (
-    <List spacing="sm" {...props}>
-      {errorsPosition === 'start' && (
-        <React.Fragment>
-          <MatchedErrors errors={matchedErrors} />
+    return (
+      <List spacing="xs" {...props}>
+        {errorsPosition === 'start' && (
+          <React.Fragment>
+            <MatchedErrors errors={matchedErrors} />
+            <UnmatchedErrors errors={unmatchedErrors} />
+          </React.Fragment>
+        )}
+
+        {React.Children.map(children, (input: any) => (
+          <React.Fragment key={input.props.name}>
+            {input}
+
+            {errorsPosition === 'each' && err[input.props.name] && (
+              <InputError>{err[input.props.name]}</InputError>
+            )}
+          </React.Fragment>
+        ))}
+
+        {errorsPosition === 'each' && (
           <UnmatchedErrors errors={unmatchedErrors} />
-        </React.Fragment>
-      )}
+        )}
 
-      {React.Children.map(children, (input: any) => (
-        <React.Fragment key={input.props.name}>
-          {input}
+        {errorsPosition === 'end' && (
+          <React.Fragment>
+            <MatchedErrors errors={matchedErrors} />
+            <UnmatchedErrors errors={unmatchedErrors} />
+          </React.Fragment>
+        )}
+      </List>
+    )
+  }
+)
 
-          {errorsPosition === 'each' && errors[input.props.name] && (
-            <InputError>{errors[input.props.name]}</InputError>
-          )}
-        </React.Fragment>
-      ))}
-
-      {errorsPosition === 'each' && (
-        <UnmatchedErrors errors={unmatchedErrors} />
-      )}
-
-      {errorsPosition === 'end' && (
-        <React.Fragment>
-          <MatchedErrors errors={matchedErrors} />
-          <UnmatchedErrors errors={unmatchedErrors} />
-        </React.Fragment>
-      )}
-    </List>
-  )
-}
+InputList.displayName = 'InputList'
 
 function getUnmatchedErrors(matchedErrors: any, errors: object) {
   return Object.keys(errors)
@@ -96,6 +103,10 @@ function MatchedErrors({errors}: any) {
 function UnmatchedErrors({errors}: any) {
   if (typeof errors === 'string') {
     return <Message variant="negative">{errors}</Message>
+  }
+
+  if (Object.keys(errors).length === 0) {
+    return null
   }
 
   return (

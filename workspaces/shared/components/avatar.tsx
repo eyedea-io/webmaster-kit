@@ -1,5 +1,6 @@
 import {hashStr} from '@shared/utils/hash-str'
 import styled from '@shared/utils/styled'
+import * as React from 'react'
 
 export interface Props {
   id?: string,
@@ -10,10 +11,11 @@ export interface Props {
 const StyledAvatar = styled.div`
   display: inline-flex;
   border: ${(props: Props) =>  props.src ? 'none' : `1px solid ${`hsl(${hashStr(props.id) % 360}, 60%, 92%)`}`};
+  border-radius: 50%;
+  overflow: hidden;
 `
 
 const StyledAvatarInner = styled.div`
-  border-radius: 50%;
   color: #5b55f7;
   background: ${props => `hsl(${hashStr(props.id) % 360}, 60%, 98%)`};
   display: inline-flex;
@@ -21,7 +23,6 @@ const StyledAvatarInner = styled.div`
   justify-content: center;
   width: ${(props: Props) => props.size}px;
   height: ${(props: Props) => props.size}px;
-  overflow: hidden;
 
   & > svg {
     fill: ${props => `hsl(${hashStr(props.id) % 360}, 60%, 82%)`};

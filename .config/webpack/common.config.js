@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const {resolve} = require('path')
-const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
+const {CheckerPlugin, TsConfigPathsPlugin} = require('awesome-typescript-loader')
 
 module.exports = {
   context: resolve(__dirname, '../../workspaces'),
@@ -47,6 +47,7 @@ module.exports = {
     runtimeChunk: 'single'
   },
   plugins: [
+    new CheckerPlugin(),
     new webpack.DefinePlugin({
       'process.env.SYNCANO_PROJECT_INSTANCE': JSON.stringify(
         process.env.SYNCANO_PROJECT_INSTANCE

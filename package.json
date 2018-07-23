@@ -6,6 +6,8 @@
     "test-unit": "NODE_ENV=test jest workspaces --config .config/jest/config.js",
     "test-lint": "stylelint './workspaces/**/*.tsx' --config ./.config/stylelint.json",
     "format": "npx tslint --fix -c tslint.json ./workspaces/**/*.tsx",
+    "cosmos": "cosmos --config ./.config/cosmos/config.js",
+    "cosmos:export": "cosmos-export --config ./.config/cosmos/config.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "1.1.8",

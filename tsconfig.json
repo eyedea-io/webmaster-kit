@@ -37,6 +37,7 @@
     "syncano/**/*"
   ],
   "exclude": [
-    ".config/**/*"
+    ".config/**/*",
+    ".templates/**/*"
   ]
 }

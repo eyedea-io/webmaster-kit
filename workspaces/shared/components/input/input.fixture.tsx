@@ -33,4 +33,12 @@ export default [
       disabled: true,
     },
   },
+  {
+    component: Input,
+    name: 'with value',
+    wrap: true,
+    props: {
+      value: 'hello@example.com',
+    },
+  },
 ]

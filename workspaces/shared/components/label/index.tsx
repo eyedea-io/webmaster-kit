@@ -1,8 +1,14 @@
-import styled from '@shared/utils/styled'
+import {Block} from '@shared/components/block'
+import {hot} from 'react-hot-loader'
 
-export const Label = styled.label`
-  font-size: 14px;
-  font-weight: 600;
-  color: hsl(0, 0%, 20%);
-  cursor: pointer;
-`
+export const Label = hot(module)(
+  Block.withComponent('label').extend`
+    font-size: 14px;
+    font-weight: 600;
+    color: hsl(0, 0%, 20%);
+    display: block;
+    cursor: pointer;
+  `
+)
+
+Label.displayName = 'Label'

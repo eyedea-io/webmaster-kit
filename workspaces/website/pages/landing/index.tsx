@@ -1,11 +1,11 @@
-import {Head, List, Page} from '@shared/components'
+import * as Router from '@reach/router'
+import {Head, Link, List} from '@shared/components'
 import {APP_TITLE} from '@shared/config'
 import {View} from '@website/pages/landing/styled'
 import {Store} from '@website/types'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
-import * as Router from 'react-router-dom'
 
 interface Props extends Router.RouteComponentProps<{}> {
   store: Store
@@ -14,30 +14,30 @@ interface Props extends Router.RouteComponentProps<{}> {
 @hot(module)
 @inject('store')
 @observer
-class Index extends React.Component<Props> {
+class Landing extends React.Component<Props> {
   private readonly title = APP_TITLE
 
   render() {
     return (
-      <Page>
+      <React.Fragment>
         <Head>
           <title>{this.title}</title>
         </Head>
 
         <View>
-          <h1 className="u-mb">Webmaster Kit</h1>
+          <h1>Webmaster Kit</h1>
 
-          <List horizontal spacing="sm">
+          <List horizontal spacing="sm" mt="md">
             {this.isLoggedIn ? this.renderUserNav() : this.renderGuestNav()}
           </List>
         </View>
-      </Page>
+      </React.Fragment>
     )
   }
 
   renderUserNav = () => (
     <React.Fragment>
-      <Router.Link to="/auth/logout">{this.props.store.t`Sign out`}</Router.Link>
+      <Link to="/auth/logout">{this.props.store.t`Sign out`}</Link>
 
       <a onClick={() => this.props.store.modal.open('profile')}>
         {this.props.store.t`My profile`}
@@ -47,8 +47,8 @@ class Index extends React.Component<Props> {
 
   renderGuestNav = () => (
     <React.Fragment>
-      <Router.Link to="/auth/login">{this.props.store.t`Sign in`}</Router.Link>
-      <Router.Link to="/auth/register">{this.props.store.t`Create account`}</Router.Link>
+      <Link to="/auth/login">{this.props.store.t`Sign in`}</Link>
+      <Link to="/auth/register">{this.props.store.t`Create account`}</Link>
     </React.Fragment>
   )
 
@@ -57,4 +57,4 @@ class Index extends React.Component<Props> {
   }
 }
 
-export default Index
+export default Landing

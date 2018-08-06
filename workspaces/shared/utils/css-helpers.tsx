@@ -1,12 +1,4 @@
-import {Color} from '@shared/utils/styled'
-
-export function toPx (values: any[]) {
-  return values.map(value => typeof value === 'number' ? `${value}px` : value)
-}
-
-export function toEm (values: any[]) {
-  return values.map(value => typeof value === 'number' ? `${value}em` : value)
-}
+import {Color, css} from '@shared/utils/styled'
 
 export function color (hex: string): Color {
   const toRGB = (hexColor) => {
@@ -66,13 +58,21 @@ export function color (hex: string): Color {
 
 export function spacing (value: number) {
   return {
-    xxs: `${value / 8}px`,
-    xs: `${value / 4}px`,
-    sm: `${value / 2}px`,
-    md: `${value}px`,
-    lg: `${value * 1.5}px`,
-    xl: `${value * 2}px`,
-    xxl: `${value * 4}px`,
+    xxxs: `${value / 2}px`,
+    xxs: `${value}px`,
+    xs: `${value * 2}px`,
+    sm: `${value * 3}px`,
+    md: `${value * 4}px`,
+    lg: `${value * 6}px`,
+    xl: `${value * 8}px`,
+    xxl: `${value * 12}px`,
+    xxxl: `${value * 16}px`,
     toString: () => `${value}px`,
   }
 }
+
+export const media = (min?: number, max?: number) => (...args) => css`
+  @media screen and (min-width: ${`${min}px`}) and (max-width: ${max ? `${max}px` : '999999px'}) {
+    ${css.call(null, args)}
+  }
+`

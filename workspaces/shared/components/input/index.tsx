@@ -12,14 +12,15 @@ const StyledWrapper = styled.div.attrs({})<Props>`
   display: inline-block;
   width: ${({short}) => short ? 'auto' : '100%'};
 `
+
 const StyledInput = styled.input.attrs({})<Props>`
   background-color: hsl(0, 0%, 97%);
-  color: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 40%);
   box-shadow: none;
   padding: 14px 16px;
   border: 1px solid ${({theme}) => theme.colors.ui.hex};
   transition: border-color 0.25s, box-shadow 0.25s;
-  border-radius: ${props => props.theme.radius[2]};
+  border-radius: ${props => props.theme.radius};
   width: 100%;
 
   &:focus {
@@ -30,10 +31,14 @@ const StyledInput = styled.input.attrs({})<Props>`
   &::placeholder {
     color: hsl(0, 0%, 60%);
   }
+  &:disabled,
+  &:disabled::placeholder {
+    color: hsl(0, 0%, 70%);
+  }
 `
 
 @observer
-export class Input extends React.Component<Props> {
+class InputComponent extends React.Component<Props> {
   render() {
     const {label} = this.props
     const id = this.props.id || this.props.name
@@ -41,9 +46,7 @@ export class Input extends React.Component<Props> {
     return (
       <StyledWrapper short={this.props.short}>
         {label && (
-          <div className="u-mb---">
-            <Label htmlFor={id}>{label}</Label>
-          </div>
+          <Label mb="xxs" htmlFor={id}>{label}</Label>
         )}
 
         <StyledInput {...this.props} type={this.props.type || 'text'} id={id} />
@@ -51,3 +54,5 @@ export class Input extends React.Component<Props> {
     )
   }
 }
+
+export const Input = styled(InputComponent)``

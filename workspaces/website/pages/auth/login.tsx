@@ -1,4 +1,5 @@
-import {Button, Head, Input, InputList, Page} from '@shared/components'
+import * as Router from '@reach/router'
+import {Button, Head, Input, InputList, Link} from '@shared/components'
 import {APP_TITLE} from '@shared/config'
 import {Form} from '@shared/types/form'
 import {isEmail} from '@shared/utils/is-email'
@@ -9,14 +10,13 @@ import {observable} from 'mobx'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
-import * as Router from 'react-router-dom'
 
 interface Props extends Router.RouteComponentProps<{}> {
   store: Store
 }
 
 @inject('store')
-@as.member(() => <Router.Redirect to="/" />)
+@as.member(() => <Router.Redirect to="/" noThrow />)
 @hot(module)
 @observer
 class Login extends React.Component<Props> {
@@ -45,7 +45,7 @@ class Login extends React.Component<Props> {
     const {t} = this.props.store
 
     return (
-      <Page>
+      <React.Fragment>
         <Head>
           <title>Login - {APP_TITLE}</title>
         </Head>
@@ -58,15 +58,13 @@ class Login extends React.Component<Props> {
             <Input value={this.form.fields.password.value} {...this.form.editable('password')}/>
           </InputList>
 
-          <Button className="u-mt--" variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>
+          <Button mt="md" variant="primary" loading={this.isLoading} disabled={!this.allowSubmit}>
             {t`Sign in`}
           </Button>
 
-          <div className="u-mt--">
-            <Router.Link to="/auth/register">{t`Create account`}</Router.Link>
-          </div>
+          <Link mt="xxs" to="/auth/register">{t`Create account`}</Link>
         </AuthForm>
-      </Page>
+      </React.Fragment>
     )
   }
 

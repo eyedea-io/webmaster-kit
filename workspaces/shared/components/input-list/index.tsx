@@ -1,3 +1,4 @@
+import {Props as BlockProps} from '@shared/components/block'
 import {List, Props as ListProps} from '@shared/components/list'
 import {Message} from '@shared/components/message'
 import styled from '@shared/utils/styled'
@@ -7,7 +8,7 @@ import {hot} from 'react-hot-loader'
 
 type ErrorsPosition = 'each' | 'start' | 'end'
 
-export interface Props extends ListProps {
+export interface Props extends ListProps, BlockProps {
   children: React.ReactNode
   errors: object
   errorsPosition?: ErrorsPosition
@@ -19,44 +20,48 @@ const InputError = styled.div`
   color: ${props => props.theme.colors.negative.hex};
 `
 
-export const InputList: React.SFC<Props> = hot(module)(
-  ({children, errors, errorsPosition = 'each', ...props}: Props) => {
-    const err = isObservableMap(errors) ? errors.toJSON() : errors
-    const matchedErrors = getMatchedErrors(children, err)
-    const unmatchedErrors = getUnmatchedErrors(matchedErrors, err)
+const InputListComponent: React.SFC<Props> = ({
+  children, errors, errorsPosition = 'each', ...props
+}: Props) => {
+  const err = isObservableMap(errors) ? errors.toJSON() : errors
+  const matchedErrors = getMatchedErrors(children, err)
+  const unmatchedErrors = getUnmatchedErrors(matchedErrors, err)
 
-    return (
-      <List spacing="xs" {...props}>
-        {errorsPosition === 'start' && (
-          <React.Fragment>
-            <MatchedErrors errors={matchedErrors} />
-            <UnmatchedErrors errors={unmatchedErrors} />
-          </React.Fragment>
-        )}
-
-        {React.Children.map(children, (input: any) => (
-          <React.Fragment key={input.props.name}>
-            {input}
-
-            {errorsPosition === 'each' && err[input.props.name] && (
-              <InputError>{err[input.props.name]}</InputError>
-            )}
-          </React.Fragment>
-        ))}
-
-        {errorsPosition === 'each' && (
+  return (
+    <List spacing="xxs" {...props}>
+      {errorsPosition === 'start' && (
+        <React.Fragment>
+          <MatchedErrors errors={matchedErrors} />
           <UnmatchedErrors errors={unmatchedErrors} />
-        )}
+        </React.Fragment>
+      )}
 
-        {errorsPosition === 'end' && (
-          <React.Fragment>
-            <MatchedErrors errors={matchedErrors} />
-            <UnmatchedErrors errors={unmatchedErrors} />
-          </React.Fragment>
-        )}
-      </List>
-    )
-  }
+      {React.Children.map(children, (input: any) => (
+        <React.Fragment key={input.props.name}>
+          {input}
+
+          {errorsPosition === 'each' && err[input.props.name] && (
+            <InputError>{err[input.props.name]}</InputError>
+          )}
+        </React.Fragment>
+      ))}
+
+      {errorsPosition === 'each' && (
+        <UnmatchedErrors errors={unmatchedErrors} />
+      )}
+
+      {errorsPosition === 'end' && (
+        <React.Fragment>
+          <MatchedErrors errors={matchedErrors} />
+          <UnmatchedErrors errors={unmatchedErrors} />
+        </React.Fragment>
+      )}
+    </List>
+  )
+}
+
+export const InputList = hot(module)(
+  styled(InputListComponent)``
 )
 
 InputList.displayName = 'InputList'

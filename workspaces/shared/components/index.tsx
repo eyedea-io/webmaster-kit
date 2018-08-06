@@ -1,10 +1,12 @@
-export {NavLink} from 'react-router-dom'
-export {Link} from 'react-router-dom'
+// export {NavLink} from '@reach/router'
+import {Link as RouterLink} from '@reach/router'
+import {Block} from '@shared/components/block'
+export const Link = Block.withComponent(RouterLink).extend`display: inline-block;`
+
 export {Head} from '@shared/components/head'
 export {InputList} from '@shared/components/input-list'
 export {Message} from '@shared/components/message'
 export {List} from '@shared/components/list'
-export {Page} from '@shared/components/page'
 export {Container} from '@shared/components/container'
 export {Avatar} from '@shared/components/avatar'
 export {Input} from '@shared/components/input'

@@ -1,15 +1,15 @@
+import {Block, Props as BlockProps} from '@shared/components/block'
 import {Spinner} from '@shared/components/spinner'
-import styled from '@shared/utils/styled'
 import * as React from 'react'
 
-export interface Props extends React.ButtonHTMLAttributes<{}> {
+export interface Props extends React.ButtonHTMLAttributes<{}>, BlockProps {
   short?: boolean,
   loading?: boolean,
   disabled?: boolean
   variant: 'primary' | 'positive' | 'negative'
 }
 
-const StyledButton = styled.button.attrs({})<Props>`
+const StyledButton = Block.withComponent('button').extend.attrs({})<Props>`
   transition-property: transform, box-shadow, background;
   transition-duration: 0.25s;
   letter-spacing: .025em;
@@ -20,7 +20,7 @@ const StyledButton = styled.button.attrs({})<Props>`
   cursor: pointer;
   font-weight: 500;
   color: hsl(0, 0%, 100%);
-  border-radius: ${({theme}) => theme.radius[2]};
+  border-radius: ${({theme}) => theme.radius};
   width: ${({short}) => short ? 'auto' : '100%'};
   background: ${({theme, variant = 'primary'}) => theme.colors[variant].hex};
 

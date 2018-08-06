@@ -1,62 +1,29 @@
+import {Block} from '@shared/components/block'
 import {UI} from '@shared/config'
-import * as React from 'react'
+import {css} from '@shared/utils/styled'
 
-type Spacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+type Spacing = 'none' | 'xxxs' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
 
 export interface Props {
-  children: React.ReactNode,
   horizontal?: boolean,
   separated?: boolean,
   spacing?: Spacing
 }
 
-export const List = ({children, separated, horizontal, spacing = 'md'}: Props) => (
-  <div className={`
-    List
-    ${horizontal ? 'List--horizontal' : ''}
-    ${separated ? 'List--separated' : ''}
-    ${spacing ? `List--${spacing}` : ''}
-  `}>
-    {children}
+export const List = Block.extend.attrs({})<Props>`
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 
-    <style jsx>{`
-      .List {
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-      }
+  ${props => props.horizontal && css`
+    display: flex;
+    align-items: center;
+  `}
 
-      .List--horizontal {
-        display: flex;
-        align-items: center;
-      }
+  ${_ => !_.horizontal && css`& > * + * { margin-top: ${_.theme.spacing[_.spacing || 'md']} }`}
+  ${_ => _.separated && css` & > * + * { padding-top: ${_.theme.spacing[_.spacing || 'md']} }`}
+  ${_ => _.separated && !_.horizontal && css`& > * + * { border-top: 1px solid ${UI.colors.ui.hex} }`}
+  ${_ => _.horizontal && css`& > * + * { margin-left: ${UI.spacing[_.spacing || 'md']} }`}
+`
 
-
-      .List--xxs:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xxs}; }
-      .List--xs:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xs}; }
-      .List--sm:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.sm}; }
-      .List--md:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing}; }
-      .List--lg:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.lg}; }
-      .List--xl:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xl}; }
-      .List--xxl:not(.List--horizontal) > :global(*) + :global(*) { margin-top: ${UI.spacing.xxl}; }
-
-      .List--separated:not(.List--horizontal) > :global(* + *) { border-top: 1px solid ${UI.colors.ui.hex} }
-      .List--xxs.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xxs}; }
-      .List--xs.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xs}; }
-      .List--sm.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.sm}; }
-      .List--md.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing}; }
-      .List--lg.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.lg}; }
-      .List--xl.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xl}; }
-      .List--xxl.List--separated > :global(*) + :global(*) { padding-top: ${UI.spacing.xxl}; }
-
-      .List--xxs.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.xxs} }
-      .List--xs.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.xs} }
-      .List--sm.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.sm} }
-      .List--md.List--horizontal > :global(* + *) { margin-left: ${UI.spacing} }
-      .List--lg.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.lg} }
-      .List--xl.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.xl} }
-      .List--xxl.List--horizontal > :global(* + *) { margin-left: ${UI.spacing.xxl} }
-    `}</style>
-  </div>
-)
+List.displayName = 'List'

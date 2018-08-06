@@ -1,5 +1,5 @@
+import {Block} from '@shared/components/block'
 import {Icon} from '@shared/components/icon'
-import styled from '@shared/utils/styled'
 import * as React from 'react'
 
 export interface Props {
@@ -8,12 +8,12 @@ export interface Props {
   children?: React.ReactChild
 }
 
-const StyledMessage = styled.div.attrs({})<Props>`
+const StyledMessage = Block.extend.attrs({})<Props>`
   position: relative;
   min-height: 1em;
   line-height: 1em;
-  padding: ${({theme}) => theme.spacing.sm};
-  border-radius: ${({theme}) => theme.radius[2]};
+  padding: ${({theme}) => theme.spacing.xs};
+  border-radius: ${({theme}) => theme.radius};
   font-size: 14px;
   display: flex;
   border: 1px solid  hsla(${({theme, variant = 'positive'}) => theme.colors[variant].hsla(.3)});

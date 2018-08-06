@@ -1,4 +1,4 @@
-import {color, spacing, toEm, toPx} from '@shared/utils/css-helpers'
+import {color, media, spacing} from '@shared/utils/css-helpers'
 import {Theme} from '@shared/utils/styled'
 
 export const APP_TITLE = 'Webmaster App'
@@ -8,8 +8,19 @@ export const TRACKJS_KEY = process.env.TRACKJS_KEY
 export const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY
 export const SYNCANO_PROJECT_INSTANCE = process.env.SYNCANO_PROJECT_INSTANCE
 export const UI: Theme = {
-  breakpoints: toEm([32, 48, 64]),
+  spacing: spacing(8),
+  radius: '5px',
+  media: {
+    desktop: media(769),
+    tablet: media(567, 768),
+    tabletAndUp: media(567),
+    tabletAndDown: media(0, 768),
+    phone: media(0, 576),
+  },
   fontSizes: {
+    giga: '64px',
+    mega: '48px',
+    kilo: '40px',
     alpha: '32px',
     beta: '28px',
     gamma: '24px',
@@ -20,22 +31,6 @@ export const UI: Theme = {
     micro: '13px',
     nano: '12px',
   },
-  fontWeights: toPx([100, 200, 300, 400, 500, 600, 700, 800, 900]),
-  lineHeights: {
-    solid: 1,
-    title: 1.25,
-    copy: 1.5,
-  },
-  letterSpacing: {
-    normal: 'normal',
-    tracked: '0.1em',
-    tight: '-0.05em',
-    mega: '0.25em',
-  },
-  spacing: spacing(32),
-  widths: toPx([16, 32, 64, 128, 256]),
-  heights: toPx([16, 32, 64, 128, 256]),
-  radius: toPx([0, 2, 4, 16, 9999, '100%']),
   colors: {
     ui: color('#d3d7e0'),
     primary: color('#494de4'),
@@ -44,5 +39,32 @@ export const UI: Theme = {
     default: color('#56687C'),
     meta: color('#999999'),
     icon: color('#ccc'),
+  },
+  lineHeights: {
+    solid: 1,
+    title: 1.25,
+    copy: 1.5,
+  },
+  fontFamilies: {
+    sansSerif: `-apple-system, BlinkMacSystemFont, 'avenir next', avenir,
+      'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif
+    `,
+    serif: `georgia, times, serif`,
+    code: `Consolas, monaco, monospace`,
+    courier: `'Courier Next', courier, monospace`,
+    helvetica: `'helvetica neue', helvetica, sans-serif`,
+    avenir: `'avenir next', avenir, sans-serif`,
+    athelas: `athelas, georgia, serif`,
+    georgia: `georgia, serif`,
+    times: `times, serif`,
+    bodoni: `"Bodoni MT", serif`,
+    calisto: `"Calisto MT", serif`,
+    garamond: `garamond, serif`,
+    baskerville : `baskerville , serif`,
+  },
+  letterSpacing: {
+    tracked: '.1em',
+    tight: '.05em',
+    mega: '.25em',
   },
 }

@@ -11,8 +11,17 @@ export interface Color {
 }
 
 export interface Theme {
-  breakpoints: number[]
+  media: {
+    desktop: any
+    tablet: any
+    tabletAndUp: any
+    tabletAndDown: any
+    phone: any
+  }
   fontSizes: {
+    giga: string
+    mega: string
+    kilo: string
     alpha: string
     beta: string
     gamma: string
@@ -23,17 +32,25 @@ export interface Theme {
     micro: string
     nano: string
   }
-  fontWeights: number[]
+  fontFamilies: {
+    sansSerif: string
+    serif: string
+    code: string
+    courier: string
+    helvetica: string
+    avenir: string
+    athelas: string
+    georgia: string
+    times: string
+    bodoni: string
+    calisto: string
+    garamond: string
+    baskerville: string
+  }
   lineHeights: {
     solid: number
     title: number
     copy: number
-  }
-  letterSpacing: {
-    normal: string
-    tracked: string
-    tight: string
-    mega: string
   }
   spacing: {
     xxs: string
@@ -44,9 +61,7 @@ export interface Theme {
     xl: string
     xxl: string
   }
-  widths: number[]
-  heights: number[]
-  radius: (number | string)[]
+  radius: string
   colors: {
     ui: Color
     primary: Color
@@ -55,6 +70,11 @@ export interface Theme {
     default: Color
     meta: Color
     icon: Color
+  }
+  letterSpacing: {
+    tracked: string
+    tight: string
+    mega: string
   }
 }
 

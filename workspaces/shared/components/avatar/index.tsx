@@ -1,14 +1,15 @@
+import {Block, Props as BlockProps} from '@shared/components/block'
 import {hashStr} from '@shared/utils/hash-str'
 import styled from '@shared/utils/styled'
 import * as React from 'react'
 
-export interface Props {
+export interface Props extends BlockProps {
   id?: string,
   src?: string
   size?: number
 }
 
-const StyledAvatar = styled.div`
+const StyledAvatar = Block.extend`
   display: inline-flex;
   border: ${(props: Props) =>  props.src ? 'none' : `1px solid ${`hsl(${hashStr(props.id) % 360}, 60%, 92%)`}`};
   border-radius: 50%;

@@ -4,9 +4,7 @@ version: 0.0.1
 
 classes:
   user:
-    - name: firstName
-      type: string
-    - name: lastName
+    - name: fullName
       type: string
 
 endpoints:

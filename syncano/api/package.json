@@ -6,14 +6,15 @@
     "build:env": "sh ./bin/compile-env"
   },
   "dependencies": {
-    "@syncano/core": "^0.10.0-alpha.f21aa8b8"
+    "@eyedea/syncano": "^0.2.0",
+    "@syncano/core": "^0.12.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.42",
-    "@babel/core": "^7.0.0-beta.42",
-    "@babel/preset-env": "^7.0.0-beta.42",
-    "@babel/preset-typescript": "^7.0.0-beta.42",
-    "typescript": "^2.7.2"
+    "@babel/cli": "^7.0.0-beta.55",
+    "@babel/core": "^7.0.0-beta.55",
+    "@babel/preset-env": "^7.0.0-beta.55",
+    "@babel/preset-typescript": "^7.0.0-beta.55",
+    "typescript": "^3.0.1"
   },
   "babel": {
     "presets": [

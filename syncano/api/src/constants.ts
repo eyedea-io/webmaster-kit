@@ -1,3 +1,3 @@
 export const MODELS = {
-  user: ['id', 'firstName', 'lastName', 'username'],
+  user: ['id', 'fullName', 'username'],
 }

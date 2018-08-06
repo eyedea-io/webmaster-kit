@@ -1,8 +1,10 @@
+import * as S from '@eyedea/syncano'
 import {MODELS} from '../constants'
-import * as Syncano from '../syncano'
 
-class Endpoint extends Syncano.Endpoint {
-  async run({users, response}: Syncano.ICore) {
+class Endpoint extends S.Endpoint {
+  async run(
+    {users, response}: S.Core
+  ) {
     if (this.user === undefined) {
       return response.json({message: 'Unauthorized'}, 401)
     }

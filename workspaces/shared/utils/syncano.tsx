@@ -1,10 +1,11 @@
 import {SYNCANO_PROJECT_INSTANCE} from '@shared/config'
-const Syncano = require('@syncano/client')
+import Syncano from '@syncano/client'
 
 export function syncano(url: string, data?: object) {
   try {
     const s = new Syncano(SYNCANO_PROJECT_INSTANCE)
     const token = window.localStorage.getItem('token')
+
     s.setToken(token)
 
     return s.post(url, data)
@@ -23,11 +24,10 @@ export function syncano(url: string, data?: object) {
 
 export function subscribe (
   url: string,
-  callback: Function,
   data?: Object
-): Promise<Object> {
+): WebSocket {
   const s = new Syncano(SYNCANO_PROJECT_INSTANCE)
   const token = window.localStorage.getItem('token')
 
-  return s.subscribe(url, {token, ...data}, callback)
+  return s.listen(url, {token, ...data})
 }

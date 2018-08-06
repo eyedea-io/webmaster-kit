@@ -1,7 +1,8 @@
+import {RouteComponentProps} from '@reach/router'
 import _loadable from 'loadable-components'
 import NProgress from 'nprogress'
 
-export const loadable = promise => _loadable(() => {
+export const loadable = promise => _loadable<RouteComponentProps<{}>>(() => {
   const doc = document.querySelector('html')
 
   if (!doc.classList.contains('nprogress-busy') && (parseInt(doc.dataset.nprogress, 10) || 0) === 0) {

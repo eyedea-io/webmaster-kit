@@ -1,16 +1,18 @@
+import {Router} from '@reach/router'
 import {SENTRY_URL, UI} from '@shared/config'
 import {createStore} from '@shared/utils/create-store'
 import {loadable} from '@shared/utils/loadable'
+import '@shared/utils/normalize'
 import {ThemeProvider} from '@shared/utils/styled'
 import {Modals} from '@website/components'
+import '@website/styles'
 import {Store} from '@website/types'
 import {observer, Provider} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import RedBox from 'redbox-react'
 
-const Routes = getRoutes()
+const routes = getRoutes()
 
 @hot(module)
 @observer
@@ -36,20 +38,19 @@ export class App extends React.Component<{}, {
 
     return (
       <Provider store={createStore(Store)}>
-        <BrowserRouter>
-          <ThemeProvider theme={UI}>
-            <React.Fragment>
-              <Switch>
-                <Route exact path="/" component={Routes.Index} />
-                <Route exact path="/auth/login" component={Routes.Auth.Login} />
-                <Route exact path="/auth/register" component={Routes.Auth.Register} />
-                <Route exact path="/auth/logout" component={Routes.Auth.Logout} />
-                <Route component={Routes.Missing} />
-              </Switch>
-              <Modals />
-            </React.Fragment>
-          </ThemeProvider>
-        </BrowserRouter>
+        <ThemeProvider theme={UI}>
+          <React.Fragment>
+            <Router>
+              <routes.Index path="/" />
+              <routes.Auth.Login path="auth/login" />
+              <routes.Auth.Register path="auth/register" />
+              <routes.Auth.Logout path="auth/logout" />
+              <routes.Missing default />
+            </Router>
+
+            <Modals />
+          </React.Fragment>
+        </ThemeProvider>
       </Provider>
     )
   }

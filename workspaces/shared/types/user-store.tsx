@@ -41,7 +41,7 @@ export const UserStore = types
     }),
     logout() {
       self.setToken()
-      self.profile = null
+      self.profile = undefined
       applySnapshot(getRoot(self), {})
     },
     login: flow(function * (credentials: {username: string, password: string}) {

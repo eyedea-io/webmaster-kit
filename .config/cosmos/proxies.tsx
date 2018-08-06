@@ -6,29 +6,21 @@ import {ThemeProvider} from '../../workspaces/shared/utils/styled'
 import {Store} from '../../workspaces/website/types'
 const createWrapperProxy = require('react-cosmos-wrapper-proxy').default
 import {hot} from 'react-hot-loader'
-import {BrowserRouter} from 'react-router-dom'
-import {Page as WebsitePage} from '../../workspaces/shared/components/page'
-
-const pages = {
-  website: WebsitePage,
-}
 
 const store = createStore(Store)
 const component = hot(module)(({children, ...props}) => {
-  const Page = pages[props.page] || WebsitePage
+  if (props.page === 'website' || props.page === undefined) {
+    require('@shared/styles')
+  }
 
   return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <ThemeProvider theme={UI}>
-          <Page>
-            <div style={{padding: 32}}>
-              {children}
-            </div>
-          </Page>
-        </ThemeProvider>
-      </Provider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <ThemeProvider theme={UI}>
+        <div style={{padding: 32}}>
+          {children}
+        </div>
+      </ThemeProvider>
+    </Provider>
   )
 })
 

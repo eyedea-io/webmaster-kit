@@ -4,8 +4,8 @@ import {getRoot, types} from 'mobx-state-tree'
 export const Form = types
   .model('Form', {
     name: types.string,
-    fields: types.frozen,
-    originalFields: types.frozen,
+    fields: types.frozen(),
+    originalFields: types.optional(types.frozen(), {}),
     errors: types.optional(MessageBag, {}),
   })
   .views(self => ({

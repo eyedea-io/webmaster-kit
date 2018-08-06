@@ -1,4 +1,5 @@
 module.exports = {
+  "testURL": "http://localhost:8080/",
   "moduleNameMapper": {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/file-mock.js",
     "@shared/(.*)": "<rootDir>/../../workspaces/shared/$1",
@@ -19,7 +20,7 @@ module.exports = {
     "../../"
   ],
   "transform": {
-    "\\.(ts|tsx)$": "<rootDir>/../../node_modules/ts-jest/preprocessor.js"
+    "\\.(ts|tsx)$": "ts-jest"
   },
   "testMatch": [
     "**/workspaces/**/*.test.(ts|tsx|js)"

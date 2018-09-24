@@ -3,6 +3,7 @@ const {join} = require('path')
 const merge = require('webpack-merge')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const common = require('./common.config.js')
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -14,10 +15,15 @@ module.exports = merge(common, {
     hot: true
   },
   plugins: [
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+      logLevel: 'warn',
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: ['Live at: http://localhost:8080']
+        messages: ['Live at: http://localhost:8080'],
+        notes: ['Analyze bundle at: http://localhost:8888']
       }
     }),
   ]

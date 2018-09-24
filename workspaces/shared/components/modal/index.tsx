@@ -7,7 +7,7 @@ import {
   ModalTitle,
   ModalWrapper
 } from '@shared/components/modal/styled'
-import {Store} from '@website/types'
+import {Store} from '@website/stores'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 

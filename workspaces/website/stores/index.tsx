@@ -1,7 +1,7 @@
 import {FormStore} from '@shared/types/form-store'
 import {LangStore} from '@shared/types/lang-store'
 import {UserStore} from '@shared/types/user-store'
-import {Modal} from '@website/types/modal'
+import {Modal} from '@website/stores/modal'
 import {types} from 'mobx-state-tree'
 import {hot} from 'react-hot-loader'
 

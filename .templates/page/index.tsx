@@ -1,7 +1,7 @@
 // import * as Router from '@reach/router'
 // import {Head} from '@shared/components'
 // import {APP_TITLE} from '@shared/config'
-// import {Store} from '@website/types'
+// import {Store} from '@website/stores'
 // import {inject, observer} from 'mobx-react'
 // import * as React from 'react'
 // import {hot} from 'react-hot-loader'

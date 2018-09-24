@@ -1,4 +1,4 @@
-import {Store} from '@website/types'
+import {Store} from '@website/stores'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 

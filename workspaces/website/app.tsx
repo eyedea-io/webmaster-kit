@@ -5,8 +5,8 @@ import {loadable} from '@shared/utils/loadable'
 import '@shared/utils/normalize'
 import {ThemeProvider} from '@shared/utils/styled'
 import {Modals} from '@website/components'
+import {Store} from '@website/stores'
 import '@website/styles'
-import {Store} from '@website/types'
 import {observer, Provider} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
@@ -23,14 +23,17 @@ export class App extends React.Component<{}, {
     super(props)
     this.state = {error: null}
   }
+
   componentDidMount() {
     if (SENTRY_URL) {
       Raven.config(SENTRY_URL).install()
     }
   }
+
   componentDidCatch(error: any) {
     this.setState({error})
   }
+
   render() {
     if (this.state.error) {
       return <RedBox error={this.state.error} />

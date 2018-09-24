@@ -4,27 +4,23 @@ import {APP_TITLE} from '@shared/config'
 import {Form} from '@shared/types/form'
 import {isEmail} from '@shared/utils/is-email'
 import {AuthForm, Heading} from '@website/pages/auth/styled'
-import {Store} from '@website/types'
+import {WithStore} from '@website/types'
 import {as} from '@website/utils/as'
 import {observable} from 'mobx'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 
-interface Props extends Router.RouteComponentProps<{}> {
-  store: Store
-}
-
 @inject('store')
 @as.member(() => <Router.Redirect to="/" noThrow />)
 @hot(module)
 @observer
-class Register extends React.Component<Props> {
+class Register extends React.Component<WithStore> {
   @observable private errors = observable.map()
   @observable private isLoading = false
   private form: Form
 
-  constructor(props: Props) {
+  constructor(props: WithStore) {
     super(props)
 
     const {t} = this.props.store

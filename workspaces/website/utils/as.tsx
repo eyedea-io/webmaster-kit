@@ -1,5 +1,5 @@
 import {defineAs} from '@shared/utils/define-as'
-import {Store} from '@website/types'
+import {Store} from '@website/stores'
 
 interface Props {
   store: Store

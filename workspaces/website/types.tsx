@@ -1,8 +1,13 @@
-import {RouteComponentProps as WithParams} from '@reach/router'
+import {NavigateFn, WindowLocation} from '@reach/router'
 import {Store} from '@website/stores'
 
-interface WithStore {
-  store: Store
+export interface WithStore {
+  store?: Store
 }
-
-export {WithStore, WithParams}
+export type WithParams<TParams = {}> = Partial<TParams> & {
+    path?: string
+    default?: boolean
+    location?: WindowLocation
+    navigate?: NavigateFn
+    uri?: string
+}

@@ -34,8 +34,7 @@
     "./typings/index.d.ts"
   ],
   "include": [
-    "workspaces/**/*",
-    "syncano/**/*"
+    "workspaces/**/*"
   ],
   "exclude": [
     ".config/**/*",

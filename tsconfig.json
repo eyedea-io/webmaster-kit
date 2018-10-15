@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./workspaces",
     "outDir": "./build/",
+    "noEmit": true,
     "paths": {
       "@shared/*": ["./shared/*"],
       "@website/*": ["./website/*"]

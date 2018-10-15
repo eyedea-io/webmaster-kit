@@ -16,30 +16,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        exclude: [/node_modules/],
-        use: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: {
-              useBabel: true,
-              babelCore: '@babel/core',
-              transpileOnly: true,
-              useCache: true,
-              reportFiles: [
-                "workspaces/**/*.{ts,tsx}"
-              ]
-            }
-          }
-        ]
-      },
-      {
         enforce: 'pre',
         test: /\.js$/,
         loader: 'source-map-loader',
         exclude: [
           /node_modules\/mutationobserver-shim/
         ],
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader'
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

@@ -4,6 +4,7 @@
       "modules": false,
       "loose": true
     }],
+    "@babel/preset-typescript",
     "@babel/preset-react"
   ],
   "plugins": [
@@ -30,7 +31,11 @@
       ]
     },
     "test": {
-      "presets": ["@babel/preset-env", "@babel/preset-react"],
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-typescript",
+        "@babel/preset-react"
+      ],
       "plugins": [
         "transform-runtime",
         "transform-es2015-modules-commonjs"

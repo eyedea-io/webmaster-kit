@@ -7,12 +7,15 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 module.exports = merge(common, {
   mode: 'production',
   plugins: [
+    new CompressionPlugin(),
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
     }),
     new SWPrecacheWebpackPlugin({
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       filename: 'service-worker.js',
+      minify: true,
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
       logger(message) {
         if (message.indexOf('Total precache size is') === 0) {
           return;
@@ -20,17 +23,9 @@ module.exports = merge(common, {
         if (message.indexOf('Skipping static resource') === 0) {
           return;
         }
+
         console.log(message);
       },
-      minify: true,
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    }),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8,
     }),
   ]
 })

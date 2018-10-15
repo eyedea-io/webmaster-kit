@@ -139,24 +139,10 @@ exports[`<App /> renders 1`] = `
     }
   >
     <React.Fragment>
-      <Router>
-        <LoadableComponent
-          path="/"
-        />
-        <LoadableComponent
-          path="auth/login"
-        />
-        <LoadableComponent
-          path="auth/register"
-        />
-        <LoadableComponent
-          path="auth/logout"
-        />
-        <LoadableComponent
-          default={true}
-        />
-      </Router>
-      <Modals />
+      <inject-Routes-with-store />
+      <Unknown />
+      <GlobalStyleComponent />
+      <GlobalStyleComponent />
     </React.Fragment>
   </ThemeProvider>
 </Provider>

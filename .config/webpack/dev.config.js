@@ -22,8 +22,10 @@ module.exports = merge(common, {
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: ['Live at: http://localhost:8080'],
-        notes: ['Analyze bundle at: http://localhost:8888']
+        messages: [
+          'Server: http://localhost:8080',
+          'Bundle: http://localhost:8888'
+        ],
       }
     }),
   ]

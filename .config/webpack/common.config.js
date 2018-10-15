@@ -23,6 +23,7 @@ module.exports = {
             loader: 'awesome-typescript-loader',
             options: {
               useBabel: true,
+              babelCore: '@babel/core',
               transpileOnly: true,
               useCache: true,
               reportFiles: [

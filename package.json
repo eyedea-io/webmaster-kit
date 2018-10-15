@@ -3,29 +3,25 @@
   "scripts": {
     "dev": "webpack-dev-server --config .config/webpack --env",
     "build": "webpack -p --config .config/webpack --env",
+    "test-size": "bundlesize",
     "test-unit": "NODE_ENV=test jest workspaces --config .config/jest/config.js",
     "test-lint": "stylelint './workspaces/**/*.tsx' --config ./.config/stylelint.json",
     "format": "npx tslint --fix -c tslint.json ./workspaces/**/*.tsx",
     "cosmos": "cosmos --config ./.config/cosmos/config.js",
-    "cosmos:export": "cosmos-export --config ./.config/cosmos/config.js",
-    "size": "bundlesize"
+    "cosmos:export": "cosmos-export --config ./.config/cosmos/config.js"
   },
   "bundlesize": [
     {
       "path": ".build/**/main.*.js",
-      "maxSize": "200 kB"
+      "maxSize": "20 kB"
     },
     {
-      "path": ".build/**/*.js",
-      "maxSize": "30 kB"
+      "path": ".build/**/vendors.*.js",
+      "maxSize": "220 kB"
     },
     {
-      "path": ".build/**/*.png",
-      "maxSize": "1024 kB"
-    },
-    {
-      "path": ".build/**/*.jpg",
-      "maxSize": "700 kB"
+      "path": ".build/**/[1-9].*.js",
+      "maxSize": "50 kB"
     }
   ],
   "dependencies": {
@@ -40,7 +36,7 @@
     "@syncano/client": "0.14.0-alpha.08c691ab",
     "babel-jest": "23.6.0",
     "babel-runtime": "6.26.0",
-    "bundlesize": "^0.17.0",
+    "bundlesize": "0.17.0",
     "hoist-non-react-statics": "3.0.1",
     "loadable-components": "2.2.3",
     "mobx": "5.5.0",

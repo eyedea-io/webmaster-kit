@@ -6,8 +6,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 module.exports = {
   context: resolve(__dirname, '../../workspaces'),
   output: {
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].chunk.js',
+    filename: '[name].[contenthash].js',
     publicPath: '/'
   },
   resolve: {
@@ -18,26 +17,29 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
+        exclude: [/node_modules/],
         use: [
           {
             loader: 'awesome-typescript-loader',
             options: {
               useBabel: true,
+              transpileOnly: true,
               useCache: true,
               reportFiles: [
                 "workspaces/**/*.{ts,tsx}"
               ]
             }
-          },
-          {
-            loader: 'stylelint-custom-processor-loader',
-            options: {
-              configPath: './.config/stylelint.json'
-            }
           }
         ]
       },
-      {enforce: 'pre', test: /\.js$/, loader: 'source-map-loader'},
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        exclude: [
+          /node_modules\/mutationobserver-shim/
+        ],
+      },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader']
@@ -45,9 +47,20 @@ module.exports = {
     ]
   },
   optimization: {
-    runtimeChunk: 'single'
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/](react|react-dom|mobx|mobx-react|mobx-state-tree)[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   },
   plugins: [
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
     new ForkTsCheckerWebpackPlugin({
       tsconfig: resolve('./tsconfig.json'),
       tslint: resolve('./tslint.json'),

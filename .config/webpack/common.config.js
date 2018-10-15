@@ -49,7 +49,23 @@ module.exports = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      tsconfig: resolve('./tsconfig.json')
+      tsconfig: resolve('./tsconfig.json'),
+      tslint: resolve('./tslint.json'),
+      logger: {
+        ...console,
+        info: (...args) => {
+          if (typeof args[0] === 'string' && (
+            /^Time/.test(args[0]) ||
+            /^Version:/.test(args[0]) ||
+            /No type errors found/.test(args[0]) ||
+            /No lint errors found/.test(args[0])
+          )) {
+            return null
+          }
+
+          return console.info(...args)
+        }
+      }
     }),
     new webpack.DefinePlugin({
       'process.env.SYNCANO_PROJECT_INSTANCE': JSON.stringify(

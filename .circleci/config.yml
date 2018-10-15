@@ -28,7 +28,7 @@ jobs:
           - v1-dependencies-
       - run:
           name: Create .npmrc with Font Awesome Pro token
-          command: echo '@fortawesome:registry=https://npm.fontawesome.com/$FONTAWESOME_TOKEN' >> .npmrc
+          command: echo @fortawesome:registry=https://npm.fontawesome.com/$FONTAWESOME_TOKEN >> .npmrc
       - run:
           name: Installing Dependencies
           command: yarn

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./workspaces",
     "outDir": "./build/",
+    "noEmit": true,
     "paths": {
       "@shared/*": ["./shared/*"],
       "@website/*": ["./website/*"]
@@ -33,8 +34,7 @@
     "./typings/index.d.ts"
   ],
   "include": [
-    "workspaces/**/*",
-    "syncano/**/*"
+    "workspaces/**/*"
   ],
   "exclude": [
     ".config/**/*",

@@ -7,8 +7,8 @@ module.exports = {
   },
   "globals": {
     "ts-jest": {
-      "useBabelrc": true,
-      "tsConfigFile": "../../tsconfig.test.json"
+      "babelConfig": true,
+      "tsConfig": "tsconfig.test.json"
     }
   },
   "moduleFileExtensions": [

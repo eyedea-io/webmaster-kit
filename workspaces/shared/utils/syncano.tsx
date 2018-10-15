@@ -8,10 +8,15 @@ export function syncano(url: string, data?: object) {
 
     s.setToken(token)
 
-    return s.post(url, data)
+    return s.post(url, data, {
+      params: {
+        // INFO: this fixed user_key attached twice to url
+        user_key: undefined,
+      },
+    })
   } catch (err) {
     // tslint:disable-next-line:no-console
-    console.error(err)
+    console.error(err.message)
   }
 
   return new Promise(() => {

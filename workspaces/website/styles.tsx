@@ -1,8 +1,8 @@
 import {UI} from '@shared/config'
-import {injectGlobal} from '@shared/utils/styled'
+import {createGlobalStyle} from '@shared/utils/styled'
 
 // tslint:disable-next-line:no-unused-expression
-injectGlobal`
+export const GlobalCSS = createGlobalStyle`
   html {
     color: ${UI.colors.default.hex};
     font-size: 1em;

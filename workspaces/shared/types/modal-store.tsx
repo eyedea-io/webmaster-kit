@@ -5,13 +5,13 @@ export const ModalStore = types
     active: types.maybe(types.enumeration([''])),
   })
   .actions(self => ({
-    open(name: string) {
+    open(name: any) {
       self.active = name
     },
     close() {
       self.active = undefined
     },
-    toggle(name: string) {
+    toggle(name: any) {
       self.active = self.active ? undefined : name
     },
   }))

@@ -15,7 +15,7 @@ const spin = keyframes`
   }
 `
 
-const StyledSpinner = styled.svg.attrs({
+const StyledSpinner = styled.svg.attrs<Props>({
   fill: props => props.white ? 'white' : props.theme.colors.primary.hex,
   xmlns: 'http://www.w3.org/2000/svg',
   viewBox: '0 0 512 512',

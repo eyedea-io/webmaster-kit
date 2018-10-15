@@ -1,7 +1,9 @@
-// export {NavLink} from '@reach/router'
 import {Link as RouterLink} from '@reach/router'
 import {Block} from '@shared/components/block'
-export const Link = Block.withComponent(RouterLink).extend`display: inline-block;`
+import styled from '@shared/utils/styled'
+import * as React from 'react'
+const StyledLink = styled(Block)`display: inline-block;`
+export const Link = (props) => <StyledLink as={RouterLink} {...props} />
 
 export {Head} from '@shared/components/head'
 export {InputList} from '@shared/components/input-list'

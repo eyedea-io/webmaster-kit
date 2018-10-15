@@ -1,5 +1,6 @@
 import {Block, Props as BlockProps} from '@shared/components/block'
 import {Spinner} from '@shared/components/spinner'
+import styled from '@shared/utils/styled'
 import * as React from 'react'
 
 export interface Props extends React.ButtonHTMLAttributes<{}>, BlockProps {
@@ -9,7 +10,7 @@ export interface Props extends React.ButtonHTMLAttributes<{}>, BlockProps {
   variant: 'primary' | 'positive' | 'negative'
 }
 
-const StyledButton = Block.withComponent('button').extend.attrs({})<Props>`
+const StyledButton = styled(Block).attrs({})<Props>`
   transition-property: transform, box-shadow, background;
   transition-duration: 0.25s;
   letter-spacing: .025em;
@@ -48,7 +49,7 @@ const StyledButton = Block.withComponent('button').extend.attrs({})<Props>`
 `
 
 export const Button = ({loading, ...props}: Props) => (
-  <StyledButton {...props}>
+  <StyledButton {...props} as="button">
     {loading ? <Spinner white small /> : props.children}
   </StyledButton>
 )

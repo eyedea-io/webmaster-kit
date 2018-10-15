@@ -81,10 +81,10 @@ export interface Theme {
 const {
   default: styled,
   css,
-  injectGlobal,
   keyframes,
   ThemeProvider,
+  createGlobalStyle,
 } = styledComponents as ThemedStyledComponentsModule<Theme>
 
-export {css, injectGlobal, keyframes, ThemeProvider}
+export {css, createGlobalStyle, keyframes, ThemeProvider}
 export default styled

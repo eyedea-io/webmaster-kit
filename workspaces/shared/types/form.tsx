@@ -46,9 +46,12 @@ export const Form = types
       }), {})
     },
     editable(name: string) {
+      const {t} = getRoot<any>(self)
+      const {placeholder} = self.fields[name]
+
       return {
         ...self.fields[name],
-        placeholder: getRoot(self).t`${self.fields[name].placeholder}`,
+        placeholder: t ? t`${placeholder}` : placeholder,
         name,
         id: name,
         onChange: self.handleChange,

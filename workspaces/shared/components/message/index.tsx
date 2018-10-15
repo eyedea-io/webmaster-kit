@@ -1,5 +1,6 @@
 import {Block} from '@shared/components/block'
 import {Icon} from '@shared/components/icon'
+import styled from '@shared/utils/styled'
 import * as React from 'react'
 
 export interface Props {
@@ -8,7 +9,7 @@ export interface Props {
   children?: React.ReactChild
 }
 
-const StyledMessage = Block.extend.attrs({})<Props>`
+const StyledMessage = styled(Block).attrs({})<Props>`
   position: relative;
   min-height: 1em;
   line-height: 1em;

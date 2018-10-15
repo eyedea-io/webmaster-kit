@@ -2,11 +2,12 @@ import {Router} from '@reach/router'
 import {SENTRY_URL, UI} from '@shared/config'
 import {createStore} from '@shared/utils/create-store'
 import {loadable} from '@shared/utils/loadable'
-import '@shared/utils/normalize'
+import {NormalizeCSS} from '@shared/utils/normalize'
 import {ThemeProvider} from '@shared/utils/styled'
 import {Modals} from '@website/components'
 import {Store} from '@website/stores'
 import '@website/styles'
+import {GlobalCSS} from '@website/styles'
 import {observer, Provider} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
@@ -52,6 +53,8 @@ export class App extends React.Component<{}, {
             </Router>
 
             <Modals />
+            <NormalizeCSS />
+            <GlobalCSS />
           </React.Fragment>
         </ThemeProvider>
       </Provider>

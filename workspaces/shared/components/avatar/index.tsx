@@ -9,7 +9,7 @@ export interface Props extends BlockProps {
   size?: number
 }
 
-const StyledAvatar = Block.extend`
+const StyledAvatar = styled(Block)`
   display: inline-flex;
   border: ${(props: Props) =>  props.src ? 'none' : `1px solid ${`hsl(${hashStr(props.id) % 360}, 60%, 92%)`}`};
   border-radius: 50%;

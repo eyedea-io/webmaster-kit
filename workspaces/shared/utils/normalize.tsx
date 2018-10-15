@@ -1,7 +1,7 @@
-import {injectGlobal} from '@shared/utils/styled'
+import {createGlobalStyle} from '@shared/utils/styled'
 
 // tslint:disable-next-line:no-unused-expression
-injectGlobal`
+export const NormalizeCSS = createGlobalStyle`
   /* normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
   *,

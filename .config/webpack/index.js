@@ -11,7 +11,7 @@ process.noDeprecation = true
 
 module.exports = function(workspace) {
   if (workspace === true) {
-    console.error(`\n Workspace name is required. \n\n Example: yarn dev website \n`)
+    console.error(`\n Workspace name is required. \n\n Example: npm run dev website \n`)
     process.exit(1)
   }
 

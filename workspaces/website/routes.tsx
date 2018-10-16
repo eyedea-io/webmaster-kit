@@ -1,4 +1,5 @@
 import {Router} from '@reach/router'
+import {ROUTER_BASEPATH} from '@shared/config'
 import {loadable} from '@shared/utils/loadable'
 import '@shared/utils/normalize'
 import '@website/styles'
@@ -17,11 +18,11 @@ export interface Props extends WithStore {}
 export class Routes extends React.Component<Props> {
   render() {
     return (
-      <Router>
+      <Router basepath={ROUTER_BASEPATH}>
         <routes.Index path="/" />
-        <routes.Auth.Login path="auth/login" />
-        <routes.Auth.Register path="auth/register" />
-        <routes.Auth.Logout path="auth/logout" />
+        <routes.Auth.Login path="/auth/login" />
+        <routes.Auth.Register path="/auth/register" />
+        <routes.Auth.Logout path="/auth/logout" />
         <routes.Missing default />
       </Router>
     )

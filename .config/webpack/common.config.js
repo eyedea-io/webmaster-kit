@@ -3,6 +3,15 @@ const {resolve} = require('path')
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
+const ENV_VARS = [
+  'SYNCANO_PROJECT_INSTANCE',
+  'SENTRY_URL',
+  'PUBLIC_URL',
+  'TRACKJS_KEY',
+  'LOCAL_STORAGE_KEY',
+  'ROUTER_BASEPATH',
+]
+
 module.exports = {
   context: resolve(__dirname, '../../workspaces'),
   output: {
@@ -70,22 +79,11 @@ module.exports = {
         }
       }
     }),
-    new webpack.DefinePlugin({
-      'process.env.SYNCANO_PROJECT_INSTANCE': JSON.stringify(
-        process.env.SYNCANO_PROJECT_INSTANCE
-      ),
-      'process.env.SENTRY_URL': JSON.stringify(
-        process.env.SENTRY_URL
-      ),
-      'process.env.PUBLIC_URL': JSON.stringify(
-        process.env.PUBLIC_URL
-      ),
-      'process.env.TRACKJS_KEY': JSON.stringify(
-        process.env.TRACKJS_KEY
-      ),
-      'process.env.LOCAL_STORAGE_KEY': JSON.stringify(
-        process.env.LOCAL_STORAGE_KEY
-      )
-    })
+    new webpack.DefinePlugin(
+      ENV_VARS.reduce((all, name) => ({
+        ...all,
+        [`process.env.${name}`]: JSON.stringify(process.env[name])
+      }), {})
+    )
   ]
 }

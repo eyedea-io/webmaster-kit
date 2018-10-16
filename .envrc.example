@@ -1,3 +1,6 @@
+# Render a root router in sub directory
+export ROUTER_BASEPATH=
+
 #  Syncano instance attached to project
 export SYNCANO_PROJECT_INSTANCE=
 

@@ -57,3 +57,11 @@ To setup error tracking, set `SENTRY_URL` environment variable to your sentry pr
 ```sh
 SENTRY_URL=https://XXXXXXXXX@sentry.io/XXXXXXX
 ```
+
+## Render application at sub directory
+
+To render app at sub directory, set `ROUTER_BASEPATH` environment variable the sub directory name.
+
+```sh
+ROUTER_BASEPATH=/sub-directory-name
+```

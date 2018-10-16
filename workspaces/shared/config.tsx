@@ -7,6 +7,7 @@ export const SENTRY_URL = process.env.SENTRY_URL
 export const TRACKJS_KEY = process.env.TRACKJS_KEY
 export const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY
 export const SYNCANO_PROJECT_INSTANCE = process.env.SYNCANO_PROJECT_INSTANCE
+export const ROUTER_BASEPATH = process.env.ROUTER_BASEPATH || ''
 export const UI: Theme = {
   spacing: spacing(8),
   radius: '5px',

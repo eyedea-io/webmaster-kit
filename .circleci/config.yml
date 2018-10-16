@@ -51,7 +51,7 @@ jobs:
           at: .
       - run:
           name: Build website workspace
-          command: npm build website
+          command: npm run build website
       - store_artifacts:
           path: .build/website
       - persist_to_workspace:

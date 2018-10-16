@@ -20,8 +20,8 @@ npm run dev website
 **Build single workspace**:
 
 ```sh
-# npm build <workspace>
-npm build website
+# npm run build <workspace>
+npm run build website
 ```
 
 ## Adding new workspaces
@@ -47,7 +47,7 @@ module.exports = function(config) {
 To setup service worker, during build set `PUBLIC_PATH` to website URL.
 
 ```sh
-PUBLIC_PATH=https://website.example npm build website
+PUBLIC_PATH=https://website.example npm run build website
 ```
 
 ## Configure error tracking with Sentry

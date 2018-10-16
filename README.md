@@ -1,27 +1,27 @@
 # Eyedea Webmaster Kit
 
 ![npm](https://img.shields.io/npm/l/express.svg)
-![yarn](https://img.shields.io/badge/install-yarn-blue.svg)
+![npm](https://img.shields.io/badge/install-npm-blue.svg)
 
 ## Getting started
 
-**Install with yarn**:
+**Install dependencies**:
 ```sh
-yarn
+npm
 ```
 
 **Run development mode**:
 
 ```sh
-# yarn dev <workspace>
-yarn dev website
+# npm run dev <workspace>
+npm run dev website
 ```
 
 **Build single workspace**:
 
 ```sh
-# yarn build <workspace>
-yarn build website
+# npm run build <workspace>
+npm run build website
 ```
 
 ## Adding new workspaces
@@ -29,7 +29,7 @@ yarn build website
 Create `workspaces/<workspace_name>/index.tsx` and run:
 
 ```sh
-yarn dev <workspace_name>
+npm run dev <workspace_name>
 ```
 
 ## Custom workspace webpack config
@@ -47,7 +47,7 @@ module.exports = function(config) {
 To setup service worker, during build set `PUBLIC_PATH` to website URL.
 
 ```sh
-PUBLIC_PATH=https://website.example yarn build website
+PUBLIC_PATH=https://website.example npm run build website
 ```
 
 ## Configure error tracking with Sentry

@@ -10,7 +10,7 @@ import {hot} from 'react-hot-loader'
 class Logout extends React.Component<WithStore> {
   componentDidMount() {
     this.props.store.userStore.logout()
-    Router.redirectTo('/')
+    Router.navigate('/auth/login')
   }
 
   render () {

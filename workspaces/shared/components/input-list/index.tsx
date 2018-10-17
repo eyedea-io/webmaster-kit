@@ -21,7 +21,7 @@ const InputError = styled.div`
 `
 
 const InputListComponent: React.SFC<Props> = ({
-  children, errors, errorsPosition = 'each', ...props
+  children, errors = {}, errorsPosition = 'each', ...props
 }: Props) => {
   const err = isObservableMap(errors) ? errors.toJSON() : errors
   const matchedErrors = getMatchedErrors(children, err)
@@ -80,7 +80,7 @@ function getMatchedErrors(children: React.ReactNode, errors: object) {
   const errorKeys = Object.keys(errors)
 
   return React.Children
-    .map(children, (input: any) => input.props.name)
+    .map(children || [], (input: any) => input.props.name)
     .filter(item => errorKeys.indexOf(item) >= 0)
     .reduce((all, key) => {
       all[key] = errors[key]

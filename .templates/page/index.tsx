@@ -1,6 +1,6 @@
 // import * as Router from '@reach/router'
 // import {Head} from '@shared/components'
-// import {APP_TITLE} from '@website/config'
+// import {WORKSPACE_TITLE} from '@website/config'
 // import {Store} from '@website/stores'
 // import {inject, observer} from 'mobx-react'
 // import * as React from 'react'
@@ -23,7 +23,7 @@
 //     return (
 //       <div>
 //         <Head>
-//           <title>{APP_TITLE}</title>
+//           <title>{WORKSPACE_TITLE}</title>
 //         </Head>
 
 //         <View>

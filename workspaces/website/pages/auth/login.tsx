@@ -9,13 +9,11 @@ import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 
-interface Props extends WithStore {}
-
 @inject('store')
 @as.member(() => <Router.Redirect to="/" noThrow />)
 @hot(module)
 @observer
-class Login extends React.Component<Props> {
+class Login extends React.Component<WithStore> {
   private errors = observable.map()
   private isLoading = observable.box(false)
   private form = this.props.store.formStore.add('login', {

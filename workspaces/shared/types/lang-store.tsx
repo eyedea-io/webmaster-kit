@@ -1,10 +1,10 @@
 import * as translations from '@shared/lang'
-import {APP_LANG} from '@website/config'
+import {WORKSPACE_LANG} from '@website/config'
 import {types} from 'mobx-state-tree'
 
 export const LangStore = types
   .model({
-    language: types.optional(types.string, APP_LANG),
+    language: types.optional(types.string, WORKSPACE_LANG),
   })
   .actions(self => ({
     setLanguage(value: string) {
@@ -24,7 +24,7 @@ export const LangStore = types
         return translations[language][id] || id
       }
 
-      return translations[APP_LANG][id] || translations.EN[id] || id
+      return translations[WORKSPACE_LANG][id] || translations.EN[id] || id
     },
   }))
 

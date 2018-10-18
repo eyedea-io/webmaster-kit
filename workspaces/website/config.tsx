@@ -1,8 +1,8 @@
 import {color, media, spacing} from '@shared/utils/css-helpers'
 import {Theme} from '@shared/utils/styled'
 
-export const APP_TITLE = process.env.APP_TITLE || 'Webmaster App'
-export const APP_LANG = process.env.APP_LANG || 'EN'
+export const WORKSPACE_TITLE = process.env.WORKSPACE_TITLE || 'Webmaster App'
+export const WORKSPACE_LANG = process.env.WORKSPACE_LANG || 'EN'
 export const SENTRY_URL = process.env.SENTRY_URL
 export const TRACKJS_KEY = process.env.TRACKJS_KEY
 export const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY

@@ -1,5 +1,5 @@
 import {Head, Link, List} from '@shared/components'
-import {APP_TITLE} from '@website/config'
+import {WORKSPACE_TITLE} from '@website/config'
 import {View} from '@website/pages/landing/styled'
 import {WithStore} from '@website/types'
 import {inject, observer} from 'mobx-react'
@@ -10,7 +10,7 @@ import {hot} from 'react-hot-loader'
 @inject('store')
 @observer
 class Landing extends React.Component<WithStore> {
-  private readonly title = APP_TITLE
+  private readonly title = WORKSPACE_TITLE
 
   render() {
     return (

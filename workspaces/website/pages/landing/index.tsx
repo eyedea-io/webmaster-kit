@@ -1,5 +1,4 @@
-import {Head, Link, List} from '@shared/components'
-import {WORKSPACE_TITLE} from '@website/config'
+import {Link, List, Title} from '@shared/components'
 import {View} from '@website/pages/landing/styled'
 import {WithStore} from '@website/types'
 import {inject, observer} from 'mobx-react'
@@ -10,14 +9,10 @@ import {hot} from 'react-hot-loader'
 @inject('store')
 @observer
 class Landing extends React.Component<WithStore> {
-  private readonly title = WORKSPACE_TITLE
-
   render() {
     return (
       <React.Fragment>
-        <Head>
-          <title>{this.title}</title>
-        </Head>
+        <Title />
 
         <View>
           <h1>Webmaster Kit</h1>

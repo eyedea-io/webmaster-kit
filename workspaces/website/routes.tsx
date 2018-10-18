@@ -1,7 +1,7 @@
 import {Router} from '@reach/router'
-import {ROUTER_BASEPATH} from '@shared/config'
 import {loadable} from '@shared/utils/loadable'
 import '@shared/utils/normalize'
+import {ROUTER_BASEPATH} from '@website/config'
 import '@website/styles'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'

@@ -1,6 +1,6 @@
 import {Block} from '@shared/components/block'
-import {UI} from '@shared/config'
 import styled, {css} from '@shared/utils/styled'
+import {UI} from '@website/config'
 
 type Spacing = 'none' | 'xxxs' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
 

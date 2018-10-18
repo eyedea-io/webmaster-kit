@@ -1,4 +1,4 @@
-import {LOCAL_STORAGE_KEY} from '@shared/config'
+import {LOCAL_STORAGE_KEY} from '@website/config'
 import {IModelType, onSnapshot} from 'mobx-state-tree'
 
 let snapshotListener: any

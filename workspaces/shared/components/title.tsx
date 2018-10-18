@@ -1,4 +1,4 @@
-import {APP_TITLE} from '@shared/config'
+import {APP_TITLE} from '@website/config'
 import * as React from 'react'
 import {Head} from './head'
 

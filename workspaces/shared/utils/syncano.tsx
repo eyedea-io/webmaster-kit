@@ -1,5 +1,5 @@
-import {SYNCANO_PROJECT_INSTANCE} from '@shared/config'
 import Syncano from '@syncano/client'
+import {SYNCANO_PROJECT_INSTANCE} from '@website/config'
 
 export function syncano(url: string, data?: object) {
   try {

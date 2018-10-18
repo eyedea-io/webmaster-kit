@@ -1,7 +1,7 @@
 import {Link as RouterLink} from '@reach/router'
 import {Block} from '@shared/components/block'
-import {ROUTER_BASEPATH} from '@shared/config'
 import styled from '@shared/utils/styled'
+import {ROUTER_BASEPATH} from '@website/config'
 import * as React from 'react'
 
 const StyledLink = styled(Block)`display: inline-block;`

@@ -1,5 +1,5 @@
 import {Head, Link} from '@shared/components'
-import {APP_TITLE} from '@shared/config'
+import {APP_TITLE} from '@website/config'
 import {View} from '@website/pages/missing/styled'
 import {WithStore} from '@website/types'
 import {inject} from 'mobx-react'

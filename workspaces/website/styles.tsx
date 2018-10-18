@@ -1,7 +1,6 @@
-import {UI} from '@shared/config'
 import {createGlobalStyle} from '@shared/utils/styled'
+import {UI} from '@website/config'
 
-// tslint:disable-next-line:no-unused-expression
 export const GlobalCSS = createGlobalStyle`
   html {
     color: ${UI.colors.default.hex};

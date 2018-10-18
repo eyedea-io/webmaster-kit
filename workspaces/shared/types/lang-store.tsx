@@ -1,5 +1,5 @@
-import {APP_LANG} from '@shared/config'
 import * as translations from '@shared/lang'
+import {APP_LANG} from '@website/config'
 import {types} from 'mobx-state-tree'
 
 export const LangStore = types

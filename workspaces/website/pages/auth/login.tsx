@@ -2,17 +2,14 @@ import * as Router from '@reach/router'
 import {Button, Input, InputList, Link, Title} from '@shared/components'
 import {isEmail} from '@shared/utils/is-email'
 import {AuthForm, Heading} from '@website/pages/auth/styled'
-import {Store} from '@website/stores'
-import {WithParams} from '@website/types'
+import {WithStore} from '@website/types'
 import {as} from '@website/utils/as'
 import {observable} from 'mobx'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 
-interface Props extends WithParams {
-  store: Store
-}
+interface Props extends WithStore {}
 
 @inject('store')
 @as.member(() => <Router.Redirect to="/" noThrow />)

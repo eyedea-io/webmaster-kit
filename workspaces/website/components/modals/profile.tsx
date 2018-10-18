@@ -1,10 +1,8 @@
-import {Store} from '@website/stores'
+import {WithStore} from '@website/types'
 import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 
-interface Props {
-  store: Store
-}
+interface Props extends WithStore {}
 
 @inject('store')
 @observer

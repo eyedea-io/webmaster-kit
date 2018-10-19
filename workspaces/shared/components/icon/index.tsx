@@ -37,19 +37,8 @@ function getType(variant: FontVariant) {
  */
 import {library} from '@fortawesome/fontawesome'
 
-const falCheck = require('@fortawesome/fontawesome-pro-light/faCheck')
-
-const farCheck = require('@fortawesome/fontawesome-pro-regular/faCheck')
-const farCheckCircle = require('@fortawesome/fontawesome-pro-regular/faCheckCircle')
-const farTimesCircle = require('@fortawesome/fontawesome-pro-regular/faTimesCircle')
-
-const fasCheck = require('@fortawesome/fontawesome-pro-solid/faCheck')
-const fasCheckCircle = require('@fortawesome/fontawesome-pro-solid/faCheckCircle')
-const fasTimesCircle = require('@fortawesome/fontawesome-pro-solid/faTimesCircle')
-
 const fabFacebookF = require('@fortawesome/fontawesome-free-brands/faFacebookF')
 
 library.add(
-  farCheck, farCheckCircle, farTimesCircle, fasCheckCircle, fasTimesCircle, fasCheck,
-  falCheck, fabFacebookF
+  fabFacebookF
 )

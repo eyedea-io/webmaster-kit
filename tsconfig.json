@@ -8,6 +8,8 @@
       "@website/*": ["./website/*"]
     },
     "noUnusedParameters": true,
+    "sourceRoot": ".build/website",
+    "inlineSources": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "sourceMap": true,

@@ -41,7 +41,6 @@ module.exports = function(workspace) {
 function getHTMLConfig(workspace) {
   const html = {
     templateParameters: {
-      sentry: process.env.SENTRY_URL,
       trackjs: process.env.TRACKJS_KEY
     },
     template: resolve(__dirname, `./template.html`)

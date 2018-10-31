@@ -5,7 +5,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const ENV_VARS = [
   'SYNCANO_PROJECT_INSTANCE',
-  'SENTRY_URL',
+  'SENTRY_DSN',
   'PUBLIC_URL',
   'TRACKJS_KEY',
   'LOCAL_STORAGE_KEY',

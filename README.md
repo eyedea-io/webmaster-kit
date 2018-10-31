@@ -52,10 +52,10 @@ PUBLIC_PATH=https://website.example npm run build website
 
 ## Configure error tracking with Sentry
 
-To setup error tracking, set `SENTRY_URL` environment variable to your sentry project url.
+To setup error tracking, set `SENTRY_DSN` environment variable to your sentry project url.
 
 ```sh
-SENTRY_URL=https://XXXXXXXXX@sentry.io/XXXXXXX
+SENTRY_DSN=https://XXXXXXXXX@sentry.io/XXXXXXX
 ```
 
 ## Render application at sub directory

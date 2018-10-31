@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import {User} from '@shared/types/user'
 import {syncano} from '@shared/utils/syncano'
 import {applySnapshot, flow, getRoot, types} from 'mobx-state-tree'
@@ -26,6 +27,13 @@ export const UserStore = types
 
       try {
         self.profile = yield syncano('api/user/profile')
+
+        Sentry.configureScope((scope) => {
+          scope.setUser({
+            id: self.profile.id.toString(),
+            email: self.profile.username,
+          })
+        })
       } catch (error) {
         if (error.response.status === 401) {
           self.setToken()

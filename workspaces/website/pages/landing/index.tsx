@@ -9,6 +9,12 @@ import {hot} from 'react-hot-loader'
 @inject('store')
 @observer
 class Landing extends React.Component<WithStore> {
+  componentDidMount() {
+    setTimeout(() => {
+      throw new Error('wazaaap')
+    }, 4000)
+  }
+
   render() {
     return (
       <React.Fragment>

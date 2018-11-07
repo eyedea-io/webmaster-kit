@@ -20,14 +20,16 @@ export class SentryErrorBoundary extends React.Component<{}, State> {
   }
 
   render() {
-      if (this.state.error) {
-          // render fallback UI
-          return (
-            <a onClick={() => Sentry.showReportDialog()}>Report feedback</a>
-          )
-      } else {
-          // when there's not an error, render children untouched
-          return this.props.children
-      }
+    if (this.state.error) {
+      // render fallback UI
+      return (
+        <div>
+          An error occured. Component can not be displayed.
+        </div>
+      )
+    }
+
+    // when there's not an error, render children untouched
+    return this.props.children
   }
 }

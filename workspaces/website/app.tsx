@@ -1,4 +1,4 @@
-// import {SentryErrorBoundary} from '@shared/components/sentry-error-boundary'
+import {SentryErrorBoundary} from '@shared/components/sentry-error-boundary'
 import {createStore} from '@shared/utils/create-store'
 import {initSentry} from '@shared/utils/init-sentry'
 import {NormalizeCSS} from '@shared/utils/normalize'
@@ -13,16 +13,14 @@ import * as React from 'react'
 import {hot} from 'react-hot-loader'
 import {Routes} from './routes'
 
-@hot(module)
-@observer
-export class App extends React.Component {
+class App extends React.Component {
   componentDidMount() {
     initSentry()
   }
 
-  // <SentryErrorBoundary>
   render() {
     return (
+      <SentryErrorBoundary>
         <Provider store={createStore(Store)}>
           <ThemeProvider theme={UI}>
             <React.Fragment>
@@ -33,8 +31,9 @@ export class App extends React.Component {
             </React.Fragment>
           </ThemeProvider>
         </Provider>
+      </SentryErrorBoundary>
     )
   }
 }
 
-// </SentryErrorBoundary>
+export default hot(module)(observer(App))

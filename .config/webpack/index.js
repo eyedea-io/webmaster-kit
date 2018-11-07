@@ -1,7 +1,6 @@
 const {join, resolve} = require('path')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const prod = require('./prod.config.js')
 const dev = require('./dev.config.js')
@@ -15,7 +14,7 @@ module.exports = function(workspace) {
     process.exit(1)
   }
 
-  const envConfig = process.argv.indexOf('-p') !== -1 ? prod : dev
+  const envConfig = process.argv.indexOf('-p') !== -1 ? prod(workspace) : dev(workspace)
   const htmlConfig = getHTMLConfig(workspace)
   const config = merge(envConfig, {
     entry: `../workspaces/${workspace}`,
@@ -24,8 +23,8 @@ module.exports = function(workspace) {
     },
     plugins: [
       new HtmlWebpackPlugin(htmlConfig),
-      new CleanWebpackPlugin([workspace], {root: join(__dirname, '../../.build')}),
       new CopyWebpackPlugin([
+        join(__dirname, '../.syncanoignore'),
         {
           context: join(__dirname, `../../workspaces/${workspace}/public`),
           from: '**/*',

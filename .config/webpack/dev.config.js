@@ -5,13 +5,20 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const common = require('./common.config.js')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
-module.exports = merge(common, {
+const devtoolModuleFilenameTemplate = (info) => {
+  const {absoluteResourcePath} = info
+
+  return absoluteResourcePath.startsWith('/') ? resolve(absoluteResourcePath).replace(/\\/g, '/') : undefined
+}
+
+module.exports = () => merge(common, {
   mode: 'development',
   devtool: 'cheap-module-source-map',
   output: {
     filename: '[name].[hash].js',
     chunkFilename: '[name].[hash].js',
-    publicPath: '/'
+    publicPath: '/',
+    devtoolModuleFilenameTemplate,
   },
   devServer: {
     historyApiFallback: true,

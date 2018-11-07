@@ -4,7 +4,6 @@
       "modules": false,
       "loose": true
     }],
-    "@babel/preset-typescript",
     "@babel/preset-react"
   ],
   "plugins": [

@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "./workspaces",
+    "baseUrl": "./",
     "outDir": "./build/",
     "noEmit": true,
     "paths": {
-      "@shared/*": ["./shared/*"],
-      "@website/*": ["./website/*"]
+      "@shared/*": ["./workspaces/shared/*"],
+      "@website/*": ["./workspaces/website/*"]
     },
     "noUnusedParameters": true,
     "noUnusedLocals": true,

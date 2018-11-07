@@ -6,7 +6,7 @@ import {setConfig} from 'react-hot-loader'
 
 setConfig({logLevel: 'no-errors-please'})
 
-const App = loadable(() => import('@website/app').then(res => res.App || res))
+const App = loadable(() => import('@website/app'))
 const root = document.querySelector('#root')
 
 if (process.env.NODE_ENV === 'production') {

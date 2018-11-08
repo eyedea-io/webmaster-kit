@@ -15,16 +15,12 @@ module.exports = (workspace) => merge(common, {
   output: {
     devtoolModuleFilenameTemplate: (info) => info.resource
   },
-  plugins: [
+  plugins: getPlugins(workspace)
+})
+
+function getPlugins(workspace) {
+  const list = [
     new CleanWebpackPlugin([workspace], {root: join(__dirname, '../../.build')}),
-    new SentryWebpackPlugin({
-      include: resolve(__dirname, `../../.build/${workspace}`),
-      ext: ['map'],
-      release: RELEASE,
-      ignoreFile: '.sentrycliignore',
-      ignore: ['node_modules', 'webpack.config.js'],
-      configFile: 'sentry.properties'
-    }),
     new CompressionPlugin({
       exclude: /\.js\.map/
     }),
@@ -48,4 +44,19 @@ module.exports = (workspace) => merge(common, {
       },
     }),
   ]
-})
+
+  if (process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG && process.env.SENTRY_PROJECT)  {
+    list.push(
+      new SentryWebpackPlugin({
+        include: resolve(__dirname, `../../.build/${workspace}`),
+        ext: ['map'],
+        release: RELEASE,
+        ignoreFile: '.sentrycliignore',
+        ignore: ['node_modules', 'webpack.config.js'],
+        configFile: 'sentry.properties'
+      }),
+    )
+  }
+
+  return list
+}

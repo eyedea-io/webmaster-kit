@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/browser'
+import * as Sentry from '@sentry/core'
 import * as React from 'react'
 
 export interface State {

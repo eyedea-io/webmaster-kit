@@ -1,5 +1,4 @@
 const merge = require('webpack-merge')
-const CompressionPlugin = require('compression-webpack-plugin')
 const common = require('./common.config.js')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')

@@ -1,12 +1,26 @@
 const merge = require('webpack-merge')
 const common = require('./common.config.js')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const SentryWebpackPlugin = require('@sentry/webpack-plugin')
+const {resolve, join} = require('path')
 const BrotliGzipPlugin = require('brotli-gzip-webpack-plugin')
 
-module.exports = merge(common, {
+const RELEASE = require('child_process').execSync('git rev-parse --short HEAD').toString().trim()
+
+module.exports = (workspace) => merge(common, {
   mode: 'production',
-  plugins: [
+  devtool: 'source-map',
+  output: {
+    devtoolModuleFilenameTemplate: (info) => info.resource
+  },
+  plugins: getPlugins(workspace)
+})
+
+function getPlugins(workspace) {
+  const list = [
+    new CleanWebpackPlugin([workspace], {root: join(__dirname, '../../.build')}),
     new BrotliGzipPlugin({
         asset: '[path].br[query]',
         algorithm: 'brotli',
@@ -42,4 +56,19 @@ module.exports = merge(common, {
       },
     }),
   ]
-})
+
+  if (process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG && process.env.SENTRY_PROJECT)  {
+    list.push(
+      new SentryWebpackPlugin({
+        include: resolve(__dirname, `../../.build/${workspace}`),
+        ext: ['map'],
+        release: RELEASE,
+        ignoreFile: '.sentrycliignore',
+        ignore: ['node_modules', 'webpack.config.js'],
+        configFile: 'sentry.properties'
+      }),
+    )
+  }
+
+  return list
+}

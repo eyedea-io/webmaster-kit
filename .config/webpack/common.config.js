@@ -3,9 +3,10 @@ const {resolve} = require('path')
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
+const RELEASE = require('child_process').execSync('git rev-parse --short HEAD').toString().trim()
 const ENV_VARS = [
   'SYNCANO_PROJECT_INSTANCE',
-  'SENTRY_URL',
+  'SENTRY_DSN',
   'PUBLIC_URL',
   'TRACKJS_KEY',
   'LOCAL_STORAGE_KEY',
@@ -20,7 +21,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.json', '.ts', '.tsx', '.js'],
-    plugins: [new TsConfigPathsPlugin()]
+    plugins: [new TsConfigPathsPlugin({
+      baseUrl: resolve(__dirname, '../../')
+    })],
   },
   module: {
     rules: [
@@ -34,9 +37,20 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/],
         use: [
-          'babel-loader'
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              useBabel: true,
+              babelCore: '@babel/core',
+              transpileOnly: true,
+              useCache: true,
+              reportFiles: [
+                "workspaces/**/*.{ts,tsx}"
+              ]
+            }
+          }
         ]
       },
       {
@@ -82,7 +96,8 @@ module.exports = {
     new webpack.DefinePlugin(
       ENV_VARS.reduce((all, name) => ({
         ...all,
-        [`process.env.${name}`]: JSON.stringify(process.env[name])
+        [`process.env.${name}`]: JSON.stringify(process.env[name]),
+        [`process.env.RELEASE`]: JSON.stringify(RELEASE),
       }), {})
     )
   ]

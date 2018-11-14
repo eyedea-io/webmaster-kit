@@ -11,5 +11,8 @@ export PUBLIC_URL=
 export LOCAL_STORAGE_KEY=
 
 # Bug tracking
-export SENTRY_URL=
+export SENTRY_DSN=
+export SENTRY_AUTH_TOKEN=
+export SENTRY_ORG=
+export SENTRY_PROJECT=
 export TRACKJS_KEY=

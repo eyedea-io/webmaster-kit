@@ -4,7 +4,7 @@ const common = require('./common.config.js')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-const SentryWebpackPlugin = require('@sentry/webpack-plugin');
+const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 const {resolve, join} = require('path')
 
 const RELEASE = require('child_process').execSync('git rev-parse --short HEAD').toString().trim()

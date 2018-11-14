@@ -1,11 +1,11 @@
 const merge = require('webpack-merge')
-const CompressionPlugin = require('compression-webpack-plugin')
 const common = require('./common.config.js')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 const {resolve, join} = require('path')
+const BrotliGzipPlugin = require('brotli-gzip-webpack-plugin')
 
 const RELEASE = require('child_process').execSync('git rev-parse --short HEAD').toString().trim()
 
@@ -21,8 +21,20 @@ module.exports = (workspace) => merge(common, {
 function getPlugins(workspace) {
   const list = [
     new CleanWebpackPlugin([workspace], {root: join(__dirname, '../../.build')}),
-    new CompressionPlugin({
-      exclude: /\.js\.map/
+    new BrotliGzipPlugin({
+        asset: '[path].br[query]',
+        algorithm: 'brotli',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 10240,
+        minRatio: 0.8,
+        quality: 11,
+    }),
+    new BrotliGzipPlugin({
+        asset: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 10240,
+        minRatio: 0.8
     }),
     new ManifestPlugin({
       fileName: 'asset-manifest.json',

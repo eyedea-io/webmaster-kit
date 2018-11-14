@@ -10,8 +10,6 @@ setup-env: &setup-env
         env=PRODUCTION
       fi
 
-      eval echo "export STARTUP_USER_ACCEPT_INVITATION_URL=\$${env}_STARTUP_USER_ACCEPT_INVITATION_URL" >> $BASH_ENV
-      eval echo "export COMPANY_USER_ACCEPT_INVITATION_URL=\$${env}_COMPANY_USER_ACCEPT_INVITATION_URL" >> $BASH_ENV
       eval echo "export SYNCANO_PROJECT_INSTANCE=\$${env}_SYNCANO_PROJECT_INSTANCE" >> $BASH_ENV
       eval echo "export PUBLIC_URL=\$${env}_PUBLIC_URL" >> $BASH_ENV
       echo 'export SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY' >> $BASH_ENV

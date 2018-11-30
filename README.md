@@ -24,6 +24,21 @@ npm run dev website
 npm run build website
 ```
 
+## Tech stack
+
+- @reach/router
+- Codecov 
+- Google Analytics
+- Jest
+- MobX/MobX State Tree
+- React Cosmos
+- Sentry
+- Styled Components
+- Stylelint, tslint
+- Syncano
+- Typescript
+- Webpack
+
 ## Adding new workspaces
 
 Create `workspaces/<workspace_name>/index.tsx` and run:

@@ -178,7 +178,7 @@ jobs:
 
   test-lighthouse:
     docker:
-      - image: circleci/node:9.10.0
+      - image: circleci/node:9.8.0-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -255,6 +255,13 @@ workflows:
               only: master
       - test-lighthouse:
           requires:
-            - test-lint
-            - test-size
-            - test-unit
+            - upload-staging-website
+          filters:
+            branches:
+              only: master
+      - test-lighthouse:
+          requires:
+            - upload-website
+          filters:
+            branches:
+              only: production

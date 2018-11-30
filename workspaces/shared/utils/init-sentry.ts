@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/browser'
-import {NODE_ENV, RELEASE, SENTRY_DSN} from '@website/config'
+import {RELEASE, SENTRY_DSN, SENTRY_ENV} from '@website/config'
 
 export const initSentry = () => {
   if (!SENTRY_DSN) {
@@ -8,7 +8,7 @@ export const initSentry = () => {
 
   Sentry.init({
     dsn: SENTRY_DSN,
-    environment: NODE_ENV,
+    environment: SENTRY_ENV,
     release: RELEASE,
   })
 }

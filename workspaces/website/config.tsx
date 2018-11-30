@@ -5,6 +5,7 @@ export const WORKSPACE_TITLE = process.env.WORKSPACE_TITLE || 'Webmaster App'
 export const WORKSPACE_LANG = process.env.WORKSPACE_LANG || 'EN'
 export const SENTRY_DSN = process.env.SENTRY_DSN
 export const RELEASE = process.env.RELEASE
+export const SENTRY_ENV = process.env.SENTRY_ENV
 export const NODE_ENV = process.env.NODE_ENV
 export const LOCAL_STORAGE_KEY = process.env.LOCAL_STORAGE_KEY
 export const SYNCANO_PROJECT_INSTANCE = process.env.SYNCANO_PROJECT_INSTANCE

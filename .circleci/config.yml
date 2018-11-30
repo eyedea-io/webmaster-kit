@@ -232,12 +232,6 @@ workflows:
           filters:
             branches:
               only: master
-      - test-lighthouse:
-          requires:
-            - upload-website
-          filters:
-            branches:
-              only: production
       - deploy-sockets:
           requires:
             - test-lint

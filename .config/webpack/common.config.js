@@ -3,7 +3,7 @@ const {resolve} = require('path')
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
-const RELEASE = require('child_process').execSync('git rev-parse --short HEAD').toString().trim()
+const RELEASE = require('child_process').execSync('git rev-parse HEAD').toString().trim()
 const ENV_VARS = [
   'SYNCANO_PROJECT_INSTANCE',
   'SENTRY_DSN',

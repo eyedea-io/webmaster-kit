@@ -4,12 +4,15 @@ setup-env: &setup-env
   run:
     name: Setting up env variables
     command: |
-      if [ "${CIRCLE_BRANCH}" == "master" ]; then
-        env=STAGING
-      else
+      if [ "${CIRCLE_BRANCH}" == "production" ]; then
+        echo 'export SENTRY_ENV=production' >> $BASH_ENV
         env=PRODUCTION
+      else
+        echo 'export SENTRY_ENV=staging' >> $BASH_ENV
+        env=STAGING
       fi
 
+      echo 'export VERSION=$(npx sentry-cli releases propose-version)' >> $BASH_ENV
       eval echo "export SYNCANO_PROJECT_INSTANCE=\$${env}_SYNCANO_PROJECT_INSTANCE" >> $BASH_ENV
       eval echo "export PUBLIC_URL=\$${env}_PUBLIC_URL" >> $BASH_ENV
       echo 'export SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY' >> $BASH_ENV
@@ -142,6 +145,16 @@ jobs:
     working_directory: ~/repo
     steps: *deploy-sockets-steps
 
+  configure-sentry-deploy-tracking:
+    docker:
+      - image: circleci/node:9.10.0
+    working_directory: ~/repo
+    steps:
+      - *setup-env
+      - run: npx sentry-cli releases new -p $CIRCLE_PROJECT_REPONAME $VERSION
+      - run: npx sentry-cli releases set-commits --auto $VERSION
+      - run: npx sentry-cli releases deploys $VERSION new -e $SENTRY_ENV
+
 workflows:
   version: 2
   build-test-deploy:
@@ -184,4 +197,15 @@ workflows:
           filters:
             branches:
               only: production
-
+      - configure-sentry-deploy-tracking:
+          requires:
+            - upload-website
+          filters:
+            branches:
+              only: production
+      - configure-sentry-deploy-tracking:
+          requires:
+            - upload-staging-website
+          filters:
+            branches:
+              only: master

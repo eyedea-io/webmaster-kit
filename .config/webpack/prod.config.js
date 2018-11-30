@@ -7,7 +7,7 @@ const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 const {resolve, join} = require('path')
 const BrotliGzipPlugin = require('brotli-gzip-webpack-plugin')
 
-const RELEASE = require('child_process').execSync('git rev-parse --short HEAD').toString().trim()
+const RELEASE = require('child_process').execSync('git rev-parse HEAD').toString().trim()
 
 module.exports = (workspace) => merge(common, {
   mode: 'production',

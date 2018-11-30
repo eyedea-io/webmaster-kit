@@ -153,10 +153,15 @@ jobs:
       - *setup-env
       - attach_workspace:
           at: .
-      - run: echo 'export VERSION=$(npx sentry-cli releases propose-version)' >> $BASH_ENV
-      - run: npx sentry-cli releases new -p $CIRCLE_PROJECT_REPONAME $VERSION
-      - run: npx sentry-cli releases set-commits --auto $VERSION
-      - run: npx sentry-cli releases deploys $VERSION new -e $SENTRY_ENV
+      - run:
+          name: Setting up env variables
+          command: |
+            if [ "${SENTRY_PROJECT}" ]; then
+              echo 'export VERSION=$(npx sentry-cli releases propose-version)' >> $BASH_ENV
+              npx sentry-cli releases new -p $SENTRY_PROJECT $VERSION
+              npx sentry-cli releases set-commits --auto $VERSION
+              npx sentry-cli releases deploys $VERSION new -e $SENTRY_ENV
+            fi
 
 workflows:
   version: 2

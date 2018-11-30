@@ -154,6 +154,7 @@ jobs:
       - *setup-env
       - attach_workspace:
           at: .
+      - run: echo 1
       - run: npx sentry-cli releases new -p $CIRCLE_PROJECT_REPONAME $VERSION
       - run: npx sentry-cli releases set-commits --auto $VERSION
       - run: npx sentry-cli releases deploys $VERSION new -e $SENTRY_ENV

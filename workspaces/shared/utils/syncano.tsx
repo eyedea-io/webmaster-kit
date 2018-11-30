@@ -17,6 +17,10 @@ export function syncano(url: string, data?: object) {
   } catch (err) {
     // tslint:disable-next-line:no-console
     console.error(err.message)
+
+    err.response = {data: {}}
+
+    throw err
   }
 
   return new Promise(() => {

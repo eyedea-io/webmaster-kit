@@ -228,6 +228,7 @@ workflows:
               only: master
       - test-lighthouse:
           requires:
+            - test-size
             - upload-staging-website
       - test-lighthouse:
           requires:

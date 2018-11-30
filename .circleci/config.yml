@@ -187,7 +187,7 @@ jobs:
           at: .
       - run:
           name: Run Lighthouse Test
-          command: npx lighthouse-ci $PUBLIC_URL --score=90 --report=.lighthouse
+          command: npx lighthouse-ci $PUBLIC_URL --score=90
       - store_artifacts:
           path: .lighthouse
 
@@ -226,7 +226,9 @@ workflows:
           filters:
             branches:
               only: master
-      - test-lighthouse
+      - test-lighthouse:
+          requires:
+            - upload-staging-website
       - deploy-sockets:
           requires:
             - test-lint

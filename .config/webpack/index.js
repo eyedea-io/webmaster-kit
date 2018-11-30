@@ -39,9 +39,6 @@ module.exports = function(workspace) {
 
 function getHTMLConfig(workspace) {
   const html = {
-    templateParameters: {
-      trackjs: process.env.TRACKJS_KEY
-    },
     template: resolve(__dirname, `./template.html`)
   }
   const favicon = resolve(__dirname, `../../workspaces/${workspace}/public/favicon.ico`)

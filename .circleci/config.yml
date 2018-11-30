@@ -49,6 +49,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - *setup-env
       - attach_workspace:
           at: .
       - run:

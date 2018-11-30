@@ -229,6 +229,9 @@ workflows:
       - test-lighthouse:
           requires:
             - upload-staging-website
+          filters:
+            branches:
+              only: master
       - deploy-sockets:
           requires:
             - test-lint

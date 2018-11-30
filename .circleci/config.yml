@@ -12,7 +12,6 @@ setup-env: &setup-env
         env=STAGING
       fi
 
-      echo 'export VERSION=$(npx sentry-cli releases propose-version)' >> $BASH_ENV
       eval echo "export SYNCANO_PROJECT_INSTANCE=\$${env}_SYNCANO_PROJECT_INSTANCE" >> $BASH_ENV
       eval echo "export PUBLIC_URL=\$${env}_PUBLIC_URL" >> $BASH_ENV
       echo 'export SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY' >> $BASH_ENV
@@ -154,7 +153,7 @@ jobs:
       - *setup-env
       - attach_workspace:
           at: .
-      - run: echo 1
+      - run: echo 'export VERSION=$(npx sentry-cli releases propose-version)' >> $BASH_ENV
       - run: npx sentry-cli releases new -p $CIRCLE_PROJECT_REPONAME $VERSION
       - run: npx sentry-cli releases set-commits --auto $VERSION
       - run: npx sentry-cli releases deploys $VERSION new -e $SENTRY_ENV

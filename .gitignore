@@ -17,6 +17,7 @@ node_modules
 # Other
 .DS_Store
 Thumbs.db
+.coverage
 .envrc
 .npmrc
 .vscode

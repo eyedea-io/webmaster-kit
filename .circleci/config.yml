@@ -212,3 +212,11 @@ workflows:
           filters:
             branches:
               only: master
+      - report-coverage:
+          requires:
+            - test-lint
+            - test-size
+            - test-unit
+          filters:
+            branches:
+              only: master

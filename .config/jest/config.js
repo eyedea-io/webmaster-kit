@@ -22,6 +22,12 @@ module.exports = {
   "transform": {
     "\\.(ts|tsx)$": "ts-jest"
   },
+  "collectCoverage": true,
+  "coverageDirectory": "../../.coverage/",
+  "collectCoverageFrom": [
+    "../../workspaces/**/*.{tsx}",
+    "!**/node_modules/**"
+  ],
   "testMatch": [
     "**/workspaces/**/*.test.(ts|tsx|js)"
   ],

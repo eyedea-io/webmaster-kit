@@ -1,5 +1,6 @@
 import {Block} from '@shared/components/block'
 import styled from '@shared/utils/styled'
+import * as React from 'react'
 import {hot} from 'react-hot-loader'
 
 const StyledLabel = styled(Block)`

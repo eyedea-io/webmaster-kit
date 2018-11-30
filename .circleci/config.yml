@@ -187,7 +187,7 @@ jobs:
           at: .
       - run:
           name: Run Lighthouse Test
-          command: npx lighthouse-ci $PUBLIC_URL --score=90
+          command: npx lighthouse-ci $PUBLIC_URL --score=80 --progress=50
       - store_artifacts:
           path: .lighthouse
 

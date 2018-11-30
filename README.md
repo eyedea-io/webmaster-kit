@@ -52,12 +52,15 @@ PUBLIC_PATH=https://website.example npm run build website
 
 ## Configure error tracking with Sentry
 
-To setup error tracking, set `SENTRY_DSN` environment variable to your sentry project url.
-
-```sh
-SENTRY_DSN=https://XXXXXXXXX@sentry.io/XXXXXXX
-```
-
+1. Configure CircleCI env variables:
+  ```sh
+  SENTRY_DSN=https://XXXXXXXXX@sentry.io/XXXXXXX
+  SENTRY_ORG=
+  SENTRY_PROJECT=
+  SENTRY_AUTH_TOKEN=
+  ```
+2. Setup [repository integration](https://docs.sentry.io/workflow/releases/?platform=javascript#a-link-a-repository) on Sentry
+  
 ## Render application at sub directory
 
 To render app at sub directory, set `ROUTER_BASEPATH` environment variable the sub directory name.

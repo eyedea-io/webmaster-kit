@@ -68,3 +68,7 @@ To render app at sub directory, set `ROUTER_BASEPATH` environment variable the s
 ```sh
 ROUTER_BASEPATH=/sub-directory-name
 ```
+
+## Code Coverage
+
+To configure code coverage, set `CODECOV_TOKEN` environment variable on CircleCI. Learn more at https://codecov.io

@@ -226,16 +226,7 @@ workflows:
           filters:
             branches:
               only: master
-      - test-lighthouse:
-          requires:
-            - test-size
-            - upload-staging-website
-          filters:
-            branches:
-              only: master
-      - test-lighthouse:
-          requires:
-            - upload-website
+      - test-lighthouse
       - deploy-sockets:
           requires:
             - test-lint

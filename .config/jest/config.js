@@ -23,7 +23,7 @@ module.exports = {
   "collectCoverage": true,
   "coverageDirectory": "./.coverage/",
   "collectCoverageFrom": [
-    "<rootDir>/workspaces/**/*.{tsx}"
+    "workspaces/**/*.{tsx}"
   ],
   "testMatch": [
     "<rootDir>/workspaces/**/*.test.(ts|tsx|js)"

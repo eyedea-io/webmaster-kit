@@ -7,6 +7,10 @@ export SYNCANO_PROJECT_INSTANCE=
 # Website url needed to setup service worker
 export PUBLIC_URL=
 
+# Google tag manager variables
+export GTM_ID=
+export GTM_ENV=
+
 # Key under which whole app data will be stored
 export LOCAL_STORAGE_KEY=
 

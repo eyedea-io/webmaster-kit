@@ -12,9 +12,13 @@ setup-env: &setup-env
         env=STAGING
       fi
 
-      eval echo "export SYNCANO_PROJECT_INSTANCE=\$${env}_SYNCANO_PROJECT_INSTANCE" >> $BASH_ENV
-      eval echo "export PUBLIC_URL=\$${env}_PUBLIC_URL" >> $BASH_ENV
-      echo 'export SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY' >> $BASH_ENV
+      eval echo 'export SYNCANO_PROJECT_INSTANCE=\$${env}_SYNCANO_PROJECT_INSTANCE' >> $BASH_ENV
+      eval echo 'export PUBLIC_URL=\$${env}_PUBLIC_URL' >> $BASH_ENV
+      eval echo 'export GTM_ID=${GTM_ID}' >> $BASH_ENV
+      eval echo 'export GTM_ENV=\$${env}_GTM_ENV' >> $BASH_ENV
+      eval echo 'export STARTUP_USER_ACCEPT_INVITATION_URL=\$${env}_STARTUP_USER_ACCEPT_INVITATION_URL' >> $BASH_ENV
+      eval echo 'export COMPANY_USER_ACCEPT_INVITATION_URL=\$${env}_COMPANY_USER_ACCEPT_INVITATION_URL' >> $BASH_ENV
+      eval echo 'export SYNCANO_AUTH_KEY=$SYNCANO_AUTH_KEY' >> $BASH_ENV
 
 jobs:
   install:

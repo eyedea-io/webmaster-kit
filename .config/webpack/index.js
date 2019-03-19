@@ -41,8 +41,7 @@ function getHTMLConfig(workspace) {
   const html = {
     templateParameters: {
       trackjs: process.env.TRACKJS_KEY,
-      GTM_ID: process.env.GTM_ID,
-      GTM_ENV: process.env.GTM_ENV
+      GTM_ID: process.env.GTM_ID
     },
     template: resolve(__dirname, `./template.html`)
   }

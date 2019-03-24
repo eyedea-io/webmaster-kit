@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/browser'
+import * as Sentry from '@sentry/browser/esm'
 import {User} from '@shared/types/user'
 import {syncano} from '@shared/utils/syncano'
-import {applySnapshot, flow, getRoot, types} from 'mobx-state-tree'
+import {applySnapshot, flow, getRoot, Instance, types} from 'mobx-state-tree'
 
 export const UserStore = types
   .model('UserStore', {
@@ -20,7 +20,7 @@ export const UserStore = types
     },
   }))
   .actions(self => ({
-    fetchProfile: flow(function * () {
+    fetchProfile: flow(function* () {
       if (!self.token) {
         return
       }
@@ -29,10 +29,12 @@ export const UserStore = types
         self.profile = yield syncano('api/user/profile')
 
         Sentry.configureScope((scope) => {
-          scope.setUser({
-            id: self.profile.id.toString(),
-            email: self.profile.username,
-          })
+          if (self.profile !== undefined) {
+            scope.setUser({
+              id: self.profile.id.toString(),
+              email: self.profile.username,
+            })
+          }
         })
       } catch (error) {
         if (error.response.status === 401) {
@@ -43,7 +45,7 @@ export const UserStore = types
     }),
   }))
   .actions(self => ({
-    afterCreate: flow(function * () {
+    afterCreate: flow(function* () {
       self.token = window.localStorage.getItem('token') || ''
       self.fetchProfile()
     }),
@@ -52,14 +54,14 @@ export const UserStore = types
       self.profile = undefined
       applySnapshot(getRoot(self), {})
     },
-    login: flow(function * (credentials: {username: string, password: string}) {
+    login: flow(function* (credentials: {username: string, password: string}) {
       const {token} = yield syncano('user-auth/login', credentials)
 
       self.setToken(token)
 
       return self.fetchProfile()
     }),
-    register: flow(function * (credentials: {username: string, password: string}) {
+    register: flow(function* (credentials: {username: string, password: string}) {
       const {token} = yield syncano('user-auth/register', credentials)
 
       self.setToken(token)
@@ -68,5 +70,4 @@ export const UserStore = types
     }),
   }))
 
-type UserStoreType = typeof UserStore.Type
-export interface UserStore extends UserStoreType {}
+export interface UserStore extends Instance<typeof UserStore> {}

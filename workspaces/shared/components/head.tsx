@@ -17,7 +17,7 @@ const DOMAttributeNames = {
 }
 
 export class Head extends Component {
-  updatePromise = null
+  updatePromise: Promise<any> | null = null
 
   constructor(props, state) {
     super(props, state)
@@ -26,7 +26,7 @@ export class Head extends Component {
 
   updateHead(head) {
     const promise = (this.updatePromise = Promise.resolve().then(() => {
-      if (promise !== this.updatePromise) { return }
+      if (promise !== this.updatePromise) {return }
 
       this.updatePromise = null
       this.doUpdateHead(head)
@@ -58,7 +58,7 @@ export class Head extends Component {
     } else {
       title = DEFAULT_TITLE
     }
-    if (title !== document.title) { document.title = title }
+    if (title !== document.title) {document.title = title}
   }
 
   updateElements(type, components) {
@@ -112,21 +112,21 @@ function unique() {
     switch (h.type) {
       case 'title':
       case 'base':
-        if (tags.has(h.type)) { return false }
+        if (tags.has(h.type)) {return false}
         tags.add(h.type)
         break
       case 'meta':
         for (let i = 0, len = METATYPES.length; i < len; i++) {
           const metatype = METATYPES[i]
-          if (!h.props.hasOwnProperty(metatype)) { continue }
+          if (!h.props.hasOwnProperty(metatype)) {continue}
 
           if (metatype === 'charSet') {
-            if (metaTypes.has(metatype)) { return false }
+            if (metaTypes.has(metatype)) {return false}
             metaTypes.add(metatype)
           } else {
             const category = h.props[metatype]
             const categories = metaCategories[metatype] || new Set()
-            if (categories.has(category)) { return false }
+            if (categories.has(category)) {return false}
             categories.add(category)
             metaCategories[metatype] = categories
           }
@@ -140,8 +140,8 @@ function unique() {
 function reactElementToDOM({type, props}) {
   const el = document.createElement(type)
   for (const p in props) {
-    if (!props.hasOwnProperty(p)) { continue }
-    if (p === 'children' || p === 'dangerouslySetInnerHTML') { continue }
+    if (!props.hasOwnProperty(p)) {continue}
+    if (p === 'children' || p === 'dangerouslySetInnerHTML') {continue}
 
     const attr = DOMAttributeNames[p] || p.toLowerCase()
     el.setAttribute(attr, props[p])

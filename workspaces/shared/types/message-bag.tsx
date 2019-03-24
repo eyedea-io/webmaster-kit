@@ -1,4 +1,4 @@
-import {types} from 'mobx-state-tree'
+import {Instance, types} from 'mobx-state-tree'
 
 export const MessageBag = types
   .model('MessageBag', {
@@ -33,15 +33,19 @@ export const MessageBag = types
       return self.messages.has(key)
     },
     first(key?: string): string {
-      const message = self.messages.get(key)
-
       if (key === undefined && self.messages.size) {
         const [name, value] = self.messages.entries()[0]
 
         return value || name
       }
 
-      return Array.isArray(message) ? message[0] : message
+      if (key !== undefined) {
+        const message = self.messages.get(key)
+
+        return Array.isArray(message) ? message[0] : message
+      }
+
+      return ''
     },
     get(key: string): Array<string> {
       const message = self.messages.get(key)
@@ -53,7 +57,7 @@ export const MessageBag = types
       return []
     },
     get all(): Array<string> {
-      const result = []
+      const result: string[] = []
 
       self.messages.forEach((value, key) => {
         if (value === '') {
@@ -76,5 +80,4 @@ export const MessageBag = types
     },
   }))
 
-type MessageBagType = typeof MessageBag.Type
-export interface MessageBag extends MessageBagType {}
+export interface MessageBag extends Instance<typeof MessageBag> {}

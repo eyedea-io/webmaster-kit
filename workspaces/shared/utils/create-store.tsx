@@ -3,11 +3,12 @@ import {IModelType, onSnapshot} from 'mobx-state-tree'
 
 let snapshotListener: any
 
-export const createStore = (Store: IModelType<{}, {}>) => {
-  const snapshot = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}')
+export const createStore = (Store: IModelType<any, any>) => {
+  const json = localStorage.getItem(LOCAL_STORAGE_KEY)
+  const snapshot = json === null ? {} : JSON.parse(json)
 
   // clean up snapshot listener
-  if (snapshotListener) { snapshotListener() }
+  if (snapshotListener) {snapshotListener()}
 
   window.store = window.store || Store.create(snapshot)
 

@@ -1,4 +1,4 @@
-import {types} from 'mobx-state-tree'
+import {Instance, types} from 'mobx-state-tree'
 
 export const User = types
   .model('User', {
@@ -12,5 +12,4 @@ export const User = types
     },
   }))
 
-type UserType = typeof User.Type
-export interface User extends UserType {}
+export interface User extends Instance<typeof User> {}

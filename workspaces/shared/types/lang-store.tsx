@@ -1,6 +1,6 @@
 import * as translations from '@shared/lang'
 import {WORKSPACE_LANG} from '@website/config'
-import {types} from 'mobx-state-tree'
+import {Instance, types} from 'mobx-state-tree'
 
 export const LangStore = types
   .model({
@@ -16,11 +16,11 @@ export const LangStore = types
       const language = self.language
 
       const value = key.reduce(
-        (accumulator, part, i) => accumulator + expressions[i - 1] + part
+        (accumulator: string | number, part: string | number, i: number) => accumulator + expressions[i - 1] + part
       )
       const id = Array.isArray(value) ? value[0] : value
 
-      if (language) {
+      if (language && translations[language]) {
         return translations[language][id] || id
       }
 
@@ -28,5 +28,4 @@ export const LangStore = types
     },
   }))
 
-type LangStoreType = typeof LangStore.Type
-export interface LangStore extends LangStoreType {}
+export interface LangStore extends Instance<typeof LangStore> {}

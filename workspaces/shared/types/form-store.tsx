@@ -22,7 +22,7 @@ export const FormStore = types
       return form
     },
 
-    get(name: string): Form {
+    get(name: string): Form | undefined {
       return self.forms.find(form => form.name === name)
     },
   }))

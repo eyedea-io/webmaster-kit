@@ -16,9 +16,11 @@ export const Form = types
   })
   .views(self => ({
     value(name: string, defaultValue: any = ''): any {
-      return self.fields.get(name).value || defaultValue
+      const field = self.fields.get(name)
+
+      return field ? field.value || defaultValue : defaultValue
     },
-    get data(): any  {
+    get data(): any {
       return Array.from(self.fields.entries())
         .reduce((all, [name, attrs]) => {
           return {
@@ -35,11 +37,14 @@ export const Form = types
     handleChange(event: React.FormEvent<HTMLInputElement> | string, value?: any) {
       const name = typeof event === 'string' ? event : event.currentTarget.name
       const val = typeof event === 'string' ? value : event.currentTarget.value
+      const field = self.fields.get(name)
 
-      self.fields.set(name, {
-        ...self.fields.get(name),
-        value: val || '',
-      })
+      if (field) {
+        self.fields.set(name, {
+          ...field,
+          value: val || '',
+        })
+      }
     },
   }))
   .actions(self => ({
@@ -48,7 +53,11 @@ export const Form = types
     },
     field(name: string): any {
       const {t} = getRoot<any>(self)
-      const {placeholder} = self.fields.get(name)
+      const field = self.fields.get(name)
+
+      if (!field) {return {}}
+
+      const {placeholder} = field
 
       return {
         ...self.fields.get(name),

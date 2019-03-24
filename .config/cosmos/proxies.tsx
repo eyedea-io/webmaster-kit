@@ -10,7 +10,7 @@ import {GlobalCSS} from '../../workspaces/website/styles'
 const createWrapperProxy = require('react-cosmos-wrapper-proxy').default
 
 const store = createStore(Store)
-const component = hot(module)(({children, ...props}) => {
+const component = ({children, ...props}) => {
   if (props.page === 'website' || props.page === undefined) {
     require('@website/styles')
   }
@@ -26,7 +26,7 @@ const component = hot(module)(({children, ...props}) => {
       </ThemeProvider>
     </Provider>
   )
-})
+}
 
 const wrapperProxy = createWrapperProxy({
   component,

@@ -1,39 +1,29 @@
-import {SentryErrorBoundary} from '@shared/components/sentry-error-boundary'
-import {createStore} from '@shared/utils/create-store'
-import {initSentry} from '@shared/utils/init-sentry'
-import {NormalizeCSS} from '@shared/utils/normalize'
-import {ThemeProvider} from '@shared/utils/styled'
-import {Modals} from '@website/components'
-import {UI} from '@website/config'
-import {Store} from '@website/stores'
-import '@website/styles'
-import {GlobalCSS} from '@website/styles'
-import {observer, Provider} from 'mobx-react'
+import {createHistory, LocationProvider} from '@reach/router'
+import {NormalizeCSS} from '@shared/utils/normalize-css'
+import {composeStateProviders} from '@shared/utils/state-manager'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
+import {handlePathnameChange} from './hooks/handle-pathname-change'
 import {Routes} from './routes'
+import {routeState} from './state/route'
+import {userState} from './state/user'
+import {GlobalCSS} from './styles'
 
-class App extends React.Component {
-  componentDidMount() {
-    initSentry()
-  }
+const history = createHistory(window as any)
 
-  render() {
-    return (
-      <SentryErrorBoundary>
-        <Provider store={createStore(Store)}>
-          <ThemeProvider theme={UI}>
-            <React.Fragment>
-              <Routes />
-              <Modals />
-              <NormalizeCSS />
-              <GlobalCSS />
-            </React.Fragment>
-          </ThemeProvider>
-        </Provider>
-      </SentryErrorBoundary>
-    )
-  }
+const App = () => {
+  handlePathnameChange(history)
+
+  return (
+    <LocationProvider history={history}>
+      <Routes />
+      <NormalizeCSS />
+      <GlobalCSS />
+    </LocationProvider>
+  )
 }
 
-export default hot(module)(observer(App))
+export default hot(module)(composeStateProviders(App, [
+  userState,
+  routeState,
+]))

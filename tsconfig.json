@@ -3,27 +3,46 @@
     "baseUrl": "./",
     "outDir": "./build/",
     "noEmit": true,
-    "paths": {
-      "@shared/*": ["./workspaces/shared/*"],
-      "@website/*": ["./workspaces/website/*"]
-    },
+    "strict": true,
+    "allowJs": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "importHelpers": true,
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames" : true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "moduleResolution": "node",
     "jsx": "preserve",
     "target": "esnext",
+    "module": "esnext",
     "typeRoots": [
       "node_modules/@types"
     ],
-    "module": "esnext",
+    "paths": {
+      "@shared/*": [
+        "./workspaces/shared/*"
+      ],
+      "@website/*": [
+        "./workspaces/website/*"
+      ]
+    },
     "lib": [
       "es6",
       "dom",
       "es2017"
-    ],
+    ] ,
     "plugins": [
+      {
+        "name": "typescript-tslint-plugin"
+      },
       {
         "name": "typescript-styled-plugin"
       }
@@ -36,7 +55,6 @@
     "workspaces/**/*"
   ],
   "exclude": [
-    ".config/**/*",
-    ".templates/**/*"
+    ".config/**/*"
   ]
 }

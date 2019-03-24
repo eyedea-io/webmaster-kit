@@ -4,7 +4,7 @@ import {SYNCANO_PROJECT_INSTANCE} from '@website/config'
 export function syncano(url: string, data?: object) {
   try {
     const s = new Syncano(SYNCANO_PROJECT_INSTANCE)
-    const token = window.localStorage.getItem('token')
+    const token = window.localStorage.getItem('token') || undefined
 
     s.setToken(token)
 
@@ -31,7 +31,7 @@ export function syncano(url: string, data?: object) {
   })
 }
 
-export function subscribe (
+export function subscribe(
   url: string,
   data?: Object
 ): WebSocket {

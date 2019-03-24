@@ -1,9 +1,7 @@
-import {createGlobalStyle} from '@shared/utils/styled'
-import {UI} from '@website/config'
+import {createGlobalStyle} from 'styled-components'
 
 export const GlobalCSS = createGlobalStyle`
   html {
-    color: ${UI.colors.default.hex};
     font-size: 1em;
     line-height: 1.25;
     background: hsl(0, 0%, 100%);
@@ -16,7 +14,6 @@ export const GlobalCSS = createGlobalStyle`
   }
 
   a {
-    color: ${UI.colors.primary.hex};
     cursor: pointer;
     text-decoration: none;
   }

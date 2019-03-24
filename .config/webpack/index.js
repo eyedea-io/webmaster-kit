@@ -1,4 +1,4 @@
-const {join, resolve} = require('path')
+const {resolve} = require('path')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -6,16 +6,18 @@ const prod = require('./prod.config.js')
 const dev = require('./dev.config.js')
 const fs = require('fs')
 
-process.noDeprecation = true
+// process.noDeprecation = true
 
-module.exports = function(workspace) {
+module.exports = function(workspace, env) {
+  const isEnvProduction = env === 'production' || process.argv.indexOf('-p') !== -1
+
   if (workspace === true) {
     console.error(`\n Workspace name is required. \n\n Example: npm run dev website \n`)
     process.exit(1)
   }
 
-  const envConfig = process.argv.indexOf('-p') !== -1 ? prod(workspace) : dev(workspace)
-  const htmlConfig = getHTMLConfig(workspace)
+  const envConfig = isEnvProduction ? prod(workspace) : dev(workspace)
+  const htmlConfig = getHTMLConfig(workspace, isEnvProduction)
   const config = merge(envConfig, {
     entry: `../workspaces/${workspace}`,
     output: {
@@ -24,11 +26,12 @@ module.exports = function(workspace) {
     plugins: [
       new HtmlWebpackPlugin(htmlConfig),
       new CopyWebpackPlugin([
-        join(__dirname, '../.syncanoignore'),
+        resolve(__dirname, '../.syncanoignore'),
         {
-          context: join(__dirname, `../../workspaces/${workspace}/public`),
+          context: resolve(__dirname, `../../workspaces/${workspace}/public`),
           from: '**/*',
-          to: join(__dirname, `../../.build/${workspace}`)
+          ignore: ['index.html'],
+          to: resolve(__dirname, `../../.build/${workspace}`)
         }
       ]),
     ]
@@ -37,10 +40,24 @@ module.exports = function(workspace) {
   return mergeWithCustomConfig(config, workspace)
 }
 
-function getHTMLConfig(workspace) {
-  const html = {
-    template: resolve(__dirname, `./template.html`)
-  }
+function getHTMLConfig(workspace, isEnvProduction) {
+  const html = Object.assign({}, {
+    inject: true,
+    template: resolve(__dirname, `./template.html`),
+  }, isEnvProduction ? {
+    minify: {
+      removeComments: true,
+      collapseWhitespace: true,
+      removeRedundantAttributes: true,
+      useShortDoctype: true,
+      removeEmptyAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      keepClosingSlash: true,
+      minifyJS: true,
+      minifyCSS: true,
+      minifyURLs: true,
+    }
+  } : undefined)
   const favicon = resolve(__dirname, `../../workspaces/${workspace}/public/favicon.ico`)
   const template = resolve(__dirname, `../../workspaces/${workspace}/public/index.html`)
 

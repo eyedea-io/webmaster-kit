@@ -1,45 +1,9 @@
 {
-  "presets": [
-    ["@babel/preset-env", {
-      "modules": false,
-      "loose": true,
-      "targets": "> 0.25%, not dead"
-    }],
-    "@babel/preset-react"
-  ],
+  "presets": [["react-app", { "flow": false, "typescript": true }]],
   "plugins": [
-    "syntax-dynamic-import",
-    ["@babel/plugin-proposal-decorators", {
-      "legacy": true
-    }],
-    "@babel/plugin-proposal-export-default-from",
-    "@babel/plugin-proposal-export-namespace-from",
-    "@babel/plugin-syntax-dynamic-import",
-    ["@babel/plugin-proposal-class-properties", {
-      "loose": true
-    }],
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-transform-runtime"
-  ],
-  "env": {
-    "development": {
-      "plugins": [
-        ["babel-plugin-styled-components", {
-          "displayName": true,
-          "fileName": false
-        }]
-      ]
-    },
-    "test": {
-      "presets": [
-        "@babel/preset-env",
-        "@babel/preset-typescript",
-        "@babel/preset-react"
-      ],
-      "plugins": [
-        "transform-runtime",
-        "transform-es2015-modules-commonjs"
-      ]
-    }
-  }
+    ["babel-plugin-styled-components", {
+      "displayName": true,
+      "fileName": false
+    }]
+  ]
 }

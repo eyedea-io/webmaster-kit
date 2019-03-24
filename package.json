@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --config .config/webpack --env",
-    "build": "node ./.config/webpack/build.js",
+    "dev": "NODE_ENV=development webpack-dev-server --config .config/webpack/webpack.config.js --env",
+    "build": "NODE_ENV=production node ./.config/webpack/build.js",
     "format": "npx tslint --fix -c tslint.json ./workspaces/**/*.tsx",
     "report-coverage": "codecov",
     "test-size": "npm i -D bundlesize && bundlesize",
@@ -105,8 +105,9 @@
     "webpack-merge": "4.2.1"
   },
   "browserslist": [
-    ">0.35%",
-    "not ie 11",
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
     "not op_mini all"
   ]
 }

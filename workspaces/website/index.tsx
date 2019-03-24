@@ -14,7 +14,9 @@ if (process.env.NODE_ENV === 'production') {
   render(
     <React.Suspense fallback={<div />}>
       <App />
-    </React.Suspense>, root)
+    </React.Suspense>,
+    root
+  )
 } else {
   const RedBox = require('redbox-react').default
 
@@ -22,7 +24,9 @@ if (process.env.NODE_ENV === 'production') {
     render(
       <React.Suspense fallback={<div />}>
         <App />
-      </React.Suspense>, root)
+      </React.Suspense>,
+      root
+    )
   } catch (e) {
     render(<RedBox error={e} />, root)
   }

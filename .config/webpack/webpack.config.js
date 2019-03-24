@@ -8,7 +8,6 @@ const tsResolve = require('resolve')
 const {TsconfigPathsPlugin} = require('tsconfig-paths-webpack-plugin')
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const pathsFactory = require('./paths')
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware')
@@ -16,6 +15,7 @@ const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMi
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
+const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const ignoredFiles = require('react-dev-utils/ignoredFiles')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
@@ -23,8 +23,6 @@ const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
-// tslint:disable: typedef
-// tslint:disable: no-console
 module.exports = function (workspace) {
   if (workspace === undefined) {
     console.error(`\n Workspace name is required. \n\n Example: npm run dev website \n`)
@@ -101,12 +99,23 @@ module.exports = function (workspace) {
       rules: [
         {parser: {requireEnsure: false}},
         {
+          test: /\.(js|mjs|jsx|ts|tsx)$/,
           enforce: 'pre',
-          test: /\.js$/,
-          loader: 'source-map-loader',
-          exclude: [
-            /node_modules\/mutationobserver-shim/,
+          use: [
+            {
+              options: {
+                formatter: require.resolve('react-dev-utils/eslintFormatter'),
+                eslintPath: require.resolve('eslint'),
+                baseConfig: {
+                  extends: [require.resolve('eslint-config-react-app')],
+                },
+                ignore: false,
+                useEslintrc: false,
+              },
+              loader: require.resolve('eslint-loader'),
+            },
           ],
+          include: paths.appSrc,
         },
         {
           oneOf: [
@@ -280,7 +289,6 @@ module.exports = function (workspace) {
         checkSyntacticErrors: true,
         silent: true,
         tsconfig: paths.tsconfig,
-        tslint: paths.tslint,
         formatter: isEnvProduction ? typescriptFormatter : undefined,
         typescript: tsResolve.sync('typescript', {
           basedir: paths.nodeModules,

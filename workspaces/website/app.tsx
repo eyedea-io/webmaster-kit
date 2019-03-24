@@ -3,16 +3,16 @@ import {NormalizeCSS} from '@shared/utils/normalize-css'
 import {composeStateProviders} from '@shared/utils/state-manager'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
-import {handlePathnameChange} from './hooks/handle-pathname-change'
+import {usePathnameChangeHandler} from './hooks/use-pathname-change-handler'
 import {Routes} from './routes'
 import {routeState} from './state/route'
-import {userState} from './state/user'
 import {GlobalCSS} from './styles'
+import {userState} from './state/user'
 
 const history = createHistory(window as any)
 
 const App = () => {
-  handlePathnameChange(history)
+  usePathnameChangeHandler(history)
 
   return (
     <LocationProvider history={history}>
@@ -23,7 +23,4 @@ const App = () => {
   )
 }
 
-export default hot(module)(composeStateProviders(App, [
-  userState,
-  routeState,
-]))
+export default hot(module)(composeStateProviders(App, [userState, routeState]))

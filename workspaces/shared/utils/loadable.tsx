@@ -6,7 +6,10 @@ export const loadable = (promise: () => Promise<any>) =>
   lazy<React.FC<RouteComponentProps<{}>>>(() => {
     const doc = document.querySelector('html') as HTMLHtmlElement
 
-    if (!doc.classList.contains('nprogress-busy') && (parseInt(doc.dataset.nprogress || '0', 10) || 0) === 0) {
+    if (
+      !doc.classList.contains('nprogress-busy') &&
+      (parseInt(doc.dataset.nprogress || '0', 10) || 0) === 0
+    ) {
       NProgress.start()
     }
 

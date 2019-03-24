@@ -1,4 +1,4 @@
-import {createState, IAction} from '@shared/utils/state-manager'
+import {IAction, createState} from '@shared/utils/state-manager'
 
 export const initialState = {
   pathname: '/' as string,
@@ -17,5 +17,4 @@ export const routeState = createState<IState, IActions>({
 })
 
 export type IState = typeof initialState
-export type IActions =
-  IAction<'setPathname', string>
+export type IActions = IAction<'setPathname', string>

@@ -1,0 +1,38 @@
+{
+  "tslint.enable": false,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "[typescript]": {
+    "editor.autoIndent": true,
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+  },
+  "[typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.trimAutoWhitespace": true,
+    "editor.autoIndent": true
+  },
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    },
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ]
+}

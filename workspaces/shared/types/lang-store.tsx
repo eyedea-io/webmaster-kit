@@ -16,7 +16,8 @@ export const LangStore = types
       const language = self.language
 
       const value = key.reduce(
-        (accumulator: string | number, part: string | number, i: number) => accumulator + expressions[i - 1] + part
+        (accumulator: string | number, part: string | number, i: number) =>
+          accumulator + expressions[i - 1] + part
       )
       const id = Array.isArray(value) ? value[0] : value
 

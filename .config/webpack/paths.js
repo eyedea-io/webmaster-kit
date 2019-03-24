@@ -2,7 +2,6 @@ const {resolve} = require('path')
 
 module.exports = (workspace) => ({
   tsconfig: resolve(__dirname, '../../tsconfig.json'),
-  tslint: resolve(__dirname, '../../tslint.json'),
   babelrc: resolve(__dirname, '../../.babelrc'),
   workspaces: resolve(__dirname, '../../workspaces'),
   sharedWorkspace: resolve(__dirname, '../../workspaces/shared'),

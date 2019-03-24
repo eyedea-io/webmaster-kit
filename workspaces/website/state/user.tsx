@@ -1,4 +1,4 @@
-import {createState, IAction} from '@shared/utils/state-manager'
+import {IAction, createState} from '@shared/utils/state-manager'
 import {User} from '@website/interfaces/user'
 
 const profile = {
@@ -17,9 +17,9 @@ export const userState = createState<IState, IActions>({
   actions: async (state, action) => {
     switch (action.type) {
       case 'setToken':
-        return state.token = action.payload
+        return (state.token = action.payload)
       case 'setProfile':
-        return state.profile = action.payload
+        return (state.profile = action.payload)
       default:
         throw new Error('Invalid userState reducer action')
     }
@@ -28,5 +28,5 @@ export const userState = createState<IState, IActions>({
 
 export type IState = typeof initialState
 export type IActions =
-  IAction<'setToken', string | undefined> |
-  IAction<'setProfile', User | undefined>
+  | IAction<'setToken', string | undefined>
+  | IAction<'setProfile', User | undefined>

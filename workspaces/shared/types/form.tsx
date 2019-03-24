@@ -21,13 +21,12 @@ export const Form = types
       return field ? field.value || defaultValue : defaultValue
     },
     get data(): any {
-      return Array.from(self.fields.entries())
-        .reduce((all, [name, attrs]) => {
-          return {
-            ...all,
-            [name]: attrs.value,
-          }
-        }, {})
+      return Array.from(self.fields.entries()).reduce((all, [name, attrs]) => {
+        return {
+          ...all,
+          [name]: attrs.value,
+        }
+      }, {})
     },
   }))
   .actions(self => ({
@@ -55,7 +54,9 @@ export const Form = types
       const {t} = getRoot<any>(self)
       const field = self.fields.get(name)
 
-      if (!field) {return {}}
+      if (!field) {
+        return {}
+      }
 
       const {placeholder} = field
 

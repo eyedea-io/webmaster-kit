@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser/esm'
 import {User} from '@shared/types/user'
 import {syncano} from '@shared/utils/syncano'
-import {applySnapshot, flow, getRoot, Instance, types} from 'mobx-state-tree'
+import {Instance, applySnapshot, flow, getRoot, types} from 'mobx-state-tree'
 
 export const UserStore = types
   .model('UserStore', {
@@ -20,7 +20,7 @@ export const UserStore = types
     },
   }))
   .actions(self => ({
-    fetchProfile: flow(function* () {
+    fetchProfile: flow(function*() {
       if (!self.token) {
         return
       }
@@ -28,7 +28,7 @@ export const UserStore = types
       try {
         self.profile = yield syncano('api/user/profile')
 
-        Sentry.configureScope((scope) => {
+        Sentry.configureScope(scope => {
           if (self.profile !== undefined) {
             scope.setUser({
               id: self.profile.id.toString(),
@@ -45,23 +45,23 @@ export const UserStore = types
     }),
   }))
   .actions(self => ({
-    afterCreate: flow(function* () {
+    afterCreate() {
       self.token = window.localStorage.getItem('token') || ''
       self.fetchProfile()
-    }),
+    },
     logout() {
       self.setToken()
       self.profile = undefined
       applySnapshot(getRoot(self), {})
     },
-    login: flow(function* (credentials: {username: string, password: string}) {
+    login: flow(function*(credentials: {username: string; password: string}) {
       const {token} = yield syncano('user-auth/login', credentials)
 
       self.setToken(token)
 
       return self.fetchProfile()
     }),
-    register: flow(function* (credentials: {username: string, password: string}) {
+    register: flow(function*(credentials: {username: string; password: string}) {
       const {token} = yield syncano('user-auth/register', credentials)
 
       self.setToken(token)

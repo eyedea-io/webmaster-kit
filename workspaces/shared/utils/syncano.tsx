@@ -22,19 +22,9 @@ export function syncano(url: string, data?: object) {
 
     throw err
   }
-
-  return new Promise(() => {
-    // tslint:disable-next-line:no-console
-    console.error(
-      `Syncano Client was used without instance name: ${url}`
-    )
-  })
 }
 
-export function subscribe(
-  url: string,
-  data?: Object
-): WebSocket {
+export function subscribe(url: string, data?: Object): WebSocket {
   const s = new Syncano(SYNCANO_PROJECT_INSTANCE)
   const token = window.localStorage.getItem('token')
 

@@ -16,12 +16,12 @@
     "importHelpers": true,
     "stripInternal": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames" : true,
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleResolution": "node",
     "jsx": "preserve",
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "typeRoots": [
       "node_modules/@types"
@@ -38,11 +38,8 @@
       "es6",
       "dom",
       "es2017"
-    ] ,
+    ],
     "plugins": [
-      {
-        "name": "typescript-tslint-plugin"
-      },
       {
         "name": "typescript-styled-plugin"
       }

@@ -4,8 +4,6 @@ import {Head} from './head'
 
 export const Title = ({children}: {children?: React.ReactChild}) => (
   <Head>
-    <title>
-      {[children, WORKSPACE_TITLE].filter(Boolean).join(' - ')}
-    </title>
+    <title>{[children, WORKSPACE_TITLE].filter(Boolean).join(' - ')}</title>
   </Head>
 )

@@ -10,6 +10,7 @@ const ENV_VARS = [
   'PUBLIC_URL',
   'LOCAL_STORAGE_KEY',
   'ROUTER_BASEPATH',
+  'GTM_ID'
 ]
 
 module.exports = {

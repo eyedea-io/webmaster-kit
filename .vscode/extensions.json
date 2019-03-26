@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "wayou.vscode-todo-highlight",
+    "jpoissonnier.vscode-styled-components",
+    "redhat.vscode-yaml"
+  ]
+}

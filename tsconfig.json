@@ -5,10 +5,10 @@
     "noEmit": true,
     "strict": true,
     "allowJs": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
     "noImplicitAny": false,
+    "experimentalDecorators": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitReturns": true,
@@ -23,35 +23,13 @@
     "jsx": "preserve",
     "target": "es5",
     "module": "esnext",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "paths": {
-      "@shared/*": [
-        "./workspaces/shared/*"
-      ],
-      "@website/*": [
-        "./workspaces/website/*"
-      ]
+      "@shared/*": ["./workspaces/shared/*"],
+      "@website/*": ["./workspaces/website/*"]
     },
-    "lib": [
-      "es6",
-      "dom",
-      "es2017"
-    ],
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin"
-      }
-    ]
+    "lib": ["es6", "dom", "es2017"]
   },
-  "files": [
-    "./typings/index.d.ts"
-  ],
-  "include": [
-    "workspaces/**/*"
-  ],
-  "exclude": [
-    ".config/**/*"
-  ]
+  "files": ["./typings/index.d.ts"],
+  "include": ["workspaces/**/*"]
 }

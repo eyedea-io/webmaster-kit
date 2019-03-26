@@ -17,9 +17,9 @@ export const userState = createState<IState, IActions>({
   actions: async (state, action) => {
     switch (action.type) {
       case 'setToken':
-        return (state.token = action.payload)
+        return void (state.token = action.payload)
       case 'setProfile':
-        return (state.profile = action.payload)
+        return void (state.profile = action.payload)
       default:
         throw new Error('Invalid userState reducer action')
     }

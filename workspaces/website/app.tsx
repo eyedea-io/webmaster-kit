@@ -1,5 +1,4 @@
 import {createHistory, LocationProvider} from '@reach/router'
-import {NormalizeCSS} from '@shared/utils/normalize-css'
 import {composeStateProviders} from '@shared/utils/state-manager'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
@@ -17,7 +16,6 @@ const App = () => {
   return (
     <LocationProvider history={history}>
       <Routes />
-      <NormalizeCSS />
       <GlobalCSS />
     </LocationProvider>
   )

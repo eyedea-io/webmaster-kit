@@ -1,18 +1,12 @@
-import {Link} from '@reach/router'
+import * as React from 'react'
 import * as UserSelectors from '@website/selectors/user'
 import {routeState} from '@website/state/route'
 import {userState} from '@website/state/user'
-import * as React from 'react'
-import Jira from './jira-brands.svg'
 import Kasper from './kasper.jpg'
 
 const ConnectedComponent: React.FC = () => {
   const [{pathname}] = routeState.use()
   const [{displayName}, dispatch] = userState.select([UserSelectors.selectDisplayName])
-
-  React.useEffect(() => {
-    console.log('1')
-  }, [])
 
   if (displayName === undefined) {
     return <img src={Kasper} alt="" />
@@ -20,9 +14,7 @@ const ConnectedComponent: React.FC = () => {
 
   return (
     <>
-      <img src={Jira} alt="" />
       <div>{pathname}</div>
-      <Link to="/about/10">About</Link>
       {displayName}
       <button
         onClick={() => {
@@ -36,7 +28,7 @@ const ConnectedComponent: React.FC = () => {
   )
 }
 
-const OtherComponent = () => <div>Looks good</div>
+const OtherComponent = () => <div>Ook ok</div>
 
 export default () => (
   <div>

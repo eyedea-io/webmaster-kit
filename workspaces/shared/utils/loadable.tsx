@@ -3,7 +3,7 @@ import NProgress from 'nprogress'
 import {lazy} from 'react'
 
 export const loadable = (promise: () => Promise<any>) =>
-  lazy<React.FC<RouteComponentProps<{}>>>(() => {
+  lazy<React.FC<RouteComponentProps<{}>>>(async () => {
     const doc = document.querySelector('html') as HTMLHtmlElement
 
     if (
@@ -15,18 +15,16 @@ export const loadable = (promise: () => Promise<any>) =>
 
     doc.dataset.nprogress = String((parseInt(doc.dataset.nprogress || '0', 10) || 0) + 1)
 
-    return promise()
-      .then(res => {
-        maybeFinish()
-
-        return res
-      })
-      .catch(err => {
-        // tslint:disable-next-line:no-console
-        console.error(err)
-        maybeFinish()
-        throw err
-      })
+    try {
+      const res = promise()
+      maybeFinish()
+      return res
+    } catch (err) {
+      // tslint:disable-next-line:no-console
+      console.error(err)
+      maybeFinish()
+      throw err
+    }
   })
 
 function maybeFinish() {

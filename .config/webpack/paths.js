@@ -1,15 +1,22 @@
 const {resolve} = require('path')
+const fs = require('fs')
+
+const appDirectory = fs.realpathSync(process.cwd())
+const resolveApp = relativePath => resolve(appDirectory, relativePath)
 
 module.exports = (workspace) => ({
-  tsconfig: resolve(__dirname, '../../tsconfig.json'),
-  babelrc: resolve(__dirname, '../../.babelrc'),
-  workspaces: resolve(__dirname, '../../workspaces'),
-  sharedWorkspace: resolve(__dirname, '../../workspaces/shared'),
-  nodeModules: resolve(__dirname, '../../node_modules'),
-  workspace: resolve(__dirname, `../../workspaces/${workspace}`),
-  workspaceBuild: resolve(__dirname, `../../.build/${workspace}`),
-  workspacePublic: resolve(__dirname, `../../workspaces/${workspace}/public`),
-  workspaceIndexHtml: resolve(__dirname, `../../workspaces/${workspace}/public/index.html`),
-  workspacePackageJson: resolve(__dirname, `../../workspaces/${workspace}/package.json`),
-  workspaceIndexJs: resolve(__dirname, `../../workspaces/${workspace}/index.tsx`),
+  root: resolveApp('.'),
+  yarnLockFile: resolveApp('yarn.lock'),
+  packageJson: resolveApp('package.json'),
+  tsconfig: resolveApp('tsconfig.json'),
+  babelrc: resolveApp('.babelrc'),
+  workspaces: resolveApp('workspaces'),
+  sharedWorkspace: resolveApp('workspaces/shared'),
+  nodeModules: resolveApp('node_modules'),
+  workspace: resolveApp(`workspaces/${workspace}`),
+  workspaceBuild: resolveApp(`.build/${workspace}`),
+  workspacePublic: resolveApp(`workspaces/${workspace}/public`),
+  workspaceIndexHtml: resolveApp(`workspaces/${workspace}/public/index.html`),
+  workspacePackageJson: resolveApp(`workspaces/${workspace}/package.json`),
+  workspaceIndexJs: resolveApp(`workspaces/${workspace}/index.tsx`),
 })

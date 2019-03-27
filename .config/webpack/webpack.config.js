@@ -24,12 +24,15 @@ process.env.RELEASE = require('child_process')
   .trim()
 
 const ENV_VARS = [
-  'RELEASE',
   'SYNCANO_PROJECT_INSTANCE',
-  'SENTRY_DSN',
-  'PUBLIC_URL',
-  'LOCAL_STORAGE_KEY',
   'ROUTER_BASEPATH',
+  'PUBLIC_URL',
+  'NODE_ENV',
+  'RELEASE',
+  'SENTRY_DSN',
+  'SENTRY_AUTH_TOKEN',
+  'SENTRY_ORG',
+  'SENTRY_PROJECT',
 ]
 
 module.exports = function(workspace) {
@@ -161,10 +164,25 @@ module.exports = function(workspace) {
       },
       optimization: {
         runtimeChunk: true,
-        splitChunks: {
-          chunks: 'all',
-          name: false,
-        },
+        splitChunks: isEnvDevelopment
+          ? {
+              cacheGroups: {
+                default: false,
+                vendors: false,
+              },
+            }
+          : {
+              chunks: 'all',
+              cacheGroups: {
+                default: false,
+                vendors: false,
+                react: {
+                  name: 'commons',
+                  chunks: 'all',
+                  test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                },
+              },
+            },
         minimize: isEnvProduction,
         minimizer: isEnvProduction
           ? [

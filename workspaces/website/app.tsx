@@ -1,39 +1,19 @@
-import {SentryErrorBoundary} from '@shared/components/sentry-error-boundary'
-import {createStore} from '@shared/utils/create-store'
-import {initSentry} from '@shared/utils/init-sentry'
-import {NormalizeCSS} from '@shared/utils/normalize'
-import {ThemeProvider} from '@shared/utils/styled'
-import {Modals} from '@website/components'
-import {UI} from '@website/config'
-import {Store} from '@website/stores'
-import '@website/styles'
-import {GlobalCSS} from '@website/styles'
-import {observer, Provider} from 'mobx-react'
+import {createHistory, LocationProvider} from '@reach/router'
+import {composeStateProviders} from '@shared/utils/state-manager'
 import * as React from 'react'
 import {hot} from 'react-hot-loader'
 import {Routes} from './routes'
+import {GlobalCSS} from './styles'
 
-class App extends React.Component {
-  componentDidMount() {
-    initSentry()
-  }
+const history = createHistory(window as any)
 
-  render() {
-    return (
-      <SentryErrorBoundary>
-        <Provider store={createStore(Store)}>
-          <ThemeProvider theme={UI}>
-            <React.Fragment>
-              <Routes />
-              <Modals />
-              <NormalizeCSS />
-              <GlobalCSS />
-            </React.Fragment>
-          </ThemeProvider>
-        </Provider>
-      </SentryErrorBoundary>
-    )
-  }
-}
+const App = () => (
+  <LocationProvider history={history}>
+    <Routes />
+    <GlobalCSS />
+  </LocationProvider>
+)
 
-export default hot(module)(observer(App))
+const AppWithState = composeStateProviders(App, [])
+
+export default hot(module)(AppWithState)

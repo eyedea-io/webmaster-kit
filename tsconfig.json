@@ -3,40 +3,33 @@
     "baseUrl": "./",
     "outDir": "./build/",
     "noEmit": true,
+    "strict": true,
+    "allowJs": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "importHelpers": true,
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "target": "es5",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
     "paths": {
       "@shared/*": ["./workspaces/shared/*"],
       "@website/*": ["./workspaces/website/*"]
     },
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "moduleResolution": "node",
-    "jsx": "preserve",
-    "target": "esnext",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "module": "esnext",
-    "lib": [
-      "es6",
-      "dom",
-      "es2017"
-    ],
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin"
-      }
-    ]
+    "lib": ["es6", "dom", "es2017"]
   },
-  "files": [
-    "./typings/index.d.ts"
-  ],
-  "include": [
-    "workspaces/**/*"
-  ],
-  "exclude": [
-    ".config/**/*",
-    ".templates/**/*"
-  ]
+  "files": ["./typings/index.d.ts"],
+  "include": ["workspaces/**/*"]
 }

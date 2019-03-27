@@ -1,1 +1,0 @@
-export {Modals} from './modals'

@@ -16,44 +16,44 @@ let circle
 // Remove webmaster-kit .git directory
 removeGit()
 
-getConfig()
-  .then(async config => {
-    octokit.authenticate({
-      type: 'token',
-      token: config.github
-    })
+getConfig().then(async config => {
+  octokit.authenticate({
+    type: 'token',
+    token: config.github,
+  })
 
-    circle = (url, data) => axios({
+  circle = (url, data) =>
+    axios({
       url: `${CIRCLE_ENDPOINT}${url}`,
       method: 'post',
       data,
       params: {
-        'circle-token': config.circle
-      }
+        'circle-token': config.circle,
+      },
     })
 
-    try {
-      const [username, orgs] = await Promise.all([getUser(), getOrgs()])
-      const accounts = [username].concat(orgs)
+  try {
+    const [username, orgs] = await Promise.all([getUser(), getOrgs()])
+    const accounts = [username].concat(orgs)
 
-      let data = await prompt(accounts, config)
-      data = {username, ...data}
+    let data = await prompt(accounts, config)
+    data = {username, ...data}
 
-      await createRepo(data)
-      await pushToRepo(data)
-      await createEnvrc(data)
-      await attachSyncanoInstance(data)
-      await setupCircle(data)
+    await createRepo(data)
+    await pushToRepo(data)
+    await createEnvrc(data)
+    await attachSyncanoInstance(data)
+    await setupCircle(data)
 
-      console.log('')
-      console.log(`✔ Live within 3 min at: https://${data.syncanoInstance}-staging.syncano.site`)
-    } catch (err) {
-      console.log('Failed to initialize webmaster kit.')
-      console.log(err)
-    }
-  })
+    console.log('')
+    console.log(`✔ Live within 3 min at: https://${data.syncanoInstance}-staging.syncano.site`)
+  } catch (err) {
+    console.log('Failed to initialize webmaster kit.')
+    console.log(err)
+  }
+})
 
-async function createEnvrc (data) {
+async function createEnvrc(data) {
   try {
     fs.writeFileSync('.envrc', `export SYNCANO_PROJECT_INSTANCE=${data.syncanoInstance}`)
     console.log(`✔ Created .envrc file`)
@@ -63,11 +63,9 @@ async function createEnvrc (data) {
   }
 }
 
-function attachSyncanoInstance (data) {
+function attachSyncanoInstance(data) {
   return run(`yes | npx s attach --create-instance ${data.syncanoInstance}`)
-    .then(() =>
-      run(`yes | npx s attach --create-instance ${data.syncanoInstance}-staging`)
-    )
+    .then(() => run(`yes | npx s attach --create-instance ${data.syncanoInstance}-staging`))
     .then(() => {
       console.log(`✔ Create Syncano instance: ${data.syncanoInstance}.`)
       console.log(`✔ Created and attached Syncano instance: ${data.syncanoInstance}-staging.`)
@@ -81,20 +79,20 @@ function attachSyncanoInstance (data) {
     })
 }
 
-function setupCircle (data) {
+function setupCircle(data) {
   const url = `project/github/${data.account}/${data.repo}`
   const variables = {
     STAGING_SYNCANO_PROJECT_INSTANCE: `${data.syncanoInstance}-staging`,
     PRODUCTION_SYNCANO_PROJECT_INSTANCE: data.syncanoInstance,
     SYNCANO_AUTH_KEY: data.config.syncano,
-    FONTAWESOME_TOKEN: data.config.fontawesome
+    FONTAWESOME_TOKEN: data.config.fontawesome,
   }
 
   return Promise.all(
-      Object.entries(variables).map(([name, value]) => {
-        circle(`${url}/envvar`, {name, value})
-      })
-    )
+    Object.entries(variables).map(([name, value]) => {
+      circle(`${url}/envvar`, {name, value})
+    })
+  )
     .then(() => circle(`${url}/follow`))
     .then(res => {
       console.log(`✔ Initialized CircleCI build and env vars.`)
@@ -109,7 +107,7 @@ function setupCircle (data) {
     })
 }
 
-function prompt (accounts, config) {
+function prompt(accounts, config) {
   if (config) {
     return defaultPrompt(accounts).then(data => ({...data, config}))
   }
@@ -117,7 +115,7 @@ function prompt (accounts, config) {
   return configPrompt(accounts)
 }
 
-async function getConfig () {
+async function getConfig() {
   let syncano
   const dir = path.join(os.homedir(), '.webmasterconfig')
   const syncanoConfig = path.join(os.homedir(), 'syncano.yml')
@@ -133,18 +131,18 @@ async function getConfig () {
       type: 'input',
       name: 'circle',
       message: 'CircleCI token(https://circleci.com/account/api)',
-      validate: (value) => {
+      validate: value => {
         return value.length >= 1
-      }
+      },
     },
     {
       type: 'input',
       name: 'github',
       message: 'GitHub token(https://github.com/settings/tokens/new - repo, read:user)',
-      validate: (value) => {
+      validate: value => {
         return value.length >= 1
-      }
-    }
+      },
+    },
   ])
 
   if (fs.existsSync(syncanoConfig)) {
@@ -158,49 +156,49 @@ async function getConfig () {
   return tokens
 }
 
-function defaultPrompt (accounts) {
+function defaultPrompt(accounts) {
   return inquirer.prompt([
     {
       type: 'list',
       name: 'account',
       message: 'Select GitHub account',
-      choices: accounts
+      choices: accounts,
     },
     {
       type: 'input',
       name: 'repo',
       message: 'GitHub repository name',
-      validate: function (value) {
+      validate: function(value) {
         return value.length >= 1
-      }
+      },
     },
     {
       type: 'confirm',
       name: 'private',
-      message: 'Private repository'
+      message: 'Private repository',
     },
     {
       type: 'input',
       name: 'fontawesome',
-      message: 'FontAwesome Pro token'
+      message: 'FontAwesome Pro token',
     },
     {
       type: 'input',
       name: 'syncanoInstance',
       message: 'Syncano instance name',
-      validate: value => value.length >= 5 ? true : 'Min 5 characters'
-    }
+      validate: value => (value.length >= 5 ? true : 'Min 5 characters'),
+    },
   ])
 }
 
-async function createRepo (data) {
+async function createRepo(data) {
   // TODO: Add homepage
   const options = {
     name: data.repo,
     private: data.private,
     allow_rebase_merge: false,
     has_projects: false,
-    has_wiki: false
+    has_wiki: false,
   }
 
   if (data.username === data.account) {
@@ -215,7 +213,11 @@ async function createRepo (data) {
   } else {
     try {
       await octokit.repos.createForOrg({org: data.account, ...options})
-      console.log(`✔ Created ${data.private ? 'private ' : ''}repository on organization account: ${data.account}`)
+      console.log(
+        `✔ Created ${data.private ? 'private ' : ''}repository on organization account: ${
+          data.account
+        }`
+      )
     } catch (err) {
       const res = JSON.parse(err)
       console.log(`ERROR: ${res.message}`)
@@ -224,17 +226,17 @@ async function createRepo (data) {
   }
 }
 
-async function getUser () {
+async function getUser() {
   const {data} = await octokit.users.get()
   return data.login
 }
 
-async function getOrgs () {
+async function getOrgs() {
   const {data} = await octokit.users.getOrgMemberships()
   return data.map(item => item.organization.login)
 }
 
-function removeGit () {
+function removeGit() {
   if (fs.existsSync('.git/config')) {
     const content = fs.readFileSync('.git/config', {encoding: 'utf-8'})
 
@@ -245,11 +247,12 @@ function removeGit () {
   }
 }
 
-async function pushToRepo (data) {
+async function pushToRepo(data) {
   const gitInit = () => run(`git init`)
   const gitAdd = () => run(`git add .`)
   const gitCommit = () => run(`git commit -m "chore: initial commit"`)
-  const gitAddRemote = () => run(`git remote add origin https://github.com/${data.account}/${data.repo}.git`)
+  const gitAddRemote = () =>
+    run(`git remote add origin https://github.com/${data.account}/${data.repo}.git`)
   const gitPush = () => run(`git push -u origin master`)
 
   try {
@@ -268,12 +271,12 @@ async function pushToRepo (data) {
   }
 }
 
-function run (command, cb) {
+function run(command, cb) {
   return new Promise((resolve, reject) => {
-    exec(command, function (err, stdout, stderr) {
+    exec(command, function(err, stdout, stderr) {
       if (err != null) {
         return reject(new Error(err))
-      } else if (typeof (stderr) !== 'string') {
+      } else if (typeof stderr !== 'string') {
         return reject(new Error(stderr))
       } else {
         return resolve(stdout)

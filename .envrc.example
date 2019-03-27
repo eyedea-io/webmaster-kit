@@ -1,14 +1,13 @@
 # Render a root router in sub directory
 export ROUTER_BASEPATH=
 
+export GENERATE_SOURCEMAP=
+
 #  Syncano instance attached to project
 export SYNCANO_PROJECT_INSTANCE=
 
 # Website url needed to setup service worker
 export PUBLIC_URL=
-
-# Key under which whole app data will be stored
-export LOCAL_STORAGE_KEY=
 
 # Bug tracking
 export SENTRY_DSN=

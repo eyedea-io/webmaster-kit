@@ -1,24 +1,15 @@
-import {loadable} from '@shared/utils/loadable'
-import registerServiceWorker from '@shared/utils/register-service-worker'
+import {registerErrorsListener} from '@shared/utils/errors-listener'
+import * as serviceWorker from '@shared/utils/service-worker'
 import * as React from 'react'
 import {render} from 'react-dom'
-import {setConfig} from 'react-hot-loader'
+import App from './app'
 
-setConfig({logLevel: 'no-errors-please'})
+render(
+  <React.Suspense fallback={<div />}>
+    <App />
+  </React.Suspense>,
+  document.querySelector('#root')
+)
 
-const App = loadable(() => import('@website/app'))
-const root = document.querySelector('#root')
-
-if (process.env.NODE_ENV === 'production') {
-  render(<App />, root)
-} else {
-  const RedBox = require('redbox-react').default
-
-  try {
-    render(<App />, root)
-  } catch (e) {
-    render(<RedBox error={e} />, root)
-  }
-}
-
-registerServiceWorker()
+registerErrorsListener()
+serviceWorker.unregister()

@@ -19,8 +19,6 @@ node_modules
 Thumbs.db
 .coverage
 .envrc
-.npmrc
-.vscode
 .history
 .idea
 ROADMAP.md

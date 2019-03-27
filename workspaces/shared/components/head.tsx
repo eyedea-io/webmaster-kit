@@ -13,11 +13,11 @@ const DOMAttributeNames = {
   acceptCharset: 'accept-charset',
   className: 'class',
   htmlFor: 'for',
-  httpEquiv: 'http-equiv'
+  httpEquiv: 'http-equiv',
 }
 
 export class Head extends Component {
-  updatePromise = null
+  updatePromise: Promise<any> | null = null
 
   constructor(props, state) {
     super(props, state)
@@ -26,7 +26,9 @@ export class Head extends Component {
 
   updateHead(head) {
     const promise = (this.updatePromise = Promise.resolve().then(() => {
-      if (promise !== this.updatePromise) { return }
+      if (promise !== this.updatePromise) {
+        return
+      }
 
       this.updatePromise = null
       this.doUpdateHead(head)
@@ -58,14 +60,14 @@ export class Head extends Component {
     } else {
       title = DEFAULT_TITLE
     }
-    if (title !== document.title) { document.title = title }
+    if (title !== document.title) {
+      document.title = title
+    }
   }
 
   updateElements(type, components) {
     const headEl = document.getElementsByTagName('head')[0]
-    const oldTags = Array.prototype.slice.call(
-      headEl.querySelectorAll(type + '.custom-head')
-    )
+    const oldTags = Array.prototype.slice.call(headEl.querySelectorAll(type + '.custom-head'))
     const newTags = components.map(reactElementToDOM).filter(newTag => {
       for (let i = 0, len = oldTags.length; i < len; i++) {
         const oldTag = oldTags[i]
@@ -82,8 +84,7 @@ export class Head extends Component {
   }
 
   render() {
-    const head = React.Children
-      .map(this.props.children, c => c)
+    const head = React.Children.map(this.props.children, c => c)
       .filter(c => !!c)
       .map(children => React.Children.toArray(children))
       .reduce((a, b) => a.concat(b), [])
@@ -112,36 +113,49 @@ function unique() {
     switch (h.type) {
       case 'title':
       case 'base':
-        if (tags.has(h.type)) { return false }
+        if (tags.has(h.type)) {
+          return false
+        }
         tags.add(h.type)
-        break
+        return false
       case 'meta':
         for (let i = 0, len = METATYPES.length; i < len; i++) {
           const metatype = METATYPES[i]
-          if (!h.props.hasOwnProperty(metatype)) { continue }
+          if (!h.props.hasOwnProperty(metatype)) {
+            continue
+          }
 
           if (metatype === 'charSet') {
-            if (metaTypes.has(metatype)) { return false }
+            if (metaTypes.has(metatype)) {
+              return false
+            }
             metaTypes.add(metatype)
           } else {
             const category = h.props[metatype]
             const categories = metaCategories[metatype] || new Set()
-            if (categories.has(category)) { return false }
+            if (categories.has(category)) {
+              return false
+            }
             categories.add(category)
             metaCategories[metatype] = categories
           }
         }
-        break
+        return false
+      default:
+        return true
     }
-    return true
   }
 }
 
 function reactElementToDOM({type, props}) {
   const el = document.createElement(type)
   for (const p in props) {
-    if (!props.hasOwnProperty(p)) { continue }
-    if (p === 'children' || p === 'dangerouslySetInnerHTML') { continue }
+    if (!props.hasOwnProperty(p)) {
+      continue
+    }
+    if (p === 'children' || p === 'dangerouslySetInnerHTML') {
+      continue
+    }
 
     const attr = DOMAttributeNames[p] || p.toLowerCase()
     el.setAttribute(attr, props[p])

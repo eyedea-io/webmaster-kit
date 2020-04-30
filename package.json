@@ -9,7 +9,9 @@
     "test-lint": "stylelint './workspaces/**/*.tsx' --config ./.config/stylelint.json",
     "format": "npx tslint --fix -c tslint.json ./workspaces/**/*.tsx",
     "cosmos": "cosmos --config ./.config/cosmos/config.js",
-    "cosmos:export": "cosmos-export --config ./.config/cosmos/config.js"
+    "cosmos:export": "cosmos-export --config ./.config/cosmos/config.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "bundlesize": [
     {
@@ -48,7 +50,8 @@
     "react-dom": "16.7.0-alpha.2",
     "redbox-react": "1.6.0",
     "styled-components": "4.0.0",
-    "typescript-styled-plugin": "0.11.0"
+    "typescript-styled-plugin": "0.11.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -118,5 +121,6 @@
     ">0.25%",
     "not ie 11",
     "not op_mini all"
-  ]
+  ],
+  "snyk": true
 }

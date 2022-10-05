@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@eyedea/syncano": "0.2.0",
-    "@syncano/core": "0.13.0"
+    "@syncano/core": "0.15.0"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
